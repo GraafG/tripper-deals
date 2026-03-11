@@ -2,7 +2,7 @@ name: Scrape Tripper Deals
 
 on:
   schedule:
-    # Every day at 08:00 UTC (09:00 CET / 10:00 CEST)
+    # Every day at 08:00 UTC (09:00 CET winter / 10:00 CEST summer)
     - cron: '0 8 * * *'
   workflow_dispatch: # Manual trigger
 
