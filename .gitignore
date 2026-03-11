@@ -1,0 +1,7 @@
+.venv/
+__pycache__/
+*.pyc
+*.xlsx
+2026-03-07.html
+2026-03-07_files/
+Bekijk alle deals*
