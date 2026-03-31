@@ -27,6 +27,9 @@ jobs:
       - name: Run scraper
         run: python tripper_scraper.py
 
+      - name: Build price history
+        run: python build_history.py
+
       - name: Commit results
         run: |
           git config user.name "github-actions[bot]"

@@ -36,6 +36,18 @@
   .price-original { text-decoration: line-through; color: #999; margin-right: 6px; }
   .price-deal { font-weight: 700; color: #2e7d32; }
   .loading { text-align: center; padding: 60px; color: #888; font-size: 1.1rem; }
+  .trend-up { color: #c62828; font-weight: 600; }
+  .trend-down { color: #2e7d32; font-weight: 600; }
+  .trend-stable { color: #888; }
+  .trend-new { color: #1a73e8; font-size: 0.75rem; }
+  .lowest-badge { background: #fff3e0; color: #e65100; padding: 2px 8px; border-radius: 12px; font-weight: 600; font-size: 0.75rem; white-space: nowrap; }
+  .sparkline-row td { padding: 0; border-bottom: 1px solid #e0e0e0; }
+  .sparkline-cell { padding: 12px 24px; background: #fafafa; }
+  .sparkline-cell svg { display: block; max-width: 500px; }
+  .sparkline-meta { display: flex; gap: 18px; font-size: 0.82rem; color: #555; margin-top: 6px; flex-wrap: wrap; }
+  .sparkline-meta strong { color: #1a73e8; }
+  tr.expandable { cursor: pointer; }
+  tr.expandable:hover { background: #e8f0fe; }
   @media (max-width: 768px) {
     .header { padding: 14px 16px; }
     .table-wrap { padding: 0 8px 16px; }
@@ -76,6 +88,7 @@
         <th data-col="discounted_price">Dealprijs <span class="arrow"></span></th>
         <th data-col="discount_num">Korting <span class="arrow"></span></th>
         <th data-col="savings">Besparing <span class="arrow"></span></th>
+        <th data-col="trend">Trend <span class="arrow"></span></th>
       </tr>
     </thead>
     <tbody id="deals-body"></tbody>
@@ -85,15 +98,22 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="anonymous"></script>
 <script>
 let allDeals = [];
+let historyData = {};
 let sortCol = 'discount_num';
 let sortAsc = false;
 let map = null;
 let markers = [];
+let expandedUrl = null;
 
 async function init() {
   try {
-    const res = await fetch('data/index.json');
-    const dates = await res.json(); // sorted desc
+    const [indexRes, histRes] = await Promise.all([
+      fetch('data/index.json'),
+      fetch('data/history.json').catch(() => null),
+    ]);
+    const dates = await indexRes.json();
+    if (histRes && histRes.ok) historyData = await histRes.json();
+
     const picker = document.getElementById('date-picker');
     dates.forEach((d, i) => {
       const opt = document.createElement('option');
@@ -116,6 +136,30 @@ async function loadDate(dateStr) {
   try {
     const res = await fetch(`data/${dateStr}.json`);
     allDeals = await res.json();
+
+    // Enrich deals with history data
+    allDeals.forEach(d => {
+      const h = historyData[d.url];
+      if (h) {
+        d._trend = h.trend || 'new';
+        d._atLowest = h.at_lowest || false;
+        d._minPrice = h.min_price;
+        d._maxPrice = h.max_price;
+        d._daysTracked = h.days_tracked || 1;
+        d._history = h.prices || [];
+      } else {
+        d._trend = 'new';
+        d._atLowest = false;
+        d._minPrice = null;
+        d._maxPrice = null;
+        d._daysTracked = 1;
+        d._history = [];
+      }
+      // Sortable trend value: down=0, stable=1, up=2, new=3
+      d.trend = d._trend === 'down' ? 0 : d._trend === 'stable' ? 1 : d._trend === 'up' ? 2 : 3;
+    });
+
+    expandedUrl = null;
     populateLocationFilter();
     renderStats();
     renderTable();
@@ -154,6 +198,8 @@ function renderStats() {
   const prices = deals.map(d => d.discounted_price).filter(p => p != null);
   const savings = deals.map(d => d.savings).filter(s => s != null);
   const discounts = deals.map(d => d.discount_num).filter(d => d > 0);
+  const atLowest = deals.filter(d => d._atLowest && d.discounted_price != null).length;
+  const priceDrops = deals.filter(d => d._trend === 'down').length;
   const avg = (arr) => arr.length ? (arr.reduce((a,b) => a+b, 0) / arr.length).toFixed(0) : '-';
   const bar = document.getElementById('stats-bar');
   bar.innerHTML = `
@@ -162,7 +208,26 @@ function renderStats() {
     <span class="stat">Gem. korting: <strong>${avg(discounts)}%</strong></span>
     <span class="stat">Gem. besparing: <strong>&euro;${avg(savings)}</strong></span>
     <span class="stat">Laagste prijs: <strong>&euro;${prices.length ? Math.min(...prices).toFixed(0) : '-'}</strong></span>
+    <span class="stat">📉 <strong>${priceDrops}</strong> prijsdalingen</span>
+    <span class="stat">⭐ <strong>${atLowest}</strong> op laagste prijs</span>
   `;
+}
+
+function trendHtml(deal) {
+  switch (deal._trend) {
+    case 'down':  return '<span class="trend-down" title="Prijs gedaald">▼</span>';
+    case 'up':    return '<span class="trend-up" title="Prijs gestegen">▲</span>';
+    case 'stable':return '<span class="trend-stable" title="Prijs stabiel">—</span>';
+    case 'new':   return '<span class="trend-new" title="Nieuw">NEW</span>';
+    default:      return '';
+  }
+}
+
+function lowestBadge(deal) {
+  if (deal._atLowest && deal._daysTracked > 1 && deal.discounted_price != null) {
+    return ' <span class="lowest-badge" title="Laagste prijs ooit">LAAGSTE</span>';
+  }
+  return '';
 }
 
 function renderTable() {
@@ -178,26 +243,94 @@ function renderTable() {
   });
 
   const tbody = document.getElementById('deals-body');
-  tbody.innerHTML = deals.map(d => `<tr>
-    <td><a href="${safeUrl(d.url)}" target="_blank" rel="noopener noreferrer">${esc(d.name)}</a></td>
-    <td>${esc(d.provider)}</td>
-    <td>${esc(d.location)}</td>
-    <td>${esc(d.rating)}</td>
-    <td>${d.original_price != null ? '&euro;' + d.original_price.toFixed(2) : ''}</td>
-    <td class="price-deal">${d.discounted_price != null ? '&euro;' + d.discounted_price.toFixed(2) : ''}</td>
-    <td>${d.discount_num ? '<span class="discount-badge">-' + d.discount_num + '%</span>' : ''}</td>
-    <td>${d.savings != null ? '&euro;' + d.savings.toFixed(2) : ''}</td>
-  </tr>`).join('');
+  const colCount = document.querySelectorAll('#deals-table thead th').length;
+  tbody.innerHTML = deals.map(d => {
+    const mainRow = `<tr class="expandable" data-url="${esc(d.url)}" onclick="toggleSparkline(this)">
+      <td><a href="${safeUrl(d.url)}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">${esc(d.name)}</a>${lowestBadge(d)}</td>
+      <td>${esc(d.provider)}</td>
+      <td>${esc(d.location)}</td>
+      <td>${esc(d.rating)}</td>
+      <td>${d.original_price != null ? '&euro;' + d.original_price.toFixed(2) : ''}</td>
+      <td class="price-deal">${d.discounted_price != null ? '&euro;' + d.discounted_price.toFixed(2) : ''}</td>
+      <td>${d.discount_num ? '<span class="discount-badge">-' + d.discount_num + '%</span>' : ''}</td>
+      <td>${d.savings != null ? '&euro;' + d.savings.toFixed(2) : ''}</td>
+      <td>${trendHtml(d)}</td>
+    </tr>`;
+
+    if (expandedUrl === d.url) {
+      return mainRow + `<tr class="sparkline-row"><td colspan="${colCount}" class="sparkline-cell">${buildSparkline(d)}</td></tr>`;
+    }
+    return mainRow;
+  }).join('');
 
   document.getElementById('loading').style.display = 'none';
   document.getElementById('deals-table').style.display = 'table';
 
-  // update sort arrows
   document.querySelectorAll('#deals-table th').forEach(th => {
     const arrow = th.querySelector('.arrow');
     if (th.dataset.col === sortCol) arrow.textContent = sortAsc ? '\u25B2' : '\u25BC';
     else arrow.textContent = '';
   });
+}
+
+function toggleSparkline(tr) {
+  const url = tr.dataset.url;
+  expandedUrl = expandedUrl === url ? null : url;
+  renderTable();
+}
+
+function buildSparkline(deal) {
+  const hist = deal._history || [];
+  const pricePoints = hist.filter(p => p.price != null);
+
+  if (pricePoints.length < 2) {
+    return '<div class="sparkline-meta">Onvoldoende prijsgeschiedenis voor grafiek.</div>';
+  }
+
+  const W = 480, H = 80, PAD = 24;
+  const prices = pricePoints.map(p => p.price);
+  const minP = Math.min(...prices);
+  const maxP = Math.max(...prices);
+  const range = maxP - minP || 1;
+
+  const points = pricePoints.map((p, i) => {
+    const x = PAD + (i / (pricePoints.length - 1)) * (W - 2 * PAD);
+    const y = PAD + (1 - (p.price - minP) / range) * (H - 2 * PAD);
+    return { x, y, date: p.date, price: p.price };
+  });
+
+  const line = points.map((p, i) => `${i === 0 ? 'M' : 'L'}${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ');
+
+  // Area fill
+  const area = line + ` L${points[points.length - 1].x.toFixed(1)},${H - PAD} L${points[0].x.toFixed(1)},${H - PAD} Z`;
+
+  // Date labels (first and last)
+  const firstDate = pricePoints[0].date.slice(5); // MM-DD
+  const lastDate = pricePoints[pricePoints.length - 1].date.slice(5);
+
+  // Build dots with hover titles
+  const dots = points.map(p =>
+    `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="3" fill="#1a73e8" stroke="#fff" stroke-width="1.5"><title>${p.date}: €${p.price.toFixed(2)}</title></circle>`
+  ).join('');
+
+  const svg = `<svg viewBox="0 0 ${W} ${H + 16}" width="${W}" height="${H + 16}" xmlns="http://www.w3.org/2000/svg">
+    <path d="${area}" fill="rgba(26,115,232,0.1)" />
+    <path d="${line}" fill="none" stroke="#1a73e8" stroke-width="2" stroke-linejoin="round" />
+    ${dots}
+    <text x="${PAD}" y="${H + 12}" font-size="10" fill="#888">${firstDate}</text>
+    <text x="${W - PAD}" y="${H + 12}" font-size="10" fill="#888" text-anchor="end">${lastDate}</text>
+    <text x="${PAD - 4}" y="${PAD + 4}" font-size="10" fill="#888" text-anchor="end">€${maxP.toFixed(0)}</text>
+    <text x="${PAD - 4}" y="${H - PAD + 4}" font-size="10" fill="#888" text-anchor="end">€${minP.toFixed(0)}</text>
+  </svg>`;
+
+  const meta = `<div class="sparkline-meta">
+    <span>Gevolgd: <strong>${deal._daysTracked} dagen</strong></span>
+    <span>Laagste: <strong>&euro;${deal._minPrice != null ? deal._minPrice.toFixed(2) : '-'}</strong></span>
+    <span>Hoogste: <strong>&euro;${deal._maxPrice != null ? deal._maxPrice.toFixed(2) : '-'}</strong></span>
+    <span>Huidig: <strong>&euro;${deal.discounted_price != null ? deal.discounted_price.toFixed(2) : '-'}</strong></span>
+  </div>`;
+
+  return svg + meta;
 }
 
 function esc(s) {
@@ -225,8 +358,8 @@ document.querySelectorAll('#deals-table th[data-col]').forEach(th => {
 });
 
 // Search & filter
-document.getElementById('search-box').addEventListener('input', () => { renderTable(); renderStats(); if (map) renderMap(); });
-document.getElementById('location-filter').addEventListener('change', () => { renderTable(); renderStats(); if (map) renderMap(); });
+document.getElementById('search-box').addEventListener('input', () => { expandedUrl = null; renderTable(); renderStats(); if (map) renderMap(); });
+document.getElementById('location-filter').addEventListener('change', () => { expandedUrl = null; renderTable(); renderStats(); if (map) renderMap(); });
 
 // View toggle
 function showView(view) {
@@ -252,7 +385,6 @@ function renderMap() {
   markers = [];
   const deals = getFiltered().filter(d => d.lat && d.lng);
 
-  // group by location
   const groups = {};
   deals.forEach(d => {
     const key = `${d.lat},${d.lng}`;
@@ -263,9 +395,11 @@ function renderMap() {
   Object.values(groups).forEach(g => {
     const count = g.deals.length;
     const label = count > 1 ? `<b>${g.deals[0].location}</b> (${count} deals)` : `<b>${g.deals[0].location}</b>`;
-    const list = g.deals.slice(0, 8).map(d =>
-      `<a href="${safeUrl(d.url)}" target="_blank" rel="noopener noreferrer">${esc(d.name)}</a> ${d.discounted_price != null ? '&euro;' + d.discounted_price.toFixed(0) : ''}`
-    ).join('<br>');
+    const list = g.deals.slice(0, 8).map(d => {
+      const trend = d._trend === 'down' ? ' ▼' : d._trend === 'up' ? ' ▲' : '';
+      const lowest = d._atLowest && d._daysTracked > 1 ? ' ⭐' : '';
+      return `<a href="${safeUrl(d.url)}" target="_blank" rel="noopener noreferrer">${esc(d.name)}</a> ${d.discounted_price != null ? '&euro;' + d.discounted_price.toFixed(0) : ''}${trend}${lowest}`;
+    }).join('<br>');
     const more = count > 8 ? `<br><i>...en ${count - 8} meer</i>` : '';
     const marker = L.marker([g.lat, g.lng]).addTo(map).bindPopup(`${label}<br>${list}${more}`, { maxWidth: 300 });
     markers.push(marker);
