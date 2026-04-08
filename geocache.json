@@ -1287,5 +1287,13 @@
   "Han-sur-Lesse": {
     "lat": 50.1254505,
     "lng": 5.1877385
+  },
+  "Froidchapelle": {
+    "lat": 50.16307,
+    "lng": 4.3266382
+  },
+  "Sint Maartensvlotbrug": {
+    "lat": 52.7863128,
+    "lng": 4.7078227
   }
 }
