@@ -1303,5 +1303,10 @@
   "Berg en Dal": {
     "lat": 51.8113566,
     "lng": 5.9170257
-  }
+  },
+  "Roermond": {
+    "lat": 51.1933903,
+    "lng": 5.9882649
+  },
+  "Destelbergenlare": null
 }
