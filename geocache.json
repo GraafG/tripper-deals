@@ -1308,5 +1308,9 @@
     "lat": 51.1933903,
     "lng": 5.9882649
   },
-  "Destelbergenlare": null
+  "Destelbergenlare": null,
+  "Beek en Donk": {
+    "lat": 51.5337801,
+    "lng": 5.6329857
+  }
 }
