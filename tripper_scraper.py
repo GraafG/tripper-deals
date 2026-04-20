@@ -7,25 +7,27 @@ from bs4 import BeautifulSoup
 from datetime import datetime
 from pathlib import Path
 
-from html import escape as html_escape
+from html import unescape as html_unescape
 from urllib.parse import urlparse
 
 BASE_DIR = Path(__file__).parent
 DATA_DIR = BASE_DIR / 'data'
 GEOCACHE_FILE = BASE_DIR / 'geocache.json'
+DEALCACHE_FILE = BASE_DIR / 'dealcache.json'
 
 ALLOWED_URL_SCHEMES = {'http', 'https'}
 ALLOWED_URL_HOSTS = {'www.tripper.nl', 'tripper.nl'}
 
 
 def sanitize_text(text):
-    """Strip HTML tags and escape any remaining HTML entities."""
+    """Strip HTML tags and decode HTML entities. Output is plain text;
+    the frontend is responsible for HTML-escaping at render time."""
     if not text:
         return ''
     # Remove any HTML tags that survived BeautifulSoup's get_text()
     clean = re.sub(r'<[^>]+>', '', text)
-    # Escape HTML entities as a second layer of defense
-    return html_escape(clean, quote=True).strip()
+    # Decode HTML entities (e.g. &#x27; -> ')
+    return html_unescape(clean).strip()
 
 
 def sanitize_url(url):
@@ -149,6 +151,111 @@ def load_local(path):
 
 
 # ---------------------------------------------------------------------------
+# Per-deal coordinate cache (scraped from each deal's detail page)
+# ---------------------------------------------------------------------------
+
+# Tripper renders a Vue component on each deal page like:
+#   <deal-map :locations="[{'Latitude':49.42396,'Longitude':1.983676,
+#                          'Description':'Parc Saint Paul, Rue de l\u0027Avelon 47, Saint-Paul'}]" ...>
+# This gives the *exact* venue coordinates (not a city centroid), which is
+# much more accurate than geocoding the city name.
+_DEAL_COORDS_RE = re.compile(
+    r"'Latitude'\s*:\s*(-?\d+(?:\.\d+)?)"
+    r"\s*,\s*'Longitude'\s*:\s*(-?\d+(?:\.\d+)?)"
+    r"(?:\s*,\s*'Description'\s*:\s*'((?:\\'|[^'])*)')?",
+    re.IGNORECASE,
+)
+
+
+def load_dealcache():
+    if DEALCACHE_FILE.exists():
+        with open(DEALCACHE_FILE, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    return {}
+
+
+def save_dealcache(cache):
+    with open(DEALCACHE_FILE, 'w', encoding='utf-8') as f:
+        json.dump(cache, f, ensure_ascii=False, indent=2)
+
+
+def fetch_deal_coords(url, session):
+    """Fetch a single deal page and extract (lat, lng, address) from the
+    deal-map component. Returns None on any failure."""
+    try:
+        r = session.get(url, timeout=15)
+        r.raise_for_status()
+    except Exception as e:
+        print(f"  Failed to fetch {url}: {e}")
+        return None
+
+    m = _DEAL_COORDS_RE.search(r.text)
+    if not m:
+        return None
+
+    try:
+        lat = float(m.group(1))
+        lng = float(m.group(2))
+    except ValueError:
+        return None
+
+    address = ''
+    if m.group(3):
+        # Unescape the JS string literal: \u0027 -> '
+        address = m.group(3).encode('utf-8').decode('unicode_escape')
+
+    return {'lat': lat, 'lng': lng, 'address': address}
+
+
+def enrich_deals_with_detail_coords(deals, force=False):
+    """For each deal whose URL is not yet cached, fetch its detail page and
+    extract precise coordinates. Cached deals are reused (no HTTP request).
+    Set force=True to re-fetch every deal (used for one-shot backfill).
+
+    Returns the number of deals successfully resolved (cache hits + new fetches)."""
+    import requests
+
+    cache = load_dealcache()
+    session = requests.Session()
+    session.headers.update({
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '
+                      '(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+        'Accept-Language': 'nl-NL,nl;q=0.9,en;q=0.8',
+    })
+
+    urls = [d['url'] for d in deals if d.get('url')]
+    to_fetch = [u for u in urls if force or u not in cache]
+
+    if to_fetch:
+        print(f"Fetching detail pages for {len(to_fetch)} deal(s) "
+              f"({len(urls) - len(to_fetch)} cached)...")
+        for i, url in enumerate(to_fetch):
+            coords = fetch_deal_coords(url, session)
+            cache[url] = coords  # may be None — cache the negative result too
+            if (i + 1) % 10 == 0:
+                print(f"  Fetched {i + 1}/{len(to_fetch)}...")
+                save_dealcache(cache)  # periodic flush so progress isn't lost
+            time.sleep(0.5)  # politeness
+        save_dealcache(cache)
+        print(f"Detail-page cache now has {len(cache)} entries.")
+    else:
+        print(f"All {len(urls)} deal URLs already in detail-page cache.")
+
+    resolved = 0
+    for d in deals:
+        coords = cache.get(d.get('url'))
+        if coords:
+            d['lat'] = coords['lat']
+            d['lng'] = coords['lng']
+            if coords.get('address'):
+                d['address'] = coords['address']
+            resolved += 1
+
+    print(f"Resolved precise coords for {resolved}/{len(deals)} deals from detail pages.")
+    return resolved
+
+
+# ---------------------------------------------------------------------------
 # Geocoding
 # ---------------------------------------------------------------------------
 
@@ -176,21 +283,29 @@ def geocode_locations(deals):
         session = requests.Session()
         session.headers.update({'User-Agent': 'TripperDealsScraper/1.0'})
 
+        # Tripper covers NL primarily, with some BE/DE/FR/LU/AT/CH/ES/IT/GB deals.
+        # Restricting Nominatim to these prevents far-away false matches
+        # (e.g. "Saint-Paul" resolving to Saint Paul, Minnesota).
+        eu_countries = 'nl,be,de,fr,lu,at,ch,es,it,gb,dk'
+
         for i, loc in enumerate(to_geocode):
-            query = f"{loc}, Netherlands"
             try:
+                # First try: bias to NL (most deals are Dutch).
                 r = session.get(
                     'https://nominatim.openstreetmap.org/search',
-                    params={'q': query, 'format': 'json', 'limit': 1},
+                    params={'q': loc, 'format': 'json', 'limit': 1,
+                            'countrycodes': 'nl'},
                     timeout=10,
                 )
                 results = r.json()
                 if results:
                     cache[loc] = {'lat': float(results[0]['lat']), 'lng': float(results[0]['lon'])}
                 else:
+                    # Fallback: search across the European countries Tripper sells in.
                     r2 = session.get(
                         'https://nominatim.openstreetmap.org/search',
-                        params={'q': loc, 'format': 'json', 'limit': 1},
+                        params={'q': loc, 'format': 'json', 'limit': 1,
+                                'countrycodes': eu_countries},
                         timeout=10,
                     )
                     results2 = r2.json()
@@ -281,7 +396,14 @@ def main():
 
     # Geocode
     if not args.no_geocode:
-        geocode_locations(deals)
+        # 1. Try precise per-deal coords from each deal's detail page
+        #    (cached by URL — only new deals trigger an HTTP request).
+        enrich_deals_with_detail_coords(deals)
+        # 2. Fall back to city-level Nominatim for deals that didn't resolve.
+        unresolved = [d for d in deals if d.get('lat') is None]
+        if unresolved:
+            print(f"Falling back to city-level geocoding for {len(unresolved)} deal(s)...")
+            geocode_locations(unresolved)
 
     # Save
     date_str = args.date or datetime.now().strftime('%Y-%m-%d')
