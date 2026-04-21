@@ -377,6 +377,7 @@
     </div>
     <div class="footer-bottom">
       <p class="footer-disclaimer">⚠️ Tripper Deals is een onafhankelijk overzicht. Prijzen en beschikbaarheid kunnen afwijken. Controleer altijd bij de aanbieder.</p>
+      <p class="footer-disclaimer">🔗 Links naar tripper.nl bevatten onze persoonlijke referral-code (<code>?ref=F28D4VGY</code>). Bij een aankoop via deze links kunnen wij Tripper-spaarpunten ontvangen, zonder extra kosten voor jou.</p>
       <p class="footer-copyright">© 2026 Tripper Deals. Alle rechten voorbehouden.</p>
     </div>
   </div>
@@ -627,9 +628,17 @@ function esc(s) {
   return d.innerHTML;
 }
 
+const TRIPPER_REF = 'F28D4VGY';
 function safeUrl(url) {
   if (!url) return '#';
-  try { const u = new URL(url); return ['http:', 'https:'].includes(u.protocol) ? esc(url) : '#'; }
+  try {
+    const u = new URL(url);
+    if (!['http:', 'https:'].includes(u.protocol)) return '#';
+    if (/(^|\.)tripper\.nl$/i.test(u.hostname)) {
+      u.searchParams.set('ref', TRIPPER_REF);
+    }
+    return esc(u.toString());
+  }
   catch { return '#'; }
 }
 
