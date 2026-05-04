@@ -5,3 +5,6 @@ __pycache__/
 2026-03-07.html
 2026-03-07_files/
 Bekijk alle deals*
+node_modules/
+dist/
+.astro/

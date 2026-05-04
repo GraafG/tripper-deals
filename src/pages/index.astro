@@ -1,0 +1,459 @@
+---
+import Base from '../layouts/Base.astro';
+
+const site = 'https://graafg.github.io/tripper-deals';
+const canonical = site + '/';
+const description = 'Overzicht van alle actuele Tripper.nl vakantie- en reisdeals. Vergelijk prijzen, volg trends en bespaar op je volgende trip.';
+---
+<Base
+  title="Tripper Deals – Vakantieaanbiedingen overzicht"
+  description={description}
+  canonical={canonical}
+>
+
+<header class="hero">
+  <div class="container hero-inner">
+    <div class="hero-top">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">✈</div>
+        <div>
+          <h1>Tripper Deals</h1>
+          <p>Vakantie aanbiedingen in één overzicht</p>
+        </div>
+      </div>
+      <a href="https://ahlert.nl/" target="_blank" rel="noopener noreferrer" class="sister-link" title="Bekijk Albert Heijn Laatste Kans deals op AHlert">
+        AHlert <span aria-hidden="true">↗</span>
+      </a>
+    </div>
+
+    <p class="hero-tagline">
+      Vind de beste <span class="accent">reis- en vakantiedeals</span>, vergelijk prijzen en mis nooit meer een aanbieding.
+    </p>
+
+    <div class="filter-bar" role="search">
+      <select id="date-picker" title="Selecteer datum" aria-label="Selecteer datum"></select>
+      <select id="location-filter" title="Filter op locatie" aria-label="Filter op locatie"><option value="">Alle locaties</option></select>
+      <input type="text" id="search-box" placeholder="Zoek op naam, locatie, aanbieder..." aria-label="Zoek deals" />
+    </div>
+  </div>
+</header>
+
+<main id="main" class="container stats-section">
+  <div class="stats-bar" id="stats-bar"></div>
+</main>
+
+<section class="container">
+  <div class="view-toggle" role="tablist">
+    <button id="btn-table" class="active" onclick="showView('table')" role="tab" aria-selected="true">Tabel</button>
+    <button id="btn-map" onclick="showView('map')" role="tab" aria-selected="false">Kaart</button>
+    <button id="btn-split" onclick="showView('split')" role="tab" aria-selected="false">Kaart + Lijst</button>
+  </div>
+
+  <div class="split-wrap">
+    <div id="map-container"></div>
+
+    <div id="table-container">
+      <div class="table-wrap">
+        <div class="map-filter-note" id="map-filter-note"></div>
+        <div class="loading" id="loading">Deals laden...</div>
+        <div class="table-scroll">
+          <table id="deals-table" style="display:none">
+            <thead>
+              <tr>
+                <th data-col="name">Deal <span class="arrow"></span></th>
+                <th data-col="location">Locatie <span class="arrow"></span></th>
+                <th data-col="discount_num">Korting <span class="arrow"></span></th>
+                <th data-col="discounted_price">Van / Voor <span class="arrow"></span></th>
+              </tr>
+            </thead>
+            <tbody id="deals-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h3>Tripper Deals</h3>
+        <p>Vakantie- en reisaanbiedingen overzichtelijk bij elkaar. Vergelijk prijzen, volg trends en bespaar op je volgende trip.</p>
+      </div>
+      <div>
+        <h4>Zustersite</h4>
+        <ul>
+          <li><a href="https://ahlert.nl/" target="_blank" rel="noopener noreferrer">AHlert ↗ <br /><small>Albert Heijn Laatste Kans koopjes</small></a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Bron</h4>
+        <ul>
+          <li><a href="https://github.com/graafg/tripper-deals" target="_blank" rel="noopener noreferrer">GitHub repository ↗</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-disclaimer">⚠️ Tripper Deals is een onafhankelijk overzicht. Prijzen en beschikbaarheid kunnen afwijken. Controleer altijd bij de aanbieder.</p>
+      <p class="footer-disclaimer">🔗 Links naar tripper.nl bevatten onze persoonlijke referral-code (<code>?ref=F28D4VGY</code>). Bij een aankoop via deze links kunnen wij Tripper-spaarpunten ontvangen, zonder extra kosten voor jou.</p>
+      <p class="footer-copyright">© 2026 Tripper Deals. Alle rechten voorbehouden.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="anonymous" is:inline></script>
+<script is:inline>
+// Read base URL injected by Astro in the <meta name="site-base"> tag.
+const DATA_BASE = (document.querySelector('meta[name="site-base"]')?.content || '/').replace(/\/$/, '');
+
+let allDeals = [];
+let historyData = {};
+let sortCol = 'discount_num';
+let sortAsc = false;
+let map = null;
+let markers = [];
+let expandedUrl = null;
+let currentView = 'table';
+
+const TRIPPER_REF = 'F28D4VGY';
+
+function getSlug(url) {
+  try {
+    const parts = new URL(url).pathname.replace(/\/$/, '').split('/');
+    return parts[parts.length - 1] || '';
+  } catch { return ''; }
+}
+
+async function init() {
+  try {
+    const [indexRes, histRes] = await Promise.all([
+      fetch(DATA_BASE + '/data/index.json'),
+      fetch(DATA_BASE + '/data/history.json').catch(() => null),
+    ]);
+    const dates = await indexRes.json();
+    if (histRes && histRes.ok) historyData = await histRes.json();
+
+    const picker = document.getElementById('date-picker');
+    dates.forEach((d, i) => {
+      const opt = document.createElement('option');
+      opt.value = d; opt.textContent = d;
+      if (i === 0) opt.selected = true;
+      picker.appendChild(opt);
+    });
+    picker.addEventListener('change', () => loadDate(picker.value));
+    if (dates.length) loadDate(dates[0]);
+    else document.getElementById('loading').textContent = 'Geen data beschikbaar.';
+  } catch (e) {
+    document.getElementById('loading').textContent = 'Fout bij laden van data.';
+    console.error(e);
+  }
+}
+
+async function loadDate(dateStr) {
+  document.getElementById('loading').style.display = 'block';
+  document.getElementById('deals-table').style.display = 'none';
+  try {
+    const res = await fetch(DATA_BASE + '/data/' + dateStr + '.json');
+    allDeals = await res.json();
+
+    allDeals.forEach(d => {
+      const h = historyData[d.url];
+      if (h) {
+        d._trend = h.trend || 'new';
+        d._atLowest = h.at_lowest || false;
+        d._minPrice = h.min_price;
+        d._maxPrice = h.max_price;
+        d._daysTracked = h.days_tracked || 1;
+        d._history = h.prices || [];
+      } else {
+        d._trend = 'new';
+        d._atLowest = false;
+        d._minPrice = null;
+        d._maxPrice = null;
+        d._daysTracked = 1;
+        d._history = [];
+      }
+      d.trend = d._trend === 'down' ? 0 : d._trend === 'stable' ? 1 : d._trend === 'up' ? 2 : 3;
+    });
+
+    expandedUrl = null;
+    populateLocationFilter();
+    renderStats();
+    renderTable();
+    if (map) renderMap(true);
+  } catch (e) {
+    document.getElementById('loading').textContent = 'Fout bij laden van deals.';
+    console.error(e);
+  }
+}
+
+function populateLocationFilter() {
+  const sel = document.getElementById('location-filter');
+  const current = sel.value;
+  sel.innerHTML = '<option value="">Alle locaties</option>';
+  const locs = [...new Set(allDeals.map(d => d.location).filter(Boolean))].sort();
+  locs.forEach(l => {
+    const opt = document.createElement('option');
+    opt.value = l; opt.textContent = l;
+    sel.appendChild(opt);
+  });
+  sel.value = current || '';
+}
+
+function getFiltered() {
+  const q = document.getElementById('search-box').value.toLowerCase();
+  const loc = document.getElementById('location-filter').value;
+  let deals = allDeals.filter(d => {
+    if (loc && d.location !== loc) return false;
+    if (q && !(d.name + ' ' + d.location + ' ' + d.provider).toLowerCase().includes(q)) return false;
+    return true;
+  });
+
+  if (currentView === 'split' && map) {
+    const bounds = map.getBounds();
+    deals = deals.filter(d => {
+      const locs = Array.isArray(d.locations) && d.locations.length
+        ? d.locations
+        : (d.lat && d.lng ? [{ lat: d.lat, lng: d.lng }] : []);
+      return locs.some(l => l && l.lat != null && bounds.contains([l.lat, l.lng]));
+    });
+  }
+
+  return deals;
+}
+
+function renderStats() {
+  const deals = getFiltered();
+  const prices = deals.map(d => d.discounted_price).filter(p => p != null);
+  const savings = deals.map(d => d.savings).filter(s => s != null);
+  const discounts = deals.map(d => d.discount_num).filter(d => d > 0);
+  const atLowest = deals.filter(d => d._atLowest && d.discounted_price != null).length;
+  const priceDrops = deals.filter(d => d._trend === 'down').length;
+  const avg = (arr) => arr.length ? (arr.reduce((a, b) => a + b, 0) / arr.length).toFixed(0) : '-';
+  document.getElementById('stats-bar').innerHTML = `
+    <div class="stat"><span class="stat-label">Deals</span><span class="stat-value accent">${deals.length}</span></div>
+    <div class="stat"><span class="stat-label">Gem. prijs</span><span class="stat-value">&euro;${avg(prices)}</span></div>
+    <div class="stat"><span class="stat-label">Gem. korting</span><span class="stat-value">${avg(discounts)}%</span></div>
+    <div class="stat"><span class="stat-label">Gem. besparing</span><span class="stat-value">&euro;${avg(savings)}</span></div>
+    <div class="stat"><span class="stat-label">Laagste prijs</span><span class="stat-value">&euro;${prices.length ? Math.min(...prices).toFixed(0) : '-'}</span></div>
+    <div class="stat"><span class="stat-label">📉 Prijsdalingen</span><span class="stat-value">${priceDrops}</span></div>
+    <div class="stat"><span class="stat-label">⭐ Op laagste prijs</span><span class="stat-value">${atLowest}</span></div>
+  `;
+}
+
+function esc(s) {
+  if (!s) return '';
+  const d = document.createElement('div');
+  d.textContent = s;
+  return d.innerHTML;
+}
+
+function safeUrl(url) {
+  if (!url) return '#';
+  try {
+    const u = new URL(url);
+    if (!['http:', 'https:'].includes(u.protocol)) return '#';
+    if (/(^|\.)tripper\.nl$/i.test(u.hostname)) u.searchParams.set('ref', TRIPPER_REF);
+    return esc(u.toString());
+  } catch { return '#'; }
+}
+
+function lowestBadge(deal) {
+  if (deal._atLowest && deal._daysTracked > 1 && deal.discounted_price != null)
+    return ' <span class="lowest-badge" title="Laagste prijs ooit">LAAGSTE</span>';
+  return '';
+}
+
+function renderTable() {
+  const deals = getFiltered();
+  deals.sort((a, b) => {
+    let va = a[sortCol], vb = b[sortCol];
+    if (va == null) va = sortAsc ? Infinity : -Infinity;
+    if (vb == null) vb = sortAsc ? Infinity : -Infinity;
+    if (typeof va === 'string') { va = va.toLowerCase(); vb = (vb || '').toLowerCase(); }
+    return sortAsc ? (va < vb ? -1 : va > vb ? 1 : 0) : (va > vb ? -1 : va < vb ? 1 : 0);
+  });
+
+  const colCount = document.querySelectorAll('#deals-table thead th').length;
+  const slug = (d) => getSlug(d.url);
+  document.getElementById('deals-body').innerHTML = deals.map(d => {
+    const priceCell = d.original_price != null
+      ? `<span class="price-original">&euro;${d.original_price.toFixed(2)}</span><span class="price-deal">&euro;${d.discounted_price != null ? d.discounted_price.toFixed(2) : '?'}</span>`
+      : (d.discounted_price != null ? `<span class="price-deal">&euro;${d.discounted_price.toFixed(2)}</span>` : '');
+
+    const detailHref = slug(d) ? esc(DATA_BASE + '/deal/' + slug(d) + '/') : safeUrl(d.url);
+    const mainRow = `<tr class="expandable" data-url="${esc(d.url)}" onclick="toggleSparkline(this)">
+      <td><a href="${detailHref}" onclick="event.stopPropagation()">${esc(d.name)}</a>${lowestBadge(d)}</td>
+      <td>${esc(d.location)}</td>
+      <td>${d.discount_num ? '<span class="discount-badge">-' + d.discount_num + '%</span>' : ''}</td>
+      <td>${priceCell}</td>
+    </tr>`;
+
+    if (expandedUrl === d.url) {
+      return mainRow + `<tr class="sparkline-row"><td colspan="${colCount}" class="sparkline-cell">${buildSparkline(d)}</td></tr>`;
+    }
+    return mainRow;
+  }).join('');
+
+  document.getElementById('loading').style.display = 'none';
+  document.getElementById('deals-table').style.display = 'table';
+
+  const note = document.getElementById('map-filter-note');
+  if (currentView === 'split' && map) {
+    note.textContent = `🗺️ ${deals.length} deal${deals.length !== 1 ? 's' : ''} zichtbaar op kaart — zoom of pan om te filteren`;
+  } else {
+    note.textContent = '';
+  }
+
+  document.querySelectorAll('#deals-table th').forEach(th => {
+    const arrow = th.querySelector('.arrow');
+    if (th.dataset.col === sortCol) arrow.textContent = sortAsc ? '▲' : '▼';
+    else arrow.textContent = '';
+  });
+}
+
+function toggleSparkline(tr) {
+  const url = tr.dataset.url;
+  expandedUrl = expandedUrl === url ? null : url;
+  renderTable();
+}
+
+function buildSparkline(deal) {
+  const hist = deal._history || [];
+  const pts = hist.filter(p => p.price != null);
+  if (pts.length < 2) return '<div class="sparkline-meta">Onvoldoende prijsgeschiedenis voor grafiek.</div>';
+
+  const W = 480, H = 80, PAD = 24;
+  const prices = pts.map(p => p.price);
+  const minP = Math.min(...prices), maxP = Math.max(...prices), range = maxP - minP || 1;
+  const points = pts.map((p, i) => ({
+    x: PAD + (i / (pts.length - 1)) * (W - 2 * PAD),
+    y: PAD + (1 - (p.price - minP) / range) * (H - 2 * PAD),
+    ...p,
+  }));
+  const line = points.map((p, i) => `${i === 0 ? 'M' : 'L'}${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ');
+  const area = line + ` L${points[points.length - 1].x.toFixed(1)},${H - PAD} L${points[0].x.toFixed(1)},${H - PAD} Z`;
+  const dots = points.map(p =>
+    `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="3" fill="#dc2626" stroke="#fff" stroke-width="1.5"><title>${p.date}: €${p.price.toFixed(2)}</title></circle>`
+  ).join('');
+  const svg = `<svg viewBox="0 0 ${W} ${H + 16}" width="${W}" height="${H + 16}" xmlns="http://www.w3.org/2000/svg">
+    <path d="${area}" fill="rgba(220,38,38,0.1)"/>
+    <path d="${line}" fill="none" stroke="#dc2626" stroke-width="2" stroke-linejoin="round"/>
+    ${dots}
+    <text x="${PAD}" y="${H + 12}" font-size="10" fill="#888">${pts[0].date.slice(5)}</text>
+    <text x="${W - PAD}" y="${H + 12}" font-size="10" fill="#888" text-anchor="end">${pts[pts.length - 1].date.slice(5)}</text>
+    <text x="${PAD - 4}" y="${PAD + 4}" font-size="10" fill="#888" text-anchor="end">€${maxP.toFixed(0)}</text>
+    <text x="${PAD - 4}" y="${H - PAD + 4}" font-size="10" fill="#888" text-anchor="end">€${minP.toFixed(0)}</text>
+  </svg>`;
+  const detailHref = esc(DATA_BASE + '/deal/' + getSlug(deal.url) + '/');
+  const meta = `<div class="sparkline-meta">
+    <span>Gevolgd: <strong>${deal._daysTracked} dagen</strong></span>
+    <span>Laagste: <strong>&euro;${deal._minPrice != null ? deal._minPrice.toFixed(2) : '-'}</strong></span>
+    <span>Hoogste: <strong>&euro;${deal._maxPrice != null ? deal._maxPrice.toFixed(2) : '-'}</strong></span>
+    <span>Huidig: <strong>&euro;${deal.discounted_price != null ? deal.discounted_price.toFixed(2) : '-'}</strong></span>
+    <span><a href="${detailHref}">Bekijk dealpagina →</a></span>
+  </div>`;
+  return svg + meta;
+}
+
+document.querySelectorAll('#deals-table th[data-col]').forEach(th => {
+  th.addEventListener('click', () => {
+    const col = th.dataset.col;
+    if (sortCol === col) sortAsc = !sortAsc;
+    else { sortCol = col; sortAsc = true; }
+    renderTable(); renderStats();
+  });
+});
+
+document.getElementById('search-box').addEventListener('input', () => { expandedUrl = null; renderTable(); renderStats(); if (map) renderMap(false); });
+document.getElementById('location-filter').addEventListener('change', () => { expandedUrl = null; renderTable(); renderStats(); if (map) renderMap(false); });
+
+function showView(view) {
+  currentView = view;
+  document.getElementById('btn-table').classList.toggle('active', view === 'table');
+  document.getElementById('btn-map').classList.toggle('active', view === 'map');
+  document.getElementById('btn-split').classList.toggle('active', view === 'split');
+  document.body.classList.toggle('view-split', view === 'split');
+
+  const tableContainer = document.getElementById('table-container');
+  const mapContainer = document.getElementById('map-container');
+  if (view === 'split') {
+    tableContainer.style.display = '';
+    mapContainer.style.display = '';
+  } else {
+    tableContainer.style.display = view === 'table' ? 'block' : 'none';
+    mapContainer.style.display = view === 'map' ? 'block' : 'none';
+  }
+
+  if (view === 'map' || view === 'split') {
+    const isNew = !map;
+    if (isNew) {
+      map = L.map('map-container').setView([52.1, 5.3], 7);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors'
+      }).addTo(map);
+      map.on('moveend zoomend', () => {
+        if (currentView === 'split') { renderTable(); renderStats(); }
+      });
+    }
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      map.invalidateSize({ animate: false });
+      renderMap(isNew);
+    }));
+  } else {
+    renderTable(); renderStats();
+  }
+}
+
+function coordKey(lat, lng) {
+  return lat.toFixed(5) + ',' + lng.toFixed(5);
+}
+
+function renderMap(fitBounds = true) {
+  if (!map) return;
+  markers.forEach(m => map.removeLayer(m));
+  markers = [];
+  const deals = getFiltered();
+
+  const groups = {};
+  deals.forEach(d => {
+    let locs = Array.isArray(d.locations) && d.locations.length
+      ? d.locations
+      : (d.lat && d.lng ? [{ lat: d.lat, lng: d.lng, address: d.address }] : []);
+    const totalLocs = locs.length;
+    locs.forEach(loc => {
+      if (!loc || loc.lat == null || loc.lng == null) return;
+      const key = coordKey(loc.lat, loc.lng);
+      if (!groups[key]) groups[key] = { lat: loc.lat, lng: loc.lng, address: loc.address || '', items: [] };
+      groups[key].items.push({ deal: d, locCount: totalLocs, address: loc.address || '' });
+    });
+  });
+
+  Object.values(groups).forEach(g => {
+    const count = g.items.length;
+    const header = g.address || g.items[0].deal.location || '';
+    const label = count > 1 ? `<b>${esc(header)}</b> (${count} deals)` : `<b>${esc(header)}</b>`;
+    const list = g.items.slice(0, 8).map(it => {
+      const d = it.deal;
+      const trend = d._trend === 'down' ? ' ▼' : d._trend === 'up' ? ' ▲' : '';
+      const lowest = d._atLowest && d._daysTracked > 1 ? ' ⭐' : '';
+      const multi = it.locCount > 1 ? ` <span class="multi-loc-note">(1 van ${it.locCount} locaties)</span>` : '';
+      const slug = getSlug(d.url);
+      const href = slug ? esc(DATA_BASE + '/deal/' + slug + '/') : safeUrl(d.url);
+      return `<a href="${href}">${esc(d.name)}</a> ${d.discounted_price != null ? '€' + d.discounted_price.toFixed(0) : ''}${trend}${lowest}${multi}`;
+    }).join('<br>');
+    const more = count > 8 ? `<br><i>...en ${count - 8} meer</i>` : '';
+    const marker = L.marker([g.lat, g.lng]).addTo(map).bindPopup(`${label}<br>${list}${more}`, { maxWidth: 320 });
+    markers.push(marker);
+  });
+
+  if (markers.length && fitBounds) {
+    map.fitBounds(L.latLngBounds(markers.map(m => m.getLatLng())), { padding: [30, 30] });
+  }
+}
+
+init();
+</script>
+
+</Base>
