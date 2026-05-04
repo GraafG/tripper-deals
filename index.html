@@ -201,6 +201,15 @@
   }
   body.view-split .table-wrap { margin-bottom: 0; }
   .leaflet-popup-content { margin: 8px 12px; line-height: 1.45; }
+  .map-filter-note {
+    font-size: 0.78rem;
+    color: var(--gray-500);
+    padding: 0.4rem 0.75rem;
+    background: var(--gray-100);
+    border-bottom: 1px solid var(--gray-200);
+    display: none;
+  }
+  body.view-split .map-filter-note { display: block; }
   .multi-loc-note { color: var(--gray-500); font-size: 0.78rem; margin-top: 4px; }
 
   /* ---- Table ---- */
@@ -355,6 +364,7 @@
 
   <div id="table-container">
     <div class="table-wrap">
+      <div class="map-filter-note" id="map-filter-note"></div>
       <div class="loading" id="loading">Deals laden...</div>
       <div class="table-scroll">
         <table id="deals-table" style="display:none">
@@ -411,6 +421,7 @@ let sortAsc = false;
 let map = null;
 let markers = [];
 let expandedUrl = null;
+let currentView = 'table'; // track active view
 
 async function init() {
   try {
@@ -470,7 +481,7 @@ async function loadDate(dateStr) {
     populateLocationFilter();
     renderStats();
     renderTable();
-    if (map) renderMap();
+    if (map) renderMap(true); // new date → re-fit bounds
   } catch (e) {
     document.getElementById('loading').textContent = 'Fout bij laden van deals.';
     console.error(e);
@@ -493,11 +504,24 @@ function populateLocationFilter() {
 function getFiltered() {
   const q = document.getElementById('search-box').value.toLowerCase();
   const loc = document.getElementById('location-filter').value;
-  return allDeals.filter(d => {
+  let deals = allDeals.filter(d => {
     if (loc && d.location !== loc) return false;
     if (q && !(d.name + ' ' + d.location + ' ' + d.provider).toLowerCase().includes(q)) return false;
     return true;
   });
+
+  // In split view, further restrict to deals visible in the current map viewport.
+  if (currentView === 'split' && map) {
+    const bounds = map.getBounds();
+    deals = deals.filter(d => {
+      const locs = Array.isArray(d.locations) && d.locations.length
+        ? d.locations
+        : (d.lat && d.lng ? [{ lat: d.lat, lng: d.lng }] : []);
+      return locs.some(l => l && l.lat != null && bounds.contains([l.lat, l.lng]));
+    });
+  }
+
+  return deals;
 }
 
 function renderStats() {
@@ -570,6 +594,14 @@ function renderTable() {
 
   document.getElementById('loading').style.display = 'none';
   document.getElementById('deals-table').style.display = 'table';
+
+  // Update the viewport-filter note shown in split view.
+  const note = document.getElementById('map-filter-note');
+  if (currentView === 'split' && map) {
+    note.textContent = `🗺️ ${deals.length} deal${deals.length !== 1 ? 's' : ''} zichtbaar op kaart — zoom of pan om te filteren`;
+  } else {
+    note.textContent = '';
+  }
 
   document.querySelectorAll('#deals-table th').forEach(th => {
     const arrow = th.querySelector('.arrow');
@@ -671,11 +703,12 @@ document.querySelectorAll('#deals-table th[data-col]').forEach(th => {
 });
 
 // Search & filter
-document.getElementById('search-box').addEventListener('input', () => { expandedUrl = null; renderTable(); renderStats(); if (map) renderMap(); });
-document.getElementById('location-filter').addEventListener('change', () => { expandedUrl = null; renderTable(); renderStats(); if (map) renderMap(); });
+document.getElementById('search-box').addEventListener('input', () => { expandedUrl = null; renderTable(); renderStats(); if (map) renderMap(false); });
+document.getElementById('location-filter').addEventListener('change', () => { expandedUrl = null; renderTable(); renderStats(); if (map) renderMap(false); });
 
 // View toggle
 function showView(view) {
+  currentView = view;
   document.getElementById('btn-table').classList.toggle('active', view === 'table');
   document.getElementById('btn-map').classList.toggle('active', view === 'map');
   document.getElementById('btn-split').classList.toggle('active', view === 'split');
@@ -684,7 +717,6 @@ function showView(view) {
   const tableContainer = document.getElementById('table-container');
   const mapContainer = document.getElementById('map-container');
   if (view === 'split') {
-    // Split view is driven by body.view-split CSS rules.
     tableContainer.style.display = '';
     mapContainer.style.display = '';
   } else {
@@ -693,14 +725,21 @@ function showView(view) {
   }
 
   if (view === 'map' || view === 'split') {
-    if (!map) {
+    const isNew = !map;
+    if (isNew) {
       map = L.map('map-container').setView([52.1, 5.3], 7);
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; OpenStreetMap contributors'
       }).addTo(map);
+      // Update table whenever the viewport changes (split view only).
+      map.on('moveend zoomend', () => {
+        if (currentView === 'split') { renderTable(); renderStats(); }
+      });
     }
-    setTimeout(() => map.invalidateSize(), 100);
-    renderMap();
+    setTimeout(() => { map.invalidateSize(); renderMap(isNew); }, 100);
+  } else {
+    // Leaving map/split view — re-render table without bounds filter.
+    renderTable(); renderStats();
   }
 }
 
@@ -709,7 +748,7 @@ function coordKey(lat, lng) {
   return `${lat.toFixed(5)},${lng.toFixed(5)}`;
 }
 
-function renderMap() {
+function renderMap(fitBounds = true) {
   if (!map) return;
   markers.forEach(m => map.removeLayer(m));
   markers = [];
@@ -747,7 +786,7 @@ function renderMap() {
     markers.push(marker);
   });
 
-  if (markers.length) {
+  if (markers.length && fitBounds) {
     const bounds = L.latLngBounds(markers.map(m => m.getLatLng()));
     map.fitBounds(bounds, { padding: [30, 30] });
   }
