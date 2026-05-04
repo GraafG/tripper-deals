@@ -181,6 +181,27 @@
     border: 1px solid var(--gray-200);
     box-shadow: var(--shadow-sm);
   }
+  /* Combined map+list layout */
+  body.view-split #map-container { display: block; }
+  body.view-split #table-container { display: block; }
+  @media (min-width: 1024px) {
+    body.view-split .split-wrap {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 1.25rem;
+      align-items: start;
+    }
+    body.view-split #map-container {
+      position: sticky;
+      top: 1rem;
+      height: calc(100vh - 2rem);
+      max-height: 720px;
+      margin-bottom: 0;
+    }
+  }
+  body.view-split .table-wrap { margin-bottom: 0; }
+  .leaflet-popup-content { margin: 8px 12px; line-height: 1.45; }
+  .multi-loc-note { color: var(--gray-500); font-size: 0.78rem; margin-top: 4px; }
 
   /* ---- Table ---- */
   .table-wrap {
@@ -326,8 +347,10 @@
   <div class="view-toggle" role="tablist">
     <button id="btn-table" class="active" onclick="showView('table')" role="tab" aria-selected="true">Tabel</button>
     <button id="btn-map" onclick="showView('map')" role="tab" aria-selected="false">Kaart</button>
+    <button id="btn-split" onclick="showView('split')" role="tab" aria-selected="false">Kaart + Lijst</button>
   </div>
 
+  <div class="split-wrap">
   <div id="map-container"></div>
 
   <div id="table-container">
@@ -352,6 +375,7 @@
         </table>
       </div>
     </div>
+  </div>
   </div>
 </section>
 
@@ -661,9 +685,21 @@ document.getElementById('location-filter').addEventListener('change', () => { ex
 function showView(view) {
   document.getElementById('btn-table').classList.toggle('active', view === 'table');
   document.getElementById('btn-map').classList.toggle('active', view === 'map');
-  document.getElementById('table-container').style.display = view === 'table' ? 'block' : 'none';
-  document.getElementById('map-container').style.display = view === 'map' ? 'block' : 'none';
-  if (view === 'map') {
+  document.getElementById('btn-split').classList.toggle('active', view === 'split');
+  document.body.classList.toggle('view-split', view === 'split');
+
+  const tableContainer = document.getElementById('table-container');
+  const mapContainer = document.getElementById('map-container');
+  if (view === 'split') {
+    // Split view is driven by body.view-split CSS rules.
+    tableContainer.style.display = '';
+    mapContainer.style.display = '';
+  } else {
+    tableContainer.style.display = view === 'table' ? 'block' : 'none';
+    mapContainer.style.display = view === 'map' ? 'block' : 'none';
+  }
+
+  if (view === 'map' || view === 'split') {
     if (!map) {
       map = L.map('map-container').setView([52.1, 5.3], 7);
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -675,29 +711,46 @@ function showView(view) {
   }
 }
 
+// Round coords so very-near-duplicate venues group into the same pin.
+function coordKey(lat, lng) {
+  return `${lat.toFixed(5)},${lng.toFixed(5)}`;
+}
+
 function renderMap() {
   if (!map) return;
   markers.forEach(m => map.removeLayer(m));
   markers = [];
-  const deals = getFiltered().filter(d => d.lat && d.lng);
+  const deals = getFiltered();
 
+  // Expand each deal into one (deal, location) pair per location.
+  // Falls back to the legacy single lat/lng for older snapshots.
   const groups = {};
   deals.forEach(d => {
-    const key = `${d.lat},${d.lng}`;
-    if (!groups[key]) groups[key] = { lat: d.lat, lng: d.lng, deals: [] };
-    groups[key].deals.push(d);
+    let locs = Array.isArray(d.locations) && d.locations.length
+      ? d.locations
+      : (d.lat && d.lng ? [{ lat: d.lat, lng: d.lng, address: d.address }] : []);
+    const totalLocs = locs.length;
+    locs.forEach(loc => {
+      if (!loc || loc.lat == null || loc.lng == null) return;
+      const key = coordKey(loc.lat, loc.lng);
+      if (!groups[key]) groups[key] = { lat: loc.lat, lng: loc.lng, address: loc.address || '', items: [] };
+      groups[key].items.push({ deal: d, locCount: totalLocs, address: loc.address || '' });
+    });
   });
 
   Object.values(groups).forEach(g => {
-    const count = g.deals.length;
-    const label = count > 1 ? `<b>${g.deals[0].location}</b> (${count} deals)` : `<b>${g.deals[0].location}</b>`;
-    const list = g.deals.slice(0, 8).map(d => {
+    const count = g.items.length;
+    const headerName = g.address || g.items[0].deal.location || '';
+    const label = count > 1 ? `<b>${esc(headerName)}</b> (${count} deals)` : `<b>${esc(headerName)}</b>`;
+    const list = g.items.slice(0, 8).map(it => {
+      const d = it.deal;
       const trend = d._trend === 'down' ? ' ▼' : d._trend === 'up' ? ' ▲' : '';
       const lowest = d._atLowest && d._daysTracked > 1 ? ' ⭐' : '';
-      return `<a href="${safeUrl(d.url)}" target="_blank" rel="noopener noreferrer">${esc(d.name)}</a> ${d.discounted_price != null ? '&euro;' + d.discounted_price.toFixed(0) : ''}${trend}${lowest}`;
+      const multi = it.locCount > 1 ? ` <span class="multi-loc-note">(1 van ${it.locCount} locaties)</span>` : '';
+      return `<a href="${safeUrl(d.url)}" target="_blank" rel="noopener noreferrer">${esc(d.name)}</a> ${d.discounted_price != null ? '&euro;' + d.discounted_price.toFixed(0) : ''}${trend}${lowest}${multi}`;
     }).join('<br>');
     const more = count > 8 ? `<br><i>...en ${count - 8} meer</i>` : '';
-    const marker = L.marker([g.lat, g.lng]).addTo(map).bindPopup(`${label}<br>${list}${more}`, { maxWidth: 300 });
+    const marker = L.marker([g.lat, g.lng]).addTo(map).bindPopup(`${label}<br>${list}${more}`, { maxWidth: 320 });
     markers.push(marker);
   });
 

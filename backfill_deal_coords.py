@@ -67,12 +67,18 @@ def apply_cache_to_snapshots():
             new_lat = coords['lat']
             new_lng = coords['lng']
             new_addr = coords.get('address') or d.get('address')
+            new_locs = coords.get('locations')
+            if not new_locs:
+                new_locs = [{'lat': new_lat, 'lng': new_lng,
+                             'address': coords.get('address', '')}]
             if (d.get('lat') != new_lat or d.get('lng') != new_lng
-                    or d.get('address') != new_addr):
+                    or d.get('address') != new_addr
+                    or d.get('locations') != new_locs):
                 d['lat'] = new_lat
                 d['lng'] = new_lng
                 if new_addr:
                     d['address'] = new_addr
+                d['locations'] = new_locs
                 changed = True
 
         if changed:

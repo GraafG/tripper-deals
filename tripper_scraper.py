@@ -180,8 +180,12 @@ def save_dealcache(cache):
 
 
 def fetch_deal_coords(url, session):
-    """Fetch a single deal page and extract (lat, lng, address) from the
-    deal-map component. Returns None on any failure."""
+    """Fetch a single deal page and extract every (lat, lng, address) tuple
+    from the deal-map component. Some deals (e.g. multi-location passes,
+    chains) expose hundreds of locations. Returns a dict with:
+        {'lat': float, 'lng': float, 'address': str,        # first location
+         'locations': [{'lat','lng','address'}, ...]}        # all locations
+    or None if no coordinates could be parsed."""
     try:
         r = session.get(url, timeout=15)
         r.raise_for_status()
@@ -189,22 +193,31 @@ def fetch_deal_coords(url, session):
         print(f"  Failed to fetch {url}: {e}")
         return None
 
-    m = _DEAL_COORDS_RE.search(r.text)
-    if not m:
+    locations = []
+    for m in _DEAL_COORDS_RE.finditer(r.text):
+        try:
+            lat = float(m.group(1))
+            lng = float(m.group(2))
+        except ValueError:
+            continue
+        address = ''
+        if m.group(3):
+            try:
+                address = m.group(3).encode('utf-8').decode('unicode_escape')
+            except Exception:
+                address = m.group(3)
+        locations.append({'lat': lat, 'lng': lng, 'address': address})
+
+    if not locations:
         return None
 
-    try:
-        lat = float(m.group(1))
-        lng = float(m.group(2))
-    except ValueError:
-        return None
-
-    address = ''
-    if m.group(3):
-        # Unescape the JS string literal: \u0027 -> '
-        address = m.group(3).encode('utf-8').decode('unicode_escape')
-
-    return {'lat': lat, 'lng': lng, 'address': address}
+    first = locations[0]
+    return {
+        'lat': first['lat'],
+        'lng': first['lng'],
+        'address': first['address'],
+        'locations': locations,
+    }
 
 
 def enrich_deals_with_detail_coords(deals, force=False):
@@ -249,6 +262,14 @@ def enrich_deals_with_detail_coords(deals, force=False):
             d['lng'] = coords['lng']
             if coords.get('address'):
                 d['address'] = coords['address']
+            # New cache entries carry every location; older ones only carried
+            # the first. Synthesise a single-element list in that case so the
+            # frontend always sees a consistent shape.
+            locs = coords.get('locations')
+            if not locs:
+                locs = [{'lat': coords['lat'], 'lng': coords['lng'],
+                         'address': coords.get('address', '')}]
+            d['locations'] = locs
             resolved += 1
 
     print(f"Resolved precise coords for {resolved}/{len(deals)} deals from detail pages.")
