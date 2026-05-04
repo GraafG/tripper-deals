@@ -192,10 +192,7 @@
       align-items: start;
     }
     body.view-split #map-container {
-      position: sticky;
-      top: 1rem;
-      height: calc(100vh - 2rem);
-      max-height: 720px;
+      height: min(calc(100vh - 4rem), 720px);
       margin-bottom: 0;
     }
   }
@@ -736,7 +733,11 @@ function showView(view) {
         if (currentView === 'split') { renderTable(); renderStats(); }
       });
     }
-    setTimeout(() => { map.invalidateSize(); renderMap(isNew); }, 100);
+    // Double rAF ensures CSS has fully reflowed before Leaflet measures the container.
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      map.invalidateSize({ animate: false });
+      renderMap(isNew);
+    }));
   } else {
     // Leaving map/split view — re-render table without bounds filter.
     renderTable(); renderStats();
