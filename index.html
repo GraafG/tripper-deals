@@ -361,14 +361,9 @@
           <thead>
             <tr>
               <th data-col="name">Deal <span class="arrow"></span></th>
-              <th data-col="provider">Aanbieder <span class="arrow"></span></th>
               <th data-col="location">Locatie <span class="arrow"></span></th>
-              <th data-col="rating">Rating <span class="arrow"></span></th>
-              <th data-col="original_price">Orig. prijs <span class="arrow"></span></th>
-              <th data-col="discounted_price">Dealprijs <span class="arrow"></span></th>
               <th data-col="discount_num">Korting <span class="arrow"></span></th>
-              <th data-col="savings">Besparing <span class="arrow"></span></th>
-              <th data-col="trend">Trend <span class="arrow"></span></th>
+              <th data-col="discounted_price">Van / Voor <span class="arrow"></span></th>
             </tr>
           </thead>
           <tbody id="deals-body"></tbody>
@@ -557,16 +552,14 @@ function renderTable() {
   const tbody = document.getElementById('deals-body');
   const colCount = document.querySelectorAll('#deals-table thead th').length;
   tbody.innerHTML = deals.map(d => {
+    const priceCell = d.original_price != null
+      ? `<span class="price-original">&euro;${d.original_price.toFixed(2)}</span><span class="price-deal">&euro;${d.discounted_price != null ? d.discounted_price.toFixed(2) : '?'}</span>`
+      : (d.discounted_price != null ? `<span class="price-deal">&euro;${d.discounted_price.toFixed(2)}</span>` : '');
     const mainRow = `<tr class="expandable" data-url="${esc(d.url)}" onclick="toggleSparkline(this)">
       <td><a href="${safeUrl(d.url)}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">${esc(d.name)}</a>${lowestBadge(d)}</td>
-      <td>${esc(d.provider)}</td>
       <td>${esc(d.location)}</td>
-      <td>${esc(d.rating)}</td>
-      <td>${d.original_price != null ? '&euro;' + d.original_price.toFixed(2) : ''}</td>
-      <td class="price-deal">${d.discounted_price != null ? '&euro;' + d.discounted_price.toFixed(2) : ''}</td>
       <td>${d.discount_num ? '<span class="discount-badge">-' + d.discount_num + '%</span>' : ''}</td>
-      <td>${d.savings != null ? '&euro;' + d.savings.toFixed(2) : ''}</td>
-      <td>${trendHtml(d)}</td>
+      <td>${priceCell}</td>
     </tr>`;
 
     if (expandedUrl === d.url) {
