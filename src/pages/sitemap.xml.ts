@@ -9,7 +9,10 @@ export const GET: APIRoute = () => {
 
   const dealUrls = deals
     .filter(d => d.slug && d.isActive)
-    .map(d => `  <url><loc>${SITE}/deal/${d.slug}/</loc><changefreq>daily</changefreq><priority>0.7</priority></url>`)
+    .map(d => {
+      const lastmod = d.history?.last_seen ?? '';
+      return `  <url><loc>${SITE}/deal/${d.slug}/</loc>${lastmod ? `<lastmod>${lastmod}</lastmod>` : ''}<changefreq>daily</changefreq><priority>0.7</priority></url>`;
+    })
     .join('\n');
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>

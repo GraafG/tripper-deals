@@ -41,6 +41,8 @@ const metaDesc = [
   h ? `Gevolgd sinds ${h.first_seen}.` : '',
 ].filter(Boolean).join(' ');
 
+const ogImage = deal.isActive ? `${site}/og/${deal.slug}.png` : undefined;
+
 // JSON-LD: BreadcrumbList + Product
 const jsonLd = [
   {
@@ -55,6 +57,7 @@ const jsonLd = [
     '@context': 'https://schema.org',
     '@type': 'Product',
     name: deal.name,
+    description: metaDesc || undefined,
     brand: deal.provider ? { '@type': 'Brand', name: deal.provider } : undefined,
     offers: currentPrice != null ? {
       '@type': 'Offer',
@@ -80,6 +83,8 @@ function fmtDate(d: string) {
   title={pageTitle}
   description={metaDesc}
   canonical={canonical}
+  ogImage={ogImage}
+  noindex={!deal.isActive}
   jsonLd={jsonLd}
 >
 

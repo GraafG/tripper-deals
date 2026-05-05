@@ -1,10 +1,14 @@
 ---
 import Base from '../layouts/Base.astro';
 import { SITE_URL } from '../lib/config';
+import { getAllDealDetails } from '../lib/deals';
 
 const site = SITE_URL;
 const canonical = site + '/';
 const description = 'Overzicht van alle actuele Tripper.nl vakantie- en reisdeals. Vergelijk prijzen, volg trends en bespaar op je volgende trip.';
+
+// Used only for static HTML link graph (crawler discoverability + PageRank)
+const activeDeals = getAllDealDetails().filter(d => d.isActive && d.slug);
 ---
 <Base
   title="Tripper Deals – Vakantieaanbiedingen overzicht"
@@ -100,6 +104,14 @@ const description = 'Overzicht van alle actuele Tripper.nl vakantie- en reisdeal
         <h4>Bron</h4>
         <ul>
           <li><a href="https://github.com/graafg/tripper-deals" target="_blank" rel="noopener noreferrer">GitHub repository ↗</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Deals</h4>
+        <ul class="footer-deal-links" aria-label="Alle actieve deals">
+          {activeDeals.map(d => (
+            <li><a href={`${import.meta.env.BASE_URL}deal/${d.slug}/`}>{d.name}</a></li>
+          ))}
         </ul>
       </div>
     </div>

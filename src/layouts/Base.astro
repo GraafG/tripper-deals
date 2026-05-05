@@ -1,16 +1,19 @@
 ---
 import '../styles/global.css';
+import { SITE_URL } from '../lib/config';
 
 interface Props {
   title: string;
   description?: string;
   canonical?: string;
   ogType?: string;
+  ogImage?: string;
   jsonLd?: object | object[];
+  noindex?: boolean;
 }
 
-const { title, description, canonical, ogType = 'website', jsonLd } = Astro.props;
-const site = 'https://graafg.github.io/tripper-deals';
+const { title, description, canonical, ogType = 'website', ogImage, jsonLd, noindex = false } = Astro.props;
+const ogImageUrl = ogImage ?? `${SITE_URL}/og-default.png`;
 ---
 <!DOCTYPE html>
 <html lang="nl">
@@ -20,14 +23,21 @@ const site = 'https://graafg.github.io/tripper-deals';
   <meta name="site-base" content={import.meta.env.BASE_URL} />
   <link rel="icon" href={`${import.meta.env.BASE_URL}favicon.svg`} type="image/svg+xml" />
   <title>{title}</title>
+  {noindex && <meta name="robots" content="noindex,follow" />}
   {description && <meta name="description" content={description} />}
   {canonical && <link rel="canonical" href={canonical} />}
+  {canonical && <link rel="alternate" hreflang="nl" href={canonical} />}
   <meta property="og:type" content={ogType} />
   <meta property="og:title" content={title} />
   <meta property="og:site_name" content="Tripper Deals" />
+  <meta property="og:locale" content="nl_NL" />
   {description && <meta property="og:description" content={description} />}
   {canonical && <meta property="og:url" content={canonical} />}
-  <meta name="twitter:card" content="summary" />
+  <meta property="og:image" content={ogImageUrl} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content={ogImageUrl} />
   {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
   <link
     rel="stylesheet"

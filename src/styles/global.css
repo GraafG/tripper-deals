@@ -291,6 +291,9 @@ footer.site-footer {
 .footer-grid ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
 .footer-grid a { color: var(--gray-400); transition: color 0.15s; }
 .footer-grid a:hover { color: #fff; text-decoration: none; }
+/* Deal links: compact multi-column list, visually minimal but crawlable */
+.footer-deal-links { display: flex; flex-wrap: wrap; flex-direction: row !important; gap: 0.25rem 1rem; }
+.footer-deal-links li { font-size: 0.78rem; }
 .footer-bottom {
   border-top: 1px solid var(--gray-800);
   margin-top: 2rem;

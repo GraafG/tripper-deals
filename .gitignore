@@ -8,3 +8,6 @@ Bekijk alle deals*
 node_modules/
 dist/
 .astro/
+.playwright-mcp/
+og-*.png
+social-preview.png
