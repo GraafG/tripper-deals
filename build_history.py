@@ -68,6 +68,7 @@ def build_history():
             })
 
     # Compute summary fields
+    latest_date = dates_asc[-1] if dates_asc else None
     for url, entry in history.items():
         valid_prices = [p['price'] for p in entry['prices'] if p['price'] is not None]
 
@@ -101,6 +102,7 @@ def build_history():
             entry['trend'] = 'new'
 
         entry['days_tracked'] = len(entry['prices'])
+        entry['is_active'] = (entry['last_seen'] == latest_date)
 
     # Write output
     out_file = DATA_DIR / 'history.json'

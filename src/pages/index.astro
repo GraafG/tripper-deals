@@ -8,7 +8,9 @@ const canonical = site + '/';
 const description = 'Overzicht van alle actuele Tripper.nl vakantie- en reisdeals. Vergelijk prijzen, volg trends en bespaar op je volgende trip.';
 
 // Used only for static HTML link graph (crawler discoverability + PageRank)
-const activeDeals = getAllDealDetails().filter(d => d.isActive && d.slug);
+const activeDeals = getAllDealDetails()
+  .filter(d => d.isActive && d.slug)
+  .sort((a, b) => (b.discount_num ?? 0) - (a.discount_num ?? 0));
 
 const homepageJsonLd = [
   {
@@ -62,6 +64,7 @@ const homepageJsonLd = [
       <select id="date-picker" title="Selecteer datum" aria-label="Selecteer datum"></select>
       <select id="location-filter" title="Filter op locatie" aria-label="Filter op locatie"><option value="">Alle locaties</option></select>
       <input type="text" id="search-box" placeholder="Zoek op naam, locatie, aanbieder..." aria-label="Zoek deals" />
+      <label class="expired-toggle-wrap"><input type="checkbox" id="show-expired" /> Toon verlopen deals</label>
     </div>
   </div>
 </header>
@@ -85,7 +88,7 @@ const homepageJsonLd = [
         <div class="map-filter-note" id="map-filter-note"></div>
         <div class="loading" id="loading">Deals laden...</div>
         <div class="table-scroll">
-          <table id="deals-table" style="display:none">
+          <table id="deals-table">
             <thead>
               <tr>
                 <th data-col="name">Deal <span class="arrow"></span></th>
@@ -98,7 +101,23 @@ const homepageJsonLd = [
                 <th data-col="_trend" class="col-extra">Trend <span class="arrow"></span></th>
               </tr>
             </thead>
-            <tbody id="deals-body"></tbody>
+            <tbody id="deals-body">
+              {activeDeals.map(d => (
+                <tr class="expandable" data-url={d.url}>
+                  <td><a href={`${import.meta.env.BASE_URL}deal/${d.slug}/`}>{d.name}</a></td>
+                  <td>{d.location}</td>
+                  <td class="col-extra">{d.provider || ''}</td>
+                  <td>{d.discount_num ? <span class="discount-badge">-{d.discount_num}%</span> : ''}</td>
+                  <td>
+                    {d.original_price != null && <span class="price-original">€{d.original_price.toFixed(2)}</span>}
+                    {d.discounted_price != null && <span class="price-deal">€{d.discounted_price.toFixed(2)}</span>}
+                  </td>
+                  <td class="col-extra">{d.savings != null ? `€${d.savings.toFixed(2)}` : ''}</td>
+                  <td class="col-extra">{d.rating || ''}</td>
+                  <td class="col-extra"></td>
+                </tr>
+              ))}
+            </tbody>
           </table>
         </div>
       </div>
@@ -110,7 +129,7 @@ const homepageJsonLd = [
   <div class="container">
     <div class="footer-grid">
       <div>
-        <h3>Tripper Deals</h3>
+        <p class="footer-brand">Tripper Deals</p>
         <p>Vakantie- en reisaanbiedingen overzichtelijk bij elkaar. Vergelijk prijzen, volg trends en bespaar op je volgende trip.</p>
       </div>
       <div>
@@ -148,6 +167,8 @@ const DATA_BASE = (document.querySelector('meta[name="site-base"]')?.content || 
 
 let allDeals = [];
 let historyData = {};
+let _expiredDeals = [];
+let showExpired = false;
 let sortCol = 'discount_num';
 let sortAsc = false;
 let map = null;
@@ -194,7 +215,6 @@ async function init() {
 
 async function loadDate(dateStr) {
   document.getElementById('loading').style.display = 'block';
-  document.getElementById('deals-table').style.display = 'none';
   try {
     const res = await fetch(DATA_BASE + '/data/' + dateStr + '.json');
     allDeals = await res.json();
@@ -217,6 +237,41 @@ async function loadDate(dateStr) {
         d._history = [];
       }
       d.trend = d._trend === 'down' ? 0 : d._trend === 'stable' ? 1 : d._trend === 'up' ? 2 : 3;
+    });
+
+    // Build expired deals (in history but not in current snapshot)
+    const activeUrls = new Set(allDeals.map(d => d.url));
+    _expiredDeals = [];
+    for (const [url, h] of Object.entries(historyData)) {
+      if (activeUrls.has(url)) continue;
+      const lastEntry = h.prices[h.prices.length - 1] || {};
+      const price = h.current_price ?? null;
+      const original = lastEntry.original ?? null;
+      _expiredDeals.push({
+        url,
+        name: h.name || url,
+        location: h.location || '',
+        provider: h.provider || '',
+        discounted_price: price,
+        original_price: original,
+        discount_num: lastEntry.discount_num || 0,
+        savings: (original != null && price != null) ? +(original - price).toFixed(2) : null,
+        rating: null,
+        locations: null,
+        lat: null, lng: null,
+        _expired: true,
+        _trend: h.trend || 'stable',
+        _atLowest: h.at_lowest || false,
+        _minPrice: h.min_price,
+        _maxPrice: h.max_price,
+        _daysTracked: h.days_tracked || 1,
+        _history: h.prices || [],
+        trend: h.trend === 'down' ? 0 : h.trend === 'stable' ? 1 : h.trend === 'up' ? 2 : 3,
+      });
+    }
+    _expiredDeals.sort((a, b) => {
+      const la = historyData[a.url]?.last_seen || '', lb = historyData[b.url]?.last_seen || '';
+      return lb.localeCompare(la);
     });
 
     expandedUrl = null;
@@ -243,10 +298,11 @@ function populateLocationFilter() {
   sel.value = current || '';
 }
 
-function getFiltered() {
+function getFiltered(forMap = false) {
   const q = document.getElementById('search-box').value.toLowerCase();
   const loc = document.getElementById('location-filter').value;
-  let deals = allDeals.filter(d => {
+  const includeExpired = showExpired && currentView === 'table' && !forMap;
+  let deals = (includeExpired ? [...allDeals, ..._expiredDeals] : allDeals).filter(d => {
     if (loc && d.location !== loc) return false;
     if (q && !(d.name + ' ' + d.location + ' ' + d.provider).toLowerCase().includes(q)) return false;
     return true;
@@ -323,15 +379,19 @@ function renderTable() {
     _colCount = [...document.querySelectorAll('#deals-table thead th')].filter(th => getComputedStyle(th).display !== 'none').length;
   const colCount = _colCount;
   const slug = (d) => getSlug(d.url);
+  document.getElementById('deals-body').innerHTML = deals.map(d => {
+    const isExpired = !!d._expired;
     const priceCell = d.original_price != null
-      ? `<span class="price-original">&euro;${d.original_price.toFixed(2)}</span><span class="price-deal">&euro;${d.discounted_price != null ? d.discounted_price.toFixed(2) : '?'}</span>`
-      : (d.discounted_price != null ? `<span class="price-deal">&euro;${d.discounted_price.toFixed(2)}</span>` : '');
+      ? `<span class="price-original">&euro;${d.original_price.toFixed(2)}</span><span class="price-deal${isExpired ? ' price-cell' : ''}">&euro;${d.discounted_price != null ? d.discounted_price.toFixed(2) : '?'}</span>`
+      : (d.discounted_price != null ? `<span class="price-deal${isExpired ? ' price-cell' : ''}">&euro;${d.discounted_price.toFixed(2)}</span>` : '');
 
     const trendLabel = d._trend === 'down' ? '📉 Daling' : d._trend === 'up' ? '📈 Stijging' : d._trend === 'new' ? '🆕 Nieuw' : '→ Stabiel';
 
     const detailHref = slug(d) ? esc(DATA_BASE + '/deal/' + slug(d) + '/') : safeUrl(d.url);
-    const mainRow = `<tr class="expandable" data-url="${esc(d.url)}" onclick="toggleSparkline(this)">
-      <td><a href="${detailHref}" onclick="event.stopPropagation()">${esc(d.name)}</a>${lowestBadge(d)}</td>
+    const expiredBadge = isExpired ? ' <span class="expired-badge">VERLOPEN</span>' : '';
+    const rowClass = isExpired ? 'expandable deal-expired' : 'expandable';
+    const mainRow = `<tr class="${rowClass}" data-url="${esc(d.url)}" onclick="toggleSparkline(this)">
+      <td><a href="${detailHref}" onclick="event.stopPropagation()">${esc(d.name)}</a>${lowestBadge(d)}${expiredBadge}</td>
       <td>${esc(d.location)}</td>
       <td class="col-extra">${esc(d.provider || '')}</td>
       <td>${d.discount_num ? '<span class="discount-badge">-' + d.discount_num + '%</span>' : ''}</td>
@@ -348,7 +408,6 @@ function renderTable() {
   }).join('');
 
   document.getElementById('loading').style.display = 'none';
-  document.getElementById('deals-table').style.display = 'table';
 
   const note = document.getElementById('map-filter-note');
   if (currentView === 'split' && map) {
@@ -419,6 +478,7 @@ document.querySelectorAll('#deals-table th[data-col]').forEach(th => {
 
 document.getElementById('search-box').addEventListener('input', () => { expandedUrl = null; renderTable(); renderStats(); if (map) renderMap(false); });
 document.getElementById('location-filter').addEventListener('change', () => { expandedUrl = null; renderTable(); renderStats(); if (map) renderMap(false); });
+document.getElementById('show-expired').addEventListener('change', e => { showExpired = e.target.checked; expandedUrl = null; renderTable(); renderStats(); });
 
 let _leafletLoading = null;
 
@@ -496,7 +556,7 @@ function renderMap(fitBounds = true) {
   if (!map) return;
   markers.forEach(m => map.removeLayer(m));
   markers = [];
-  const deals = getFiltered();
+  const deals = getFiltered(true);
 
   const groups = {};
   deals.forEach(d => {
