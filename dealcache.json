@@ -11291,5 +11291,29 @@
         "address": "Diergaarde Blijdorp, Blijdorplaan 8, Rotterdam"
       }
     ]
+  },
+  "https://www.tripper.nl/deal/zomer-heerlijckheid-tickets-korting": {
+    "lat": 52.19641,
+    "lng": 6.5475,
+    "address": "Kasteel Warmelo, Stedeke 11, Diepenheim",
+    "locations": [
+      {
+        "lat": 52.19641,
+        "lng": 6.5475,
+        "address": "Kasteel Warmelo, Stedeke 11, Diepenheim"
+      }
+    ]
+  },
+  "https://www.tripper.nl/deal/entreetickets-el-mundo-fantasia-korting": {
+    "lat": 50.885945,
+    "lng": 6.029037,
+    "address": "Mondo Verde, Groene Wereld 10, Landgraaf",
+    "locations": [
+      {
+        "lat": 50.885945,
+        "lng": 6.029037,
+        "address": "Mondo Verde, Groene Wereld 10, Landgraaf"
+      }
+    ]
   }
 }
