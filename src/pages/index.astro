@@ -181,6 +181,11 @@ window.addEventListener('resize', () => { _colCount = null; });
 
 const TRIPPER_REF = 'F28D4VGY';
 
+function dataPathForDate(dateStr) {
+  const [year, month, day] = dateStr.split('-');
+  return `${DATA_BASE}/data/${year}/${month}/${day}.json`;
+}
+
 function getSlug(url) {
   try {
     const parts = new URL(url).pathname.replace(/\/$/, '').split('/');
@@ -216,7 +221,7 @@ async function init() {
 async function loadDate(dateStr) {
   document.getElementById('loading').style.display = 'block';
   try {
-    const res = await fetch(DATA_BASE + '/data/' + dateStr + '.json');
+    const res = await fetch(dataPathForDate(dateStr));
     allDeals = await res.json();
 
     allDeals.forEach(d => {

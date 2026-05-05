@@ -1,6 +1,6 @@
 """Build a unified price-history file from daily deal snapshots.
 
-Reads every data/YYYY-MM-DD.json produced by the scraper and writes
+Reads every data/YYYY/MM/DD.json produced by the scraper and writes
 data/history.json keyed by deal URL.  Each entry contains the full
 price timeline plus pre-computed summary fields so the frontend can
 render trend arrows, "lowest-price" badges, and sparkline charts
@@ -12,6 +12,12 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).parent
 DATA_DIR = BASE_DIR / 'data'
+
+
+def snapshot_path(date_str):
+    """Return the datalake-style path for a YYYY-MM-DD snapshot."""
+    year, month, day = date_str.split('-')
+    return DATA_DIR / year / month / f"{day}.json"
 
 
 def build_history():
@@ -29,7 +35,9 @@ def build_history():
     history = {}  # keyed by deal URL
 
     for date_str in dates_asc:
-        data_file = DATA_DIR / f"{date_str}.json"
+        data_file = snapshot_path(date_str)
+        if not data_file.exists():
+            data_file = DATA_DIR / f"{date_str}.json"  # legacy flat-layout fallback
         if not data_file.exists():
             continue
 

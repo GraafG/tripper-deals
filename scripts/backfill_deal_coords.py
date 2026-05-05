@@ -1,5 +1,5 @@
 """One-shot backfill: fetch precise coordinates for every deal URL that has
-ever appeared in data/*.json and rewrite each daily snapshot with the new
+ever appeared in data/YYYY/MM/DD.json and rewrite each daily snapshot with the new
 lat/lng/address.
 
 After this runs once, ongoing scrapes will only need to fetch the detail
@@ -21,17 +21,29 @@ from tripper_scraper import (
     DATA_DIR,
     enrich_deals_with_detail_coords,
     load_dealcache,
+    snapshot_path,
 )
+
+
+def iter_snapshot_files():
+    """Yield snapshot files listed in data/index.json, with flat-layout fallback."""
+    manifest_file = DATA_DIR / 'index.json'
+    if not manifest_file.exists():
+        return
+    with open(manifest_file, 'r', encoding='utf-8') as f:
+        dates = json.load(f)
+    for date_str in sorted(dates):
+        path = snapshot_path(date_str)
+        if not path.exists():
+            path = DATA_DIR / f"{date_str}.json"
+        if path.exists():
+            yield path
 
 
 def collect_all_deals():
     """Return a deduplicated list of {url} stubs from every daily snapshot."""
     seen = {}
-    for path in sorted(DATA_DIR.glob('*.json')):
-        if path.name == 'index.json':
-            continue
-        if path.name == 'history.json':
-            continue
+    for path in iter_snapshot_files():
         try:
             with open(path, 'r', encoding='utf-8') as f:
                 deals = json.load(f)
@@ -48,12 +60,10 @@ def collect_all_deals():
 
 
 def apply_cache_to_snapshots():
-    """Rewrite every data/YYYY-MM-DD.json with lat/lng/address from the cache."""
+    """Rewrite every data/YYYY/MM/DD.json with lat/lng/address from the cache."""
     cache = load_dealcache()
     updated_files = 0
-    for path in sorted(DATA_DIR.glob('*.json')):
-        if path.name in ('index.json', 'history.json'):
-            continue
+    for path in iter_snapshot_files():
         try:
             with open(path, 'r', encoding='utf-8') as f:
                 deals = json.load(f)
@@ -66,7 +76,7 @@ def apply_cache_to_snapshots():
         changed = False
         for d in deals:
             coords = cache.get(d.get('url'))
-            if not coords:
+            if not coords or coords.get('lat') is None or coords.get('lng') is None:
                 continue
             new_lat = coords['lat']
             new_lng = coords['lng']

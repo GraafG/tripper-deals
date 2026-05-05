@@ -1,6 +1,13 @@
 .venv/
+.env
+.env.*
+!.env.example
 __pycache__/
 *.pyc
+*.pyo
+*.log
+*.tmp
+*.temp
 *.xlsx
 2026-03-07.html
 2026-03-07_files/
@@ -9,5 +16,11 @@ node_modules/
 dist/
 .astro/
 .playwright-mcp/
+playwright-report/
+test-results/
+coverage/
+lighthouse-*.report.*
+.DS_Store
+Thumbs.db
 og-*.png
 social-preview.png
