@@ -8,11 +8,13 @@ interface Props {
   canonical?: string;
   ogType?: string;
   ogImage?: string;
+  ogImageAlt?: string;
   jsonLd?: object | object[];
   noindex?: boolean;
+  needsLeaflet?: boolean;
 }
 
-const { title, description, canonical, ogType = 'website', ogImage, jsonLd, noindex = false } = Astro.props;
+const { title, description, canonical, ogType = 'website', ogImage, ogImageAlt, jsonLd, noindex = false, needsLeaflet = false } = Astro.props;
 const ogImageUrl = ogImage ?? `${SITE_URL}/og-default.png`;
 ---
 <!DOCTYPE html>
@@ -36,15 +38,19 @@ const ogImageUrl = ogImage ?? `${SITE_URL}/og-default.png`;
   <meta property="og:image" content={ogImageUrl} />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
+  {ogImageAlt && <meta property="og:image:alt" content={ogImageAlt} />}
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content={ogImageUrl} />
+  {ogImageAlt && <meta name="twitter:image:alt" content={ogImageAlt} />}
   {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-    crossorigin="anonymous"
-  />
+  {needsLeaflet && (
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin="anonymous"
+    />
+  )}
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link

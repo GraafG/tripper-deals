@@ -9,11 +9,35 @@ const description = 'Overzicht van alle actuele Tripper.nl vakantie- en reisdeal
 
 // Used only for static HTML link graph (crawler discoverability + PageRank)
 const activeDeals = getAllDealDetails().filter(d => d.isActive && d.slug);
+
+const homepageJsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Tripper Deals',
+    url: site + '/',
+    description,
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: `${site}/?q={search_term_string}`,
+      'query-input': 'required name=search_term_string',
+    },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'Tripper Deals',
+    url: site + '/',
+    logo: `${site}/og-homepage.png`,
+  },
+];
 ---
 <Base
   title="Tripper Deals – Vakantieaanbiedingen overzicht"
   description={description}
   canonical={canonical}
+  ogImageAlt="Tripper Deals – Vakantieaanbiedingen overzicht"
+  jsonLd={homepageJsonLd}
 >
 
 <header class="hero">
@@ -417,6 +441,16 @@ function showView(view) {
   if (view === 'map' || view === 'split') {
     const isNew = !map;
     if (isNew) {
+      // Lazy-load Leaflet CSS only when map is first activated
+      if (!document.querySelector('link[data-leaflet]')) {
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
+        link.integrity = 'sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=';
+        link.crossOrigin = 'anonymous';
+        link.setAttribute('data-leaflet', '');
+        document.head.appendChild(link);
+      }
       map = L.map('map-container').setView([52.1, 5.3], 7);
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; OpenStreetMap contributors'
