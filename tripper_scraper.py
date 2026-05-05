@@ -435,15 +435,36 @@ def geocode_locations(deals):
 # Data output
 # ---------------------------------------------------------------------------
 
+def snapshot_path(date_str):
+    """Return the datalake-style path for a YYYY-MM-DD snapshot."""
+    year, month, day = date_str.split('-')
+    return DATA_DIR / year / month / f"{day}.json"
+
+
+_GEO_FIELDS = {'lat', 'lng', 'address', 'locations', 'image_url', 'review_count'}
+
+
+def _strip_geo(deal: dict) -> dict:
+    """Return a copy of deal without geo/image fields (stored in dealcache.json)."""
+    return {k: v for k, v in deal.items() if k not in _GEO_FIELDS}
+
+
 def save_daily_json(deals, date_str):
-    """Save deals as data/YYYY-MM-DD.json and update data/index.json manifest."""
+    """Save deals as data/YYYY/MM/DD.json and update data/index.json manifest.
+
+    Geo and image fields (lat, lng, address, locations, image_url, review_count)
+    are omitted from the stored snapshot — they live in dealcache.json.
+    The build step re-merges them from dealcache before deploying to dist/.
+    """
     DATA_DIR.mkdir(exist_ok=True)
 
-    # Save deal data
-    data_file = DATA_DIR / f"{date_str}.json"
+    # Save deal data (price/metadata only — no geo/image redundancy)
+    lean_deals = [_strip_geo(d) for d in deals]
+    data_file = snapshot_path(date_str)
+    data_file.parent.mkdir(parents=True, exist_ok=True)
     with open(data_file, 'w', encoding='utf-8') as f:
-        json.dump(deals, f, ensure_ascii=False)
-    print(f"Saved {len(deals)} deals to {data_file}")
+        json.dump(lean_deals, f, ensure_ascii=False)
+    print(f"Saved {len(lean_deals)} deals to {data_file} (geo fields in dealcache)")
 
     # Update manifest
     manifest_file = DATA_DIR / 'index.json'

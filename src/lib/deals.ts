@@ -114,8 +114,13 @@ export function getLatestDate(): string {
   return (loadJson<string[]>('data/index.json'))[0];
 }
 
+export function getSnapshotPath(date: string): string {
+  const [year, month, day] = date.split('-');
+  return `data/${year}/${month}/${day}.json`;
+}
+
 export function getLatestDeals(): SnapshotDeal[] {
-  return loadJson<SnapshotDeal[]>(`data/${getLatestDate()}.json`);
+  return loadJson<SnapshotDeal[]>(getSnapshotPath(getLatestDate()));
 }
 
 export function getAllHistory(): Record<string, DealHistory> {
@@ -206,15 +211,19 @@ export function getAllDealDetails(): DealDetail[] {
     const snap = snapshotMap.get(url);
     const cache = dealCache[url] ?? null;
 
-    const locs: Location[] = snap?.locations?.length
-      ? snap.locations
-      : snap?.lat != null
-        ? [{ lat: snap.lat!, lng: snap.lng!, address: snap.address || '' }]
-        : [];
+    const locs: Location[] = cache?.locations?.length
+      ? cache.locations
+      : cache?.lat != null
+        ? [{ lat: cache.lat!, lng: cache.lng!, address: cache.address || '' }]
+        : snap?.locations?.length
+          ? snap.locations
+          : snap?.lat != null
+            ? [{ lat: snap.lat!, lng: snap.lng!, address: snap.address || '' }]
+            : [];
 
-    // image_url and review_count: prefer snapshot (freshest scrape), fall back to dealcache
-    const image_url = snap?.image_url || cache?.image_url || undefined;
-    const review_count = snap?.review_count ?? (cache?.review_count ?? undefined);
+    // image_url and review_count: prefer dealcache (always fresh), fall back to snapshot
+    const image_url = cache?.image_url || snap?.image_url || undefined;
+    const review_count = cache?.review_count ?? (snap?.review_count ?? undefined);
 
     const priceLog = computePriceLog(h.prices || []);
 
