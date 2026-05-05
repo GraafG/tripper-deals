@@ -4,7 +4,7 @@ import json
 import time
 import argparse
 from bs4 import BeautifulSoup
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 
 from html import unescape as html_unescape
@@ -278,7 +278,7 @@ def enrich_deals_with_detail_coords(deals, force=False):
     urls = [d['url'] for d in deals if d.get('url')]
     # Re-fetch if: not in cache, OR cached as None (failed fetch) and older than 7 days
     # Cache entries store fetched_at timestamp; None entries are retried after a week.
-    now_ts = datetime.utcnow().isoformat()
+    now_ts = datetime.now(timezone.utc).isoformat()
     def _needs_fetch(u):
         if force:
             return True
@@ -477,7 +477,9 @@ def _backfill_meta():
 
     to_fetch = [
         url for url, entry in cache.items()
-        if entry is not None and ('image_url' not in entry or 'review_count' not in entry)
+        if not url.endswith('.__ts')
+        and entry is not None and isinstance(entry, dict)
+        and ('image_url' not in entry or 'review_count' not in entry)
     ]
     print(f"Backfilling meta for {len(to_fetch)}/{len(cache)} cached deals...")
 

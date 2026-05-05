@@ -156,7 +156,7 @@ const homepageJsonLd = [
     <div class="footer-bottom">
       <p class="footer-disclaimer">⚠️ Tripper Deals is een onafhankelijk overzicht. Prijzen en beschikbaarheid kunnen afwijken. Controleer altijd bij de aanbieder.</p>
       <p class="footer-disclaimer">🔗 Links naar tripper.nl bevatten onze persoonlijke referral-code (<code>?ref=F28D4VGY</code>). Bij een aankoop via deze links kunnen wij Tripper-spaarpunten ontvangen, zonder extra kosten voor jou.</p>
-      <p class="footer-copyright">© 2026 Tripper Deals. Alle rechten voorbehouden.</p>
+      <p class="footer-copyright">© {new Date().getFullYear()} Tripper Deals. Alle rechten voorbehouden.</p>
     </div>
   </div>
 </footer>
@@ -266,13 +266,11 @@ async function loadDate(dateStr) {
         _maxPrice: h.max_price,
         _daysTracked: h.days_tracked || 1,
         _history: h.prices || [],
+        _last_seen: h.last_seen || '',
         trend: h.trend === 'down' ? 0 : h.trend === 'stable' ? 1 : h.trend === 'up' ? 2 : 3,
       });
     }
-    _expiredDeals.sort((a, b) => {
-      const la = historyData[a.url]?.last_seen || '', lb = historyData[b.url]?.last_seen || '';
-      return lb.localeCompare(la);
-    });
+    _expiredDeals.sort((a, b) => b._last_seen.localeCompare(a._last_seen));
 
     expandedUrl = null;
     populateLocationFilter();
@@ -322,7 +320,7 @@ function getFiltered(forMap = false) {
 }
 
 function renderStats() {
-  const deals = getFiltered();
+  const deals = getFiltered().filter(d => !d._expired);
   const prices = deals.map(d => d.discounted_price).filter(p => p != null);
   const savings = deals.map(d => d.savings).filter(s => s != null);
   const discounts = deals.map(d => d.discount_num).filter(d => d > 0);
@@ -334,7 +332,7 @@ function renderStats() {
     <div class="stat"><span class="stat-label">Gem. prijs</span><span class="stat-value">&euro;${avg(prices)}</span></div>
     <div class="stat"><span class="stat-label">Gem. korting</span><span class="stat-value">${avg(discounts)}%</span></div>
     <div class="stat"><span class="stat-label">Gem. besparing</span><span class="stat-value">&euro;${avg(savings)}</span></div>
-    <div class="stat"><span class="stat-label">Laagste prijs</span><span class="stat-value">&euro;${prices.length ? Math.min(...prices).toFixed(0) : '-'}</span></div>
+    <div class="stat"><span class="stat-label">Laagste prijs</span><span class="stat-value">&euro;${prices.length ? prices.reduce((a, b) => Math.min(a, b), Infinity).toFixed(0) : '-'}</span></div>
     <div class="stat"><span class="stat-label">📉 Prijsdalingen</span><span class="stat-value">${priceDrops}</span></div>
     <div class="stat"><span class="stat-label">⭐ Op laagste prijs</span><span class="stat-value">${atLowest}</span></div>
   `;
@@ -382,8 +380,8 @@ function renderTable() {
   document.getElementById('deals-body').innerHTML = deals.map(d => {
     const isExpired = !!d._expired;
     const priceCell = d.original_price != null
-      ? `<span class="price-original">&euro;${d.original_price.toFixed(2)}</span><span class="price-deal${isExpired ? ' price-cell' : ''}">&euro;${d.discounted_price != null ? d.discounted_price.toFixed(2) : '?'}</span>`
-      : (d.discounted_price != null ? `<span class="price-deal${isExpired ? ' price-cell' : ''}">&euro;${d.discounted_price.toFixed(2)}</span>` : '');
+      ? `<span class="price-original">&euro;${d.original_price.toFixed(2)}</span><span class="price-deal">&euro;${d.discounted_price != null ? d.discounted_price.toFixed(2) : '?'}</span>`
+      : (d.discounted_price != null ? `<span class="price-deal">&euro;${d.discounted_price.toFixed(2)}</span>` : '');
 
     const trendLabel = d._trend === 'down' ? '📉 Daling' : d._trend === 'up' ? '📈 Stijging' : d._trend === 'new' ? '🆕 Nieuw' : '→ Stabiel';
 

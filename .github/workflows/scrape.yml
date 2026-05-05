@@ -20,6 +20,10 @@ permissions:
   pages: write
   id-token: write
 
+concurrency:
+  group: scrape-and-deploy
+  cancel-in-progress: false
+
 jobs:
   scrape:
     if: ${{ github.event.inputs.deploy_only != 'true' }}

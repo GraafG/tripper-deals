@@ -27,6 +27,7 @@ export interface DealHistory {
   at_lowest: boolean;
   trend: string;
   days_tracked: number;
+  is_active: boolean;
 }
 
 export interface SnapshotDeal {
