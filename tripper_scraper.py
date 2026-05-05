@@ -209,9 +209,14 @@ def fetch_deal_coords(url, session):
         address = ''
         if m.group(3):
             try:
-                address = m.group(3).encode('utf-8').decode('unicode_escape')
+                # The description is in a single-quoted JS string that may contain
+                # \uXXXX escapes. Replace escaped apostrophes first, then parse
+                # as a JSON string to correctly decode all \u escapes without
+                # corrupting characters that are already valid UTF-8.
+                raw = m.group(3).replace("\\'", "'")
+                address = json.loads(f'"{raw}"')
             except Exception:
-                address = m.group(3)
+                address = m.group(3).replace("\\'", "'")
         locations.append({'lat': lat, 'lng': lng, 'address': address})
 
     # Use BeautifulSoup for structured extraction of image + review count
@@ -271,14 +276,39 @@ def enrich_deals_with_detail_coords(deals, force=False):
     })
 
     urls = [d['url'] for d in deals if d.get('url')]
-    to_fetch = [u for u in urls if force or u not in cache]
+    # Re-fetch if: not in cache, OR cached as None (failed fetch) and older than 7 days
+    # Cache entries store fetched_at timestamp; None entries are retried after a week.
+    now_ts = datetime.utcnow().isoformat()
+    def _needs_fetch(u):
+        if force:
+            return True
+        entry = cache.get(u)
+        if entry is None and u not in cache:
+            return True  # not cached at all
+        if entry is None:
+            # Cached as None (failed) — check if the sentinel timestamp allows retry
+            ts = cache.get(u + '.__ts')
+            if ts:
+                try:
+                    age_days = (datetime.utcnow() - datetime.fromisoformat(ts)).days
+                    return age_days >= 7
+                except Exception:
+                    return True
+            return True  # No timestamp → retry
+        return False
+    to_fetch = [u for u in urls if _needs_fetch(u)]
 
     if to_fetch:
         print(f"Fetching detail pages for {len(to_fetch)} deal(s) "
               f"({len(urls) - len(to_fetch)} cached)...")
         for i, url in enumerate(to_fetch):
             coords = fetch_deal_coords(url, session)
-            cache[url] = coords  # may be None — cache the negative result too
+            if coords is None:
+                # Store None but record when we tried, so we can retry after 7 days
+                cache[url] = None
+                cache[url + '.__ts'] = now_ts
+            else:
+                cache[url] = coords
             if (i + 1) % 10 == 0:
                 print(f"  Fetched {i + 1}/{len(to_fetch)}...")
                 save_dealcache(cache)  # periodic flush so progress isn't lost

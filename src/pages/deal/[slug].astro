@@ -71,11 +71,11 @@ const jsonLd = [
     description: metaDesc || undefined,
     image: deal.image_url || undefined,
     brand: deal.provider ? { '@type': 'Brand', name: deal.provider } : undefined,
-    aggregateRating: ratingValue != null ? {
+    aggregateRating: ratingValue != null && deal.review_count != null ? {
       '@type': 'AggregateRating',
       ratingValue,
       bestRating,
-      ratingCount: deal.review_count ?? 1,
+      ratingCount: deal.review_count,
     } : undefined,
     offers: currentPrice != null ? {
       '@type': 'Offer',
