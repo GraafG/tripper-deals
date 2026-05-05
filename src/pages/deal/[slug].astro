@@ -41,7 +41,18 @@ const metaDesc = [
   h ? `Gevolgd sinds ${h.first_seen}.` : '',
 ].filter(Boolean).join(' ');
 
-const ogImage = deal.isActive ? `${site}/og/${deal.slug}.png` : undefined;
+const ogImage = deal.isActive
+  ? (deal.image_url || `${site}/og/${deal.slug}.png`)
+  : undefined;
+
+// Parse rating string like "4.8 / 5" into schema values
+let ratingValue: number | undefined;
+let bestRating: number | undefined;
+const ratingMatch = deal.rating?.match(/(\d+(?:[.,]\d+)?)\s*\/\s*(\d+)/);
+if (ratingMatch) {
+  ratingValue = parseFloat(ratingMatch[1].replace(',', '.'));
+  bestRating  = parseFloat(ratingMatch[2]);
+}
 
 // JSON-LD: BreadcrumbList + Product
 const jsonLd = [
@@ -58,7 +69,14 @@ const jsonLd = [
     '@type': 'Product',
     name: deal.name,
     description: metaDesc || undefined,
+    image: deal.image_url || undefined,
     brand: deal.provider ? { '@type': 'Brand', name: deal.provider } : undefined,
+    aggregateRating: ratingValue != null ? {
+      '@type': 'AggregateRating',
+      ratingValue,
+      bestRating,
+      ratingCount: deal.review_count ?? 1,
+    } : undefined,
     offers: currentPrice != null ? {
       '@type': 'Offer',
       price: currentPrice.toFixed(2),

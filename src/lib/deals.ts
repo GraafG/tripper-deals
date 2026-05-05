@@ -44,6 +44,8 @@ export interface SnapshotDeal {
   lng?: number;
   address?: string;
   locations?: Location[];
+  image_url?: string;
+  review_count?: number;
 }
 
 export interface PriceChange {
@@ -68,6 +70,8 @@ export interface DealDetail {
   discounted_price?: number;
   savings?: number;
   locations: Location[];
+  image_url?: string;
+  review_count?: number;
   history: DealHistory | null;
   priceLog: PriceChange[];
   chartSvg: string;
@@ -86,6 +90,23 @@ export function getSlug(url: string): string {
 
 function loadJson<T>(path: string): T {
   return JSON.parse(readFileSync(resolve(process.cwd(), path), 'utf-8')) as T;
+}
+
+interface DealCacheEntry {
+  lat?: number | null;
+  lng?: number | null;
+  address?: string;
+  locations?: Location[];
+  image_url?: string;
+  review_count?: number | null;
+}
+
+function loadDealCache(): Record<string, DealCacheEntry | null> {
+  try {
+    return loadJson<Record<string, DealCacheEntry | null>>('dealcache.json');
+  } catch {
+    return {};
+  }
 }
 
 export function getLatestDate(): string {
@@ -168,6 +189,7 @@ export function computePriceLog(prices: PricePoint[]): PriceChange[] {
 export function getAllDealDetails(): DealDetail[] {
   const latestDeals = getLatestDeals();
   const history = getAllHistory();
+  const dealCache = loadDealCache();
 
   const snapshotMap = new Map<string, SnapshotDeal>();
   for (const d of latestDeals) snapshotMap.set(d.url, d);
@@ -181,11 +203,17 @@ export function getAllDealDetails(): DealDetail[] {
     seen.add(slug);
 
     const snap = snapshotMap.get(url);
+    const cache = dealCache[url] ?? null;
+
     const locs: Location[] = snap?.locations?.length
       ? snap.locations
       : snap?.lat != null
         ? [{ lat: snap.lat!, lng: snap.lng!, address: snap.address || '' }]
         : [];
+
+    // image_url and review_count: prefer snapshot (freshest scrape), fall back to dealcache
+    const image_url = snap?.image_url || cache?.image_url || undefined;
+    const review_count = snap?.review_count ?? (cache?.review_count ?? undefined);
 
     const priceLog = computePriceLog(h.prices || []);
 
@@ -202,6 +230,8 @@ export function getAllDealDetails(): DealDetail[] {
       discounted_price: snap?.discounted_price,
       savings: snap?.savings,
       locations: locs,
+      image_url,
+      review_count,
       history: h,
       priceLog,
       chartSvg: buildChartSvg(h.prices || []),

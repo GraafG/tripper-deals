@@ -166,6 +166,9 @@ _DEAL_COORDS_RE = re.compile(
     re.IGNORECASE,
 )
 
+# Matches review-count text like "440 beoordelingen" or "1.234 beoordelingen"
+_REVIEW_COUNT_RE = re.compile(r'([\d][.\d]*)\s*beoordelingen', re.IGNORECASE)
+
 
 def load_dealcache():
     if DEALCACHE_FILE.exists():
@@ -184,7 +187,9 @@ def fetch_deal_coords(url, session):
     from the deal-map component. Some deals (e.g. multi-location passes,
     chains) expose hundreds of locations. Returns a dict with:
         {'lat': float, 'lng': float, 'address': str,        # first location
-         'locations': [{'lat','lng','address'}, ...]}        # all locations
+         'locations': [{'lat','lng','address'}, ...],        # all locations
+         'image_url': str,                                   # og:image from detail page
+         'review_count': int | None}                        # number of ratings
     or None if no coordinates could be parsed."""
     try:
         r = session.get(url, timeout=15)
@@ -193,6 +198,7 @@ def fetch_deal_coords(url, session):
         print(f"  Failed to fetch {url}: {e}")
         return None
 
+    # Parse coordinates from the raw text (Vue component attribute)
     locations = []
     for m in _DEAL_COORDS_RE.finditer(r.text):
         try:
@@ -208,7 +214,33 @@ def fetch_deal_coords(url, session):
                 address = m.group(3)
         locations.append({'lat': lat, 'lng': lng, 'address': address})
 
+    # Use BeautifulSoup for structured extraction of image + review count
+    soup = BeautifulSoup(r.content, 'html.parser')
+
+    # Product image — prefer tripper's own og:image for the deal
+    image_url = ''
+    og_img = soup.select_one('meta[property="og:image"]')
+    if og_img and og_img.get('content'):
+        image_url = og_img['content']
+
+    # Review count — look for "NNN beoordelingen" pattern in page text
+    review_count = None
+    rc_m = _REVIEW_COUNT_RE.search(r.text)
+    if rc_m:
+        try:
+            review_count = int(rc_m.group(1).replace('.', ''))
+        except ValueError:
+            pass
+
     if not locations:
+        # No coords but we may still have image/review data — return a partial entry
+        if image_url or review_count is not None:
+            return {
+                'lat': None, 'lng': None, 'address': '',
+                'locations': [],
+                'image_url': image_url,
+                'review_count': review_count,
+            }
         return None
 
     first = locations[0]
@@ -217,6 +249,8 @@ def fetch_deal_coords(url, session):
         'lng': first['lng'],
         'address': first['address'],
         'locations': locations,
+        'image_url': image_url,
+        'review_count': review_count,
     }
 
 
@@ -258,19 +292,25 @@ def enrich_deals_with_detail_coords(deals, force=False):
     for d in deals:
         coords = cache.get(d.get('url'))
         if coords:
-            d['lat'] = coords['lat']
-            d['lng'] = coords['lng']
-            if coords.get('address'):
-                d['address'] = coords['address']
-            # New cache entries carry every location; older ones only carried
-            # the first. Synthesise a single-element list in that case so the
-            # frontend always sees a consistent shape.
-            locs = coords.get('locations')
-            if not locs:
-                locs = [{'lat': coords['lat'], 'lng': coords['lng'],
-                         'address': coords.get('address', '')}]
-            d['locations'] = locs
-            resolved += 1
+            if coords.get('lat') is not None:
+                d['lat'] = coords['lat']
+                d['lng'] = coords['lng']
+                if coords.get('address'):
+                    d['address'] = coords['address']
+                # New cache entries carry every location; older ones only carried
+                # the first. Synthesise a single-element list in that case so the
+                # frontend always sees a consistent shape.
+                locs = coords.get('locations')
+                if not locs:
+                    locs = [{'lat': coords['lat'], 'lng': coords['lng'],
+                             'address': coords.get('address', '')}]
+                d['locations'] = locs
+                resolved += 1
+            # Copy supplemental meta fields regardless of whether coords exist
+            if coords.get('image_url'):
+                d['image_url'] = coords['image_url']
+            if coords.get('review_count') is not None:
+                d['review_count'] = coords['review_count']
 
     print(f"Resolved precise coords for {resolved}/{len(deals)} deals from detail pages.")
     return resolved
@@ -392,12 +432,61 @@ def save_daily_json(deals, date_str):
     print(f"Manifest updated: {len(manifest)} date(s)")
 
 
+def _backfill_meta():
+    """Re-visit every cached deal URL to add image_url and review_count.
+    Only fetches URLs that are missing at least one of those fields."""
+    import requests
+
+    cache = load_dealcache()
+    session = requests.Session()
+    session.headers.update({
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '
+                      '(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+        'Accept-Language': 'nl-NL,nl;q=0.9,en;q=0.8',
+    })
+
+    to_fetch = [
+        url for url, entry in cache.items()
+        if entry is not None and ('image_url' not in entry or 'review_count' not in entry)
+    ]
+    print(f"Backfilling meta for {len(to_fetch)}/{len(cache)} cached deals...")
+
+    for i, url in enumerate(to_fetch):
+        result = fetch_deal_coords(url, session)
+        if result is not None:
+            # Merge new fields into existing cache entry
+            existing = cache[url] or {}
+            existing['image_url'] = result.get('image_url', existing.get('image_url', ''))
+            existing['review_count'] = result.get('review_count', existing.get('review_count'))
+            cache[url] = existing
+        else:
+            # Page failed — mark as attempted so we skip next time
+            if cache[url] is not None:
+                cache[url].setdefault('image_url', '')
+                cache[url].setdefault('review_count', None)
+
+        if (i + 1) % 10 == 0:
+            print(f"  {i + 1}/{len(to_fetch)}...")
+            save_dealcache(cache)
+        time.sleep(0.5)
+
+    save_dealcache(cache)
+    print(f"Backfill complete. {len(cache)} entries in cache.")
+
+
 def main():
     parser = argparse.ArgumentParser(description='Scrape deals from tripper.nl')
     parser.add_argument('--file', '-f', type=str, help='Path to a locally saved HTML file')
     parser.add_argument('--date', '-d', type=str, help='Date label (default: today, YYYY-MM-DD)')
     parser.add_argument('--no-geocode', action='store_true', help='Skip geocoding')
+    parser.add_argument('--backfill-meta', action='store_true',
+                        help='Re-fetch all cached deal pages to populate image_url and review_count')
     args = parser.parse_args()
+
+    # Backfill mode: re-visit all cached URLs to pick up image_url + review_count
+    if args.backfill_meta:
+        _backfill_meta()
+        return
 
     # Load page
     if args.file:
