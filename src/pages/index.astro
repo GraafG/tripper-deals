@@ -62,8 +62,12 @@ const description = 'Overzicht van alle actuele Tripper.nl vakantie- en reisdeal
               <tr>
                 <th data-col="name">Deal <span class="arrow"></span></th>
                 <th data-col="location">Locatie <span class="arrow"></span></th>
+                <th data-col="provider" class="col-extra">Aanbieder <span class="arrow"></span></th>
                 <th data-col="discount_num">Korting <span class="arrow"></span></th>
                 <th data-col="discounted_price">Van / Voor <span class="arrow"></span></th>
+                <th data-col="savings" class="col-extra">Besparing <span class="arrow"></span></th>
+                <th data-col="rating" class="col-extra">Rating <span class="arrow"></span></th>
+                <th data-col="_trend" class="col-extra">Trend <span class="arrow"></span></th>
               </tr>
             </thead>
             <tbody id="deals-body"></tbody>
@@ -275,19 +279,25 @@ function renderTable() {
     return sortAsc ? (va < vb ? -1 : va > vb ? 1 : 0) : (va > vb ? -1 : va < vb ? 1 : 0);
   });
 
-  const colCount = document.querySelectorAll('#deals-table thead th').length;
+  const colCount = [...document.querySelectorAll('#deals-table thead th')].filter(th => getComputedStyle(th).display !== 'none').length;
   const slug = (d) => getSlug(d.url);
   document.getElementById('deals-body').innerHTML = deals.map(d => {
     const priceCell = d.original_price != null
       ? `<span class="price-original">&euro;${d.original_price.toFixed(2)}</span><span class="price-deal">&euro;${d.discounted_price != null ? d.discounted_price.toFixed(2) : '?'}</span>`
       : (d.discounted_price != null ? `<span class="price-deal">&euro;${d.discounted_price.toFixed(2)}</span>` : '');
 
+    const trendLabel = d._trend === 'down' ? '📉 Daling' : d._trend === 'up' ? '📈 Stijging' : d._trend === 'new' ? '🆕 Nieuw' : '→ Stabiel';
+
     const detailHref = slug(d) ? esc(DATA_BASE + '/deal/' + slug(d) + '/') : safeUrl(d.url);
     const mainRow = `<tr class="expandable" data-url="${esc(d.url)}" onclick="toggleSparkline(this)">
       <td><a href="${detailHref}" onclick="event.stopPropagation()">${esc(d.name)}</a>${lowestBadge(d)}</td>
       <td>${esc(d.location)}</td>
+      <td class="col-extra">${esc(d.provider || '')}</td>
       <td>${d.discount_num ? '<span class="discount-badge">-' + d.discount_num + '%</span>' : ''}</td>
       <td>${priceCell}</td>
+      <td class="col-extra">${d.savings != null ? '&euro;' + d.savings.toFixed(2) : ''}</td>
+      <td class="col-extra">${esc(d.rating || '')}</td>
+      <td class="col-extra">${trendLabel}</td>
     </tr>`;
 
     if (expandedUrl === d.url) {
@@ -375,6 +385,7 @@ function showView(view) {
   document.getElementById('btn-map').classList.toggle('active', view === 'map');
   document.getElementById('btn-split').classList.toggle('active', view === 'split');
   document.body.classList.toggle('view-split', view === 'split');
+  document.body.classList.toggle('view-map', view === 'map');
 
   const tableContainer = document.getElementById('table-container');
   const mapContainer = document.getElementById('map-container');
