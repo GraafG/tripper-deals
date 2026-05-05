@@ -5,13 +5,17 @@ lat/lng/address.
 After this runs once, ongoing scrapes will only need to fetch the detail
 page for *new* deal URLs (handled automatically in tripper_scraper.py).
 
-Usage:
-    python backfill_deal_coords.py            # only fetch URLs not yet cached
-    python backfill_deal_coords.py --force    # re-fetch every URL
+Usage (run from repo root):
+    python scripts/backfill_deal_coords.py            # only fetch URLs not yet cached
+    python scripts/backfill_deal_coords.py --force    # re-fetch every URL
 """
 import argparse
 import json
+import sys
 from pathlib import Path
+
+# Allow importing from repo root when run as scripts/backfill_deal_coords.py
+sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from tripper_scraper import (
     DATA_DIR,

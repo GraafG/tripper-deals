@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import { getAllDealDetails, getSlug } from '../../lib/deals';
 import type { DealDetail } from '../../lib/deals';
+import { SITE_URL } from '../../lib/config';
 
 export async function getStaticPaths() {
   const deals = getAllDealDetails();
@@ -13,7 +14,7 @@ export async function getStaticPaths() {
 interface Props { deal: DealDetail; }
 const { deal } = Astro.props;
 
-const site = 'https://graafg.github.io/tripper-deals';
+const site = SITE_URL;
 const canonical = `${site}/deal/${deal.slug}/`;
 const TRIPPER_REF = 'F28D4VGY';
 

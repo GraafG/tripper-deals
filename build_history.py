@@ -82,9 +82,15 @@ def build_history():
             entry['current_price'] = None
             entry['at_lowest'] = False
 
-        # Trend: compare last two distinct price points
-        if len(valid_prices) >= 2:
-            prev, curr = valid_prices[-2], valid_prices[-1]
+        # Trend: compare last two *distinct* price values (ignore unchanged runs)
+        distinct = []
+        for p in reversed(valid_prices):
+            if not distinct or p != distinct[-1]:
+                distinct.append(p)
+            if len(distinct) == 2:
+                break
+        if len(distinct) == 2:
+            prev, curr = distinct[1], distinct[0]
             if curr < prev:
                 entry['trend'] = 'down'
             elif curr > prev:

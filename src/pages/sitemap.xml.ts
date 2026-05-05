@@ -1,7 +1,8 @@
 import type { APIRoute } from 'astro';
 import { getAllDealDetails } from '../lib/deals';
+import { SITE_URL } from '../lib/config';
 
-const SITE = 'https://graafg.github.io/tripper-deals';
+const SITE = SITE_URL;
 
 export const GET: APIRoute = () => {
   const deals = getAllDealDetails();
