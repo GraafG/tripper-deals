@@ -8,6 +8,7 @@ without extra computation.
 """
 
 import json
+from html import unescape as html_unescape
 from pathlib import Path
 
 BASE_DIR = Path(__file__).parent
@@ -53,9 +54,9 @@ def build_history():
 
             if url not in history:
                 history[url] = {
-                    'name': deal.get('name', ''),
-                    'location': deal.get('location', ''),
-                    'provider': deal.get('provider', ''),
+                    'name': html_unescape(deal.get('name', '') or ''),
+                    'location': html_unescape(deal.get('location', '') or ''),
+                    'provider': html_unescape(deal.get('provider', '') or ''),
                     'prices': [],
                     'first_seen': date_str,
                     'last_seen': date_str,
@@ -64,9 +65,9 @@ def build_history():
             entry = history[url]
             entry['last_seen'] = date_str
             # Keep name/provider/location up-to-date with latest snapshot
-            entry['name'] = deal.get('name', '') or entry['name']
-            entry['location'] = deal.get('location', '') or entry['location']
-            entry['provider'] = deal.get('provider', '') or entry['provider']
+            entry['name'] = html_unescape(deal.get('name', '') or '') or entry['name']
+            entry['location'] = html_unescape(deal.get('location', '') or '') or entry['location']
+            entry['provider'] = html_unescape(deal.get('provider', '') or '') or entry['provider']
 
             entry['prices'].append({
                 'date': date_str,
