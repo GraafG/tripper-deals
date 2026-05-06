@@ -15,6 +15,26 @@ BASE_DIR = Path(__file__).parent
 DATA_DIR = BASE_DIR / 'data'
 
 
+def load_dealcache():
+    """Return a dict mapping URL → geo fields from dealcache.json."""
+    path = BASE_DIR / 'dealcache.json'
+    if not path.exists():
+        return {}
+    with open(path, 'r', encoding='utf-8') as f:
+        raw = json.load(f)
+    result = {}
+    for url, entry in raw.items():
+        if not isinstance(entry, dict):
+            continue
+        result[url] = {
+            'lat': entry.get('lat'),
+            'lng': entry.get('lng'),
+            'address': entry.get('address'),
+            'locations': entry.get('locations'),
+        }
+    return result
+
+
 def snapshot_path(date_str):
     """Return the datalake-style path for a YYYY-MM-DD snapshot."""
     year, month, day = date_str.split('-')
@@ -33,6 +53,7 @@ def build_history():
     # Sort chronologically (oldest first) for proper timeline building
     dates_asc = sorted(dates)
 
+    dealcache = load_dealcache()
     history = {}  # keyed by deal URL
 
     for date_str in dates_asc:
@@ -112,6 +133,13 @@ def build_history():
 
         entry['days_tracked'] = len(entry['prices'])
         entry['is_active'] = (entry['last_seen'] == latest_date)
+
+        # Merge geo fields from dealcache so expired deals have map coordinates
+        geo = dealcache.get(url, {})
+        entry['lat'] = geo.get('lat')
+        entry['lng'] = geo.get('lng')
+        entry['address'] = geo.get('address')
+        entry['locations'] = geo.get('locations')
 
     # Write output
     out_file = DATA_DIR / 'history.json'
