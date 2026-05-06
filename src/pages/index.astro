@@ -64,7 +64,11 @@ const homepageJsonLd = [
       <select id="date-picker" title="Selecteer datum" aria-label="Selecteer datum"></select>
       <select id="location-filter" title="Filter op locatie" aria-label="Filter op locatie"><option value="">Alle locaties</option></select>
       <input type="text" id="search-box" placeholder="Zoek op naam, locatie, aanbieder..." aria-label="Zoek deals" />
-      <label class="expired-toggle-wrap"><input type="checkbox" id="show-expired" /> Toon verlopen deals</label>
+      <select id="expired-filter" title="Filter op status" aria-label="Filter op dealstatus">
+        <option value="active">Actieve deals</option>
+        <option value="all">Alle deals</option>
+        <option value="expired">Alleen verlopen</option>
+      </select>
     </div>
   </div>
 </header>
@@ -168,7 +172,7 @@ const DATA_BASE = (document.querySelector('meta[name="site-base"]')?.content || 
 let allDeals = [];
 let historyData = {};
 let _expiredDeals = [];
-let showExpired = false;
+let expiredFilter = 'active'; // 'active' | 'all' | 'expired'
 let sortCol = 'discount_num';
 let sortAsc = false;
 let map = null;
@@ -304,8 +308,14 @@ function populateLocationFilter() {
 function getFiltered(forMap = false) {
   const q = document.getElementById('search-box').value.toLowerCase();
   const loc = document.getElementById('location-filter').value;
-  const includeExpired = showExpired && currentView === 'table' && !forMap;
-  let deals = (includeExpired ? [...allDeals, ..._expiredDeals] : allDeals).filter(d => {
+  const filter = forMap ? 'active' : expiredFilter;
+
+  let pool;
+  if (filter === 'expired') pool = _expiredDeals;
+  else if (filter === 'all') pool = [...allDeals, ..._expiredDeals];
+  else pool = allDeals;
+
+  let deals = pool.filter(d => {
     if (loc && d.location !== loc) return false;
     if (q && !(d.name + ' ' + d.location + ' ' + d.provider).toLowerCase().includes(q)) return false;
     return true;
@@ -481,7 +491,7 @@ document.querySelectorAll('#deals-table th[data-col]').forEach(th => {
 
 document.getElementById('search-box').addEventListener('input', () => { expandedUrl = null; renderTable(); renderStats(); if (map) renderMap(false); });
 document.getElementById('location-filter').addEventListener('change', () => { expandedUrl = null; renderTable(); renderStats(); if (map) renderMap(false); });
-document.getElementById('show-expired').addEventListener('change', e => { showExpired = e.target.checked; expandedUrl = null; renderTable(); renderStats(); });
+document.getElementById('expired-filter').addEventListener('change', e => { expiredFilter = e.target.value; expandedUrl = null; renderTable(); renderStats(); });
 
 let _leafletLoading = null;
 
