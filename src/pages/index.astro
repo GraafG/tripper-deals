@@ -308,7 +308,7 @@ function populateLocationFilter() {
 function getFiltered(forMap = false) {
   const q = document.getElementById('search-box').value.toLowerCase();
   const loc = document.getElementById('location-filter').value;
-  const filter = forMap ? 'active' : expiredFilter;
+  const filter = expiredFilter;
 
   let pool;
   if (filter === 'expired') pool = _expiredDeals;
@@ -491,7 +491,7 @@ document.querySelectorAll('#deals-table th[data-col]').forEach(th => {
 
 document.getElementById('search-box').addEventListener('input', () => { expandedUrl = null; renderTable(); renderStats(); if (map) renderMap(false); });
 document.getElementById('location-filter').addEventListener('change', () => { expandedUrl = null; renderTable(); renderStats(); if (map) renderMap(false); });
-document.getElementById('expired-filter').addEventListener('change', e => { expiredFilter = e.target.value; expandedUrl = null; renderTable(); renderStats(); });
+document.getElementById('expired-filter').addEventListener('change', e => { expiredFilter = e.target.value; expandedUrl = null; renderTable(); renderStats(); if (map) renderMap(false); });
 
 let _leafletLoading = null;
 
