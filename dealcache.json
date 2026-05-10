@@ -13078,5 +13078,19 @@
     ],
     "image_url": "https://images.tripper.nl/entree-ticket-klimrijk-brabant-korting/048248.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": 3
+  },
+  "https://www.tripper.nl/deal/ticket-dikste-cafe-aan-de-haven-2027-korting": {
+    "lat": 51.88355642,
+    "lng": 4.4871261,
+    "address": "Rotterdam Ahoy, Ahoyweg 10, Rotterdam",
+    "locations": [
+      {
+        "lat": 51.88355642,
+        "lng": 4.4871261,
+        "address": "Rotterdam Ahoy, Ahoyweg 10, Rotterdam"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/ticket-dikste-cafe-aan-de-haven-2027-korting/a01717.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": 2
   }
 }
