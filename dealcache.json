@@ -13092,5 +13092,33 @@
     ],
     "image_url": "https://images.tripper.nl/ticket-dikste-cafe-aan-de-haven-2027-korting/a01717.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": 2
+  },
+  "https://www.tripper.nl/deal/ticket-zoo-antwerpen-entree-korting": {
+    "lat": 51.21638483296259,
+    "lng": 4.42353369342029,
+    "address": "ZOO Antwerpen, Koningin Astridplein 20-26, Antwerpen",
+    "locations": [
+      {
+        "lat": 51.21638483296259,
+        "lng": 4.42353369342029,
+        "address": "ZOO Antwerpen, Koningin Astridplein 20-26, Antwerpen"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/ticket-zoo-antwerpen-entree-korting/ad8145.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/ticket-zoo-planckendeal-entree-korting": {
+    "lat": 51.000382068031264,
+    "lng": 4.517912173016942,
+    "address": "ZOO Planckendael, Leuvensesteenweg 582, Mechelen",
+    "locations": [
+      {
+        "lat": 51.000382068031264,
+        "lng": 4.517912173016942,
+        "address": "ZOO Planckendael, Leuvensesteenweg 582, Mechelen"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/ticket-zoo-planckendeal-entree-korting/3a010f.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
   }
 }
