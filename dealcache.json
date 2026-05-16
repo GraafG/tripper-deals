@@ -13176,5 +13176,89 @@
     ],
     "image_url": "https://images.tripper.nl/mixed-grill-schotel-naar-keuze-grieks-restaurant-alexandros-korting/5e8c7f.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": null
+  },
+  "https://www.tripper.nl/deal/ticket-muziekfeest-van-het-jaar-2026-korting": {
+    "lat": 52.31375483,
+    "lng": 4.93771165,
+    "address": "Ziggo Dome Amsterdam, De Passage 100, Amsterdam",
+    "locations": [
+      {
+        "lat": 52.31375483,
+        "lng": 4.93771165,
+        "address": "Ziggo Dome Amsterdam, De Passage 100, Amsterdam"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/ticket-muziekfeest-van-het-jaar-2026-korting/e9c405.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/midweek-weekend-verblijf-vakantiepark-dierenbos-korting": {
+    "lat": 51.70473964,
+    "lng": 5.42972246,
+    "address": "Vakantiepark Dierenbos, Vinkeloord 1, Vinkel",
+    "locations": [
+      {
+        "lat": 51.70473964,
+        "lng": 5.42972246,
+        "address": "Vakantiepark Dierenbos, Vinkeloord 1, Vinkel"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/midweek-weekend-vakantiepark-dierenbos-verblijf-korting/44f16d.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/golden-tulip-ampt-van-nijkerk": {
+    "lat": 52.2338221,
+    "lng": 5.4884393,
+    "address": "Golden Tulip Ampt van Nijkerk, Berencamperweg,4, Nijkerk",
+    "locations": [
+      {
+        "lat": 52.2338221,
+        "lng": 5.4884393,
+        "address": "Golden Tulip Ampt van Nijkerk, Berencamperweg,4, Nijkerk"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/golden-tulip-ampt-van-nijkerk/2d39e4.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/abdij-hotel-rolduc": {
+    "lat": 50.8674565,
+    "lng": 6.0799227,
+    "address": "Abdij Hotel Rolduc, Heyendallaan,82, Kerkrade",
+    "locations": [
+      {
+        "lat": 50.8674565,
+        "lng": 6.0799227,
+        "address": "Abdij Hotel Rolduc, Heyendallaan,82, Kerkrade"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/abdij-hotel-rolduc/cc88e9.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/harteluk-joure": {
+    "lat": 52.9598777,
+    "lng": 5.811033,
+    "address": "HarTeluk Joure, Klokmakkerij,1, Joure",
+    "locations": [
+      {
+        "lat": 52.9598777,
+        "lng": 5.811033,
+        "address": "HarTeluk Joure, Klokmakkerij,1, Joure"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/https://images.voordeeluitjes.nl/images/medium/231416_mg-8348-hdr.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/hotel-de-rousch": {
+    "lat": 50.8707159,
+    "lng": 5.9742346,
+    "address": "Hotel de Rousch, Henri Dunantstraat,1, Heerlen",
+    "locations": [
+      {
+        "lat": 50.8707159,
+        "lng": 5.9742346,
+        "address": "Hotel de Rousch, Henri Dunantstraat,1, Heerlen"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/hotel-de-rousch/7a8576.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
   }
 }
