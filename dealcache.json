@@ -13260,5 +13260,47 @@
     ],
     "image_url": "https://images.tripper.nl/hotel-de-rousch/7a8576.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": null
+  },
+  "https://www.tripper.nl/deal/1-uur-bowlen-de-rode-loper-korting": {
+    "lat": 52.98655471,
+    "lng": 6.98728613,
+    "address": "De Rode Loper, Tinnegieter 35, Stadskanaal",
+    "locations": [
+      {
+        "lat": 52.98655471,
+        "lng": 6.98728613,
+        "address": "De Rode Loper, Tinnegieter 35, Stadskanaal"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/1-uur-bowlen-de-rode-loper-korting/c41779.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/1-uur-poolen-biljart-de-rode-loper-korting": {
+    "lat": 52.98655471,
+    "lng": 6.98728613,
+    "address": "De Rode Loper, Tinnegieter 35, Stadskanaal",
+    "locations": [
+      {
+        "lat": 52.98655471,
+        "lng": 6.98728613,
+        "address": "De Rode Loper, Tinnegieter 35, Stadskanaal"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/1-uur-poolen-biljart-de-rode-loper-korting/1c16f0.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/3-gangen-keuzediner-steakhouse-de-rode-loper-korting": {
+    "lat": 52.98655471,
+    "lng": 6.98728613,
+    "address": "De Rode Loper, Tinnegieter 35, Stadskanaal",
+    "locations": [
+      {
+        "lat": 52.98655471,
+        "lng": 6.98728613,
+        "address": "De Rode Loper, Tinnegieter 35, Stadskanaal"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/3-gangen-keuzediner-de-rode-loper-korting/36c6d2.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
   }
 }
