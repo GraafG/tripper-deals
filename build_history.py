@@ -8,6 +8,7 @@ without extra computation.
 """
 
 import json
+from datetime import date, timedelta
 from html import unescape as html_unescape
 from pathlib import Path
 
@@ -113,23 +114,37 @@ def build_history():
             entry['current_price'] = None
             entry['at_lowest'] = False
 
-        # Trend: compare last two *distinct* price values (ignore unchanged runs)
-        distinct = []
-        for p in reversed(valid_prices):
-            if not distinct or p != distinct[-1]:
-                distinct.append(p)
-            if len(distinct) == 2:
-                break
-        if len(distinct) == 2:
-            prev, curr = distinct[1], distinct[0]
-            if curr < prev:
-                entry['trend'] = 'down'
-            elif curr > prev:
-                entry['trend'] = 'up'
+        # Trend: compare current price vs price from 7 days ago.
+        # Mark as 'new' only if first seen within the last 7 days.
+        seven_days_ago = None
+        if latest_date:
+            seven_days_ago = (date.fromisoformat(latest_date) - timedelta(days=7)).isoformat()
+
+        if valid_prices and seven_days_ago:
+            current = valid_prices[-1]
+            # Find the most recent price at or before 7 days ago
+            price_7d = next(
+                (p['price'] for p in reversed(entry['prices'])
+                 if p['price'] is not None and p['date'] <= seven_days_ago),
+                None
+            )
+            if price_7d is not None:
+                if current < price_7d:
+                    entry['trend'] = 'down'
+                elif current > price_7d:
+                    entry['trend'] = 'up'
+                else:
+                    entry['trend'] = 'stable'
+            elif entry['first_seen'] >= seven_days_ago:
+                # No price from 7d ago means deal is newer than 7 days
+                entry['trend'] = 'new'
             else:
+                # Older deal but no price movement detected
                 entry['trend'] = 'stable'
-        else:
+        elif entry.get('first_seen') and seven_days_ago and entry['first_seen'] >= seven_days_ago:
             entry['trend'] = 'new'
+        else:
+            entry['trend'] = 'stable'
 
         entry['days_tracked'] = len(entry['prices'])
         entry['is_active'] = (entry['last_seen'] == latest_date)
