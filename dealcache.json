@@ -13302,5 +13302,173 @@
     ],
     "image_url": "https://images.tripper.nl/3-gangen-keuzediner-de-rode-loper-korting/36c6d2.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": null
+  },
+  "https://www.tripper.nl/deal/nhow-amsterdam-rai": {
+    "lat": 52.3389137,
+    "lng": 4.8909177,
+    "address": "nhow Amsterdam RAI, Europaboulevard,2b, Amsterdam",
+    "locations": [
+      {
+        "lat": 52.3389137,
+        "lng": 4.8909177,
+        "address": "nhow Amsterdam RAI, Europaboulevard,2b, Amsterdam"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/nhow-amsterdam-rai/86e685.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/hup": {
+    "lat": 51.4508043,
+    "lng": 5.6284065,
+    "address": "HUP, Arkweg ,3-17, Mierlo",
+    "locations": [
+      {
+        "lat": 51.4508043,
+        "lng": 5.6284065,
+        "address": "HUP, Arkweg ,3-17, Mierlo"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/hup/022558.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/parkhotel-nieheim": {
+    "lat": 51.7976017,
+    "lng": 9.1018292,
+    "address": "Parkhotel Nieheim, Am Park ,6, Nieheim",
+    "locations": [
+      {
+        "lat": 51.7976017,
+        "lng": 9.1018292,
+        "address": "Parkhotel Nieheim, Am Park ,6, Nieheim"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/parkhotel-nieheim/35b9df.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/hotel-seemowe-eifel": {
+    "lat": 50.5831261,
+    "lng": 6.378572100000042,
+    "address": "Hotel Seemöwe Eifel, Am Obersee,10, Simmerath-Einruhr",
+    "locations": [
+      {
+        "lat": 50.5831261,
+        "lng": 6.378572100000042,
+        "address": "Hotel Seemöwe Eifel, Am Obersee,10, Simmerath-Einruhr"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/hotel-seemowe-eifel/a413cf.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/landhaus-danielshof": {
+    "lat": 51.00944,
+    "lng": 6.5547669,
+    "address": "Landhaus Danielshof, Hauptstrasse,3, Bedburg",
+    "locations": [
+      {
+        "lat": 51.00944,
+        "lng": 6.5547669,
+        "address": "Landhaus Danielshof, Hauptstrasse,3, Bedburg"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/landhaus-danielshof/aaa747.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/van-der-valk-hotel-texel-de-koog": {
+    "lat": 53.0814387,
+    "lng": 4.7621571,
+    "address": "Van der Valk Hotel Texel-De Koog, Pelikaanweg,18, De Koog (Texel)",
+    "locations": [
+      {
+        "lat": 53.0814387,
+        "lng": 4.7621571,
+        "address": "Van der Valk Hotel Texel-De Koog, Pelikaanweg,18, De Koog (Texel)"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/van-der-valk-hotel-texel-de-koog/5aad17.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/landgoed-hotel-tatenhove-texel": {
+    "lat": 53.0913177,
+    "lng": 4.7642935,
+    "address": "Landgoed Hotel Tatenhove Texel, Bosrandweg,202, De Koog (Texel)",
+    "locations": [
+      {
+        "lat": 53.0913177,
+        "lng": 4.7642935,
+        "address": "Landgoed Hotel Tatenhove Texel, Bosrandweg,202, De Koog (Texel)"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/landgoed-hotel-tatenhove-texel/5c8d27.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/ds-hotel-gronau": {
+    "lat": 52.209722615059,
+    "lng": 6.9800925559603,
+    "address": "dS Hotel Gronau, Amtsvennweg,58, Gronau",
+    "locations": [
+      {
+        "lat": 52.209722615059,
+        "lng": 6.9800925559603,
+        "address": "dS Hotel Gronau, Amtsvennweg,58, Gronau"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/ds-hotel-gronau/faffd2.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/auberge-dalle": {
+    "lat": 49.8489056,
+    "lng": 4.9694644,
+    "address": "Auberge d'Alle, Rue de Liboichant,46, Alle-sur-Semois",
+    "locations": [
+      {
+        "lat": 49.8489056,
+        "lng": 4.9694644,
+        "address": "Auberge d'Alle, Rue de Liboichant,46, Alle-sur-Semois"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/vu/hotel-3675/media-103227.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/hotel-bentheimer-hof": {
+    "lat": 52.3108035,
+    "lng": 7.1607957,
+    "address": "Hotel Bentheimer Hof, Bahnhof Nord,1, Bad Bentheim",
+    "locations": [
+      {
+        "lat": 52.3108035,
+        "lng": 7.1607957,
+        "address": "Hotel Bentheimer Hof, Bahnhof Nord,1, Bad Bentheim"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/hotel-bentheimer-hof/2f878e.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/hotel-restaurant-westhoff": {
+    "lat": 51.9109034,
+    "lng": 8.6568395,
+    "address": "Hotel Restaurant Westhoff, Hauptstraße ,24, Schloss Holte-Stukenbrock",
+    "locations": [
+      {
+        "lat": 51.9109034,
+        "lng": 8.6568395,
+        "address": "Hotel Restaurant Westhoff, Hauptstraße ,24, Schloss Holte-Stukenbrock"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/hotel-restaurant-westhoff/f89086.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/hotel-cafe-restaurant-prinsen": {
+    "lat": 52.1124823,
+    "lng": 6.5821805,
+    "address": "Hotel Café Restaurant Prinsen, Eibergseweg,13, Haarlo",
+    "locations": [
+      {
+        "lat": 52.1124823,
+        "lng": 6.5821805,
+        "address": "Hotel Café Restaurant Prinsen, Eibergseweg,13, Haarlo"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/hotel-cafe-restaurant-prinsen/d55662.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
   }
 }
