@@ -13554,5 +13554,145 @@
     ],
     "image_url": "https://images.tripper.nl/1-uur-lasergame-paintball-emmen-korting/3acbf2.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": null
+  },
+  "https://www.tripper.nl/deal/van-der-valk-hotel-lelystad": {
+    "lat": 52.4820065,
+    "lng": 5.5039293,
+    "address": "Van der Valk Hotel Lelystad, Larserplein,1, Lelystad",
+    "locations": [
+      {
+        "lat": 52.4820065,
+        "lng": 5.5039293,
+        "address": "Van der Valk Hotel Lelystad, Larserplein,1, Lelystad"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/vu/hotel-5371/media-222196.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/landgoed-mennorode": {
+    "lat": 52.279001,
+    "lng": 5.803807,
+    "address": "Landgoed Mennorode, Apeldoornseweg ,185, Elspeet",
+    "locations": [
+      {
+        "lat": 52.279001,
+        "lng": 5.803807,
+        "address": "Landgoed Mennorode, Apeldoornseweg ,185, Elspeet"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/landgoed-mennorode/e60e68.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/hotel-esserhof": {
+    "lat": 52.9101871,
+    "lng": 6.803678,
+    "address": "Hotel Eeserhof, Dorpsstraat,2, Ees",
+    "locations": [
+      {
+        "lat": 52.9101871,
+        "lng": 6.803678,
+        "address": "Hotel Eeserhof, Dorpsstraat,2, Ees"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/hotel-esserhof/a6be5c.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/landgoedhotel-woodbrooke": {
+    "lat": 52.128663,
+    "lng": 6.4349062,
+    "address": "Landgoedhotel Woodbrooke, Woodbrookersweg,1, Barchem",
+    "locations": [
+      {
+        "lat": 52.128663,
+        "lng": 6.4349062,
+        "address": "Landgoedhotel Woodbrooke, Woodbrookersweg,1, Barchem"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/vu/hotel-1481/media-293737.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/stadsherberg-de-wijnberg": {
+    "lat": 53.0615985,
+    "lng": 5.5204103,
+    "address": "Stadsherberg de Wijnberg, Marktplein,5, Bolsward",
+    "locations": [
+      {
+        "lat": 53.0615985,
+        "lng": 5.5204103,
+        "address": "Stadsherberg de Wijnberg, Marktplein,5, Bolsward"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/vu/hotel-346/media-259234.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/entree-vogelpark-avifauna-ticket-korting": {
+    "lat": 52.139541,
+    "lng": 4.648614,
+    "address": "Avifauna, Hoorn 59, Alphen aan den Rijn",
+    "locations": [
+      {
+        "lat": 52.139541,
+        "lng": 4.648614,
+        "address": "Avifauna, Hoorn 59, Alphen aan den Rijn"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/ticket-avifauna-korting/5e4a03.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": 21
+  },
+  "https://www.tripper.nl/deal/hotel-restaurant-de-oringer-marke": {
+    "lat": 52.8508894,
+    "lng": 6.8463345,
+    "address": "De Oringer Marke & Stee Hotels by Flow, Hoofdstraat,9, Odoorn",
+    "locations": [
+      {
+        "lat": 52.8508894,
+        "lng": 6.8463345,
+        "address": "De Oringer Marke & Stee Hotels by Flow, Hoofdstraat,9, Odoorn"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/vu/hotel-795/media-293792.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/hotel-bosrijk-ruighenrode": {
+    "lat": 52.1451808,
+    "lng": 6.3887748,
+    "address": "Hotel Bosrijk Ruighenrode, Vordenseweg ,6, Lochem",
+    "locations": [
+      {
+        "lat": 52.1451808,
+        "lng": 6.3887748,
+        "address": "Hotel Bosrijk Ruighenrode, Vordenseweg ,6, Lochem"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/hotel-bosrijk-ruighenrode/839c0f.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/hotel-landgoed-ehzerwold-almen": {
+    "lat": 52.1624495,
+    "lng": 6.3258454,
+    "address": "Hotel Landgoed Ehzerwold Almen, Ehzerallee,14, Almen",
+    "locations": [
+      {
+        "lat": 52.1624495,
+        "lng": 6.3258454,
+        "address": "Hotel Landgoed Ehzerwold Almen, Ehzerallee,14, Almen"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/hotel-landgoed-ehzerwold-almen/d28276.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/parkhotel-tjaarda": {
+    "lat": 52.945139,
+    "lng": 5.9666884,
+    "address": "Parkhotel Tjaarda, Koningin Julianaweg,98, Oranjewoud",
+    "locations": [
+      {
+        "lat": 52.945139,
+        "lng": 5.9666884,
+        "address": "Parkhotel Tjaarda, Koningin Julianaweg,98, Oranjewoud"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/parkhotel-tjaarda/f1fa83.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
   }
 }
