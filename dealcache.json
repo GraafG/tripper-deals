@@ -13867,5 +13867,19 @@
     ],
     "image_url": "https://images.tripper.nl/entree-landhuis-oud-amelisweerd-korting/79ef80.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": null
+  },
+  "https://www.tripper.nl/deal/entree-ticket-tierpark-nordhorn-korting": {
+    "lat": 52.43099,
+    "lng": 7.08998,
+    "address": "Tierpark Nordhorn, Heseper Weg 110, Nordhorn",
+    "locations": [
+      {
+        "lat": 52.43099,
+        "lng": 7.08998,
+        "address": "Tierpark Nordhorn, Heseper Weg 110, Nordhorn"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/entree-ticket-tierpark-nordhorn-korting/5a20a1.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": 37
   }
 }
