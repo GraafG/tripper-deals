@@ -13951,5 +13951,19 @@
     ],
     "image_url": "https://images.tripper.nl/luxe-high-tea-bij-koffie-en-theehuisje-aignwies/7cf3f1.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": null
+  },
+  "https://www.tripper.nl/deal/ticket-vrijdag-toppers-in-concert-2026-korting": {
+    "lat": 52.311981,
+    "lng": 4.94639,
+    "address": "Johan Cruijff ArenA, Johan Cruijff Boulevard 1, Amsterdam",
+    "locations": [
+      {
+        "lat": 52.311981,
+        "lng": 4.94639,
+        "address": "Johan Cruijff ArenA, Johan Cruijff Boulevard 1, Amsterdam"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/tickets-toppers-in-concert-2026-korting/b10119.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": 13
   }
 }
