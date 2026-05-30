@@ -14007,5 +14007,61 @@
     ],
     "image_url": "https://images.tripper.nl/short-golf-het-rijk-van-margraten-korting/80657e.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": null
+  },
+  "https://www.tripper.nl/deal/all-in-ticket-wunderland-kalkar-korting": {
+    "lat": 51.763654,
+    "lng": 6.326916,
+    "address": "Wunderland Kalkar, Griether  110-120, Kalkar",
+    "locations": [
+      {
+        "lat": 51.763654,
+        "lng": 6.326916,
+        "address": "Wunderland Kalkar, Griether  110-120, Kalkar"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/all-in-ticket-wunderland-kalkar-korting/d2bf07.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": 41
+  },
+  "https://www.tripper.nl/deal/ticket-dancing-with-horses-aywaille-korting": {
+    "lat": 50.47615497318075,
+    "lng": 5.688295416947521,
+    "address": "Aywaille, Route de, Dieupart, Aywaille",
+    "locations": [
+      {
+        "lat": 50.47615497318075,
+        "lng": 5.688295416947521,
+        "address": "Aywaille, Route de, Dieupart, Aywaille"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/ticket-dancing-with-horses-aywaille-korting/b35a94.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": 4
+  },
+  "https://www.tripper.nl/deal/ticket-speelpark-maisdoolhof-voorthuizen-korting": {
+    "lat": 52.17617389,
+    "lng": 5.5848862,
+    "address": "Speelpark & Maisdoolhof Voorthuizen, Bijschoterweg 2, Voorthuizen",
+    "locations": [
+      {
+        "lat": 52.17617389,
+        "lng": 5.5848862,
+        "address": "Speelpark & Maisdoolhof Voorthuizen, Bijschoterweg 2, Voorthuizen"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/ticket-speelpark-maisdoolhof-voorthuizen-korting/a115a0.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/entree-brandweermuseum-korting": {
+    "lat": 52.3097303,
+    "lng": 6.53555832,
+    "address": "Brandweermuseum, Kasteellaan 1, Rijssen",
+    "locations": [
+      {
+        "lat": 52.3097303,
+        "lng": 6.53555832,
+        "address": "Brandweermuseum, Kasteellaan 1, Rijssen"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/entree-brandweermuseum-korting/1d4b85.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
   }
 }
