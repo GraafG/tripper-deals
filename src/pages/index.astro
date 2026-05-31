@@ -185,8 +185,23 @@ let _isApplyingUrlState = false;
 window.addEventListener('resize', () => { _colCount = null; });
 
 const TRIPPER_REF = 'F28D4VGY';
+const DEFAULT_DOCUMENT_TITLE = document.title;
 const VALID_EXPIRED_FILTERS = new Set(['active', 'all', 'expired']);
 const VALID_VIEWS = new Set(['table', 'map', 'split']);
+
+function updateDocumentTitle() {
+  const searchBox = document.getElementById('search-box');
+  const locationFilter = document.getElementById('location-filter');
+  const parts = [];
+
+  const q = searchBox.value.trim();
+  if (q) parts.push(`Zoek: ${q}`);
+  if (locationFilter.value) parts.push(locationFilter.value);
+  if (expiredFilter === 'expired') parts.push('verlopen deals');
+  else if (expiredFilter === 'all') parts.push('alle deals');
+
+  document.title = parts.length ? `${parts.join(' - ')} | Tripper Deals` : DEFAULT_DOCUMENT_TITLE;
+}
 
 function readUrlState() {
   const params = new URLSearchParams(window.location.search);
@@ -217,6 +232,8 @@ function updateUrlState({ replace = true } = {}) {
   if (currentView !== 'table') params.set('view', currentView);
   if (sortCol !== 'discount_num') params.set('sort', sortCol);
   if (sortAsc) params.set('dir', 'asc');
+
+  updateDocumentTitle();
 
   const query = params.toString();
   const nextUrl = window.location.pathname + (query ? '?' + query : '') + window.location.hash;
