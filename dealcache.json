@@ -9906,7 +9906,14 @@
     "image_url": "https://images.tripper.nl/wasbeurt-tankstation-klaassens-korting/68fc3b.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": null
   },
-  "https://www.tripper.nl/deal/hotelmoment-2-personen-korting": null,
+  "https://www.tripper.nl/deal/hotelmoment-2-personen-korting": {
+    "lat": null,
+    "lng": null,
+    "address": "",
+    "locations": [],
+    "image_url": "https://images.tripper.nl/hotelmoment-waardebon-2-personen-korting/528046.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
   "https://www.tripper.nl/deal/overnachten-moederdag-duinrell-duingalow-korting": {
     "lat": 52.146628,
     "lng": 4.384499,
@@ -14062,6 +14069,20 @@
       }
     ],
     "image_url": "https://images.tripper.nl/entree-brandweermuseum-korting/1d4b85.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/pitch-putt-koffie-thee-landgoed-zwartemeer-korting": {
+    "lat": 52.72451869,
+    "lng": 7.03203484,
+    "address": "Landgoed Zwartemeer, Verlengde van Echtenskanaal NZ 2, Zwartemeer",
+    "locations": [
+      {
+        "lat": 52.72451869,
+        "lng": 7.03203484,
+        "address": "Landgoed Zwartemeer, Verlengde van Echtenskanaal NZ 2, Zwartemeer"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/pitch-putt-koffie-thee-landgoed-zwartemeer-korting/a6c4f9.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": null
   }
 }
