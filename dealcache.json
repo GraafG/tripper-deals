@@ -14084,5 +14084,61 @@
     ],
     "image_url": "https://images.tripper.nl/pitch-putt-koffie-thee-landgoed-zwartemeer-korting/a6c4f9.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": null
+  },
+  "https://www.tripper.nl/deal/glow-in-the-dark-midgetgolf-curling-landgoed-zwartemeer-korting": {
+    "lat": 52.72451869,
+    "lng": 7.03203484,
+    "address": "Landgoed Zwartemeer, Verlengde van Echtenskanaal NZ 2, Zwartemeer",
+    "locations": [
+      {
+        "lat": 52.72451869,
+        "lng": 7.03203484,
+        "address": "Landgoed Zwartemeer, Verlengde van Echtenskanaal NZ 2, Zwartemeer"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/glow-in-the-dark-midgetgolf-curling-landgoed-zwartemeer-korting/a69af8.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/zoete-mini-high-tea-bij-van-robuust-korting": {
+    "lat": 52.85985815,
+    "lng": 6.51513787,
+    "address": "Van Robuust Koffie en Thee, Raadhuisstraat 1A3, Beilen",
+    "locations": [
+      {
+        "lat": 52.85985815,
+        "lng": 6.51513787,
+        "address": "Van Robuust Koffie en Thee, Raadhuisstraat 1A3, Beilen"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/zoete-mini-high-tea-bij-van-robuust-korting/b87d55.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/brunch-lunchbox-afhalen-van-robuust-korting": {
+    "lat": 52.85985815,
+    "lng": 6.51513787,
+    "address": "Van Robuust Koffie en Thee, Raadhuisstraat 1A3, Beilen",
+    "locations": [
+      {
+        "lat": 52.85985815,
+        "lng": 6.51513787,
+        "address": "Van Robuust Koffie en Thee, Raadhuisstraat 1A3, Beilen"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/brunch-lunchbox-afhalen-van-robuust-korting/049e21.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/afhaal-boerenhapjesschaal-60-stuks-van-robuust-korting": {
+    "lat": 52.85985815,
+    "lng": 6.51513787,
+    "address": "Van Robuust Koffie en Thee, Raadhuisstraat 1A3, Beilen",
+    "locations": [
+      {
+        "lat": 52.85985815,
+        "lng": 6.51513787,
+        "address": "Van Robuust Koffie en Thee, Raadhuisstraat 1A3, Beilen"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/afhaal-boerenhapjesschaal-60-stuks-van-robuust-korting/40cd6b.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
   }
 }
