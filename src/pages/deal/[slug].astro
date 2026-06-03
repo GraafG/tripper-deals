@@ -68,6 +68,7 @@ const jsonLd = [
     '@context': 'https://schema.org',
     '@type': 'Product',
     name: deal.name,
+    url: canonical,
     description: metaDesc || undefined,
     image: deal.image_url || undefined,
     brand: deal.provider ? { '@type': 'Brand', name: deal.provider } : undefined,
