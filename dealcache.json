@@ -14182,5 +14182,89 @@
     ],
     "image_url": "https://images.tripper.nl/all-you-can-eat-tapas-de-rooie-kater-korting/722c83.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": null
+  },
+  "https://www.tripper.nl/deal/1-uur-aquapark-patat-watersportcentre-veendam-korting": {
+    "lat": 53.10452319,
+    "lng": 6.84361667,
+    "address": "Watersportcentre Veendam, Bergweg 2, Veendam",
+    "locations": [
+      {
+        "lat": 53.10452319,
+        "lng": 6.84361667,
+        "address": "Watersportcentre Veendam, Bergweg 2, Veendam"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/1-uur-aquapark-patat-watersportcentre-veendam-korting/8bcf9f.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/1-uur-a2-beginnersbaan-watersportcentre-veendam-korting": {
+    "lat": 53.10452319,
+    "lng": 6.84361667,
+    "address": "Watersportcentre Veendam, Bergweg 2, Veendam",
+    "locations": [
+      {
+        "lat": 53.10452319,
+        "lng": 6.84361667,
+        "address": "Watersportcentre Veendam, Bergweg 2, Veendam"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/1-uur-waterskien-patat-watersportcentre-veendam-korting-2/3d1e1a.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/1-uur-waterskien-patat-watersportcentre-veendam-korting": {
+    "lat": 53.10452319,
+    "lng": 6.84361667,
+    "address": "Watersportcentre Veendam, Bergweg 2, Veendam",
+    "locations": [
+      {
+        "lat": 53.10452319,
+        "lng": 6.84361667,
+        "address": "Watersportcentre Veendam, Bergweg 2, Veendam"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/1-uur-waterskien-patat-watersportcentre-veendam-korting/315609.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/3-gangendiner-mondi-skybar-korting": {
+    "lat": 52.32918034,
+    "lng": 4.785469,
+    "address": "Mondi SkyBar & Restaurant, Schipholweg 275, Badhoevedorp",
+    "locations": [
+      {
+        "lat": 52.32918034,
+        "lng": 4.785469,
+        "address": "Mondi SkyBar & Restaurant, Schipholweg 275, Badhoevedorp"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/3-gangendiner-mondi-skybar-korting/f91555.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/lunch-ons-schathoes-verhildersum-korting": {
+    "lat": 53.36207821,
+    "lng": 6.3937288,
+    "address": "Ons Schathoes Verhildersum, Wierde 42, Leens",
+    "locations": [
+      {
+        "lat": 53.36207821,
+        "lng": 6.3937288,
+        "address": "Ons Schathoes Verhildersum, Wierde 42, Leens"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/lunch-ons-schathoes-verhildersum-korting/5a75ba.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/ticket-freizeit-land-geiselwind-korting": {
+    "lat": 49.77980919354942,
+    "lng": 10.456534372702466,
+    "address": "Freizeit-Land Geiselwind, Wiesentheider Str.  25, Geiselwind",
+    "locations": [
+      {
+        "lat": 49.77980919354942,
+        "lng": 10.456534372702466,
+        "address": "Freizeit-Land Geiselwind, Wiesentheider Str.  25, Geiselwind"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/ticket-freizeit-land-geiselwind-korting/87fe7d.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": 2
   }
 }
