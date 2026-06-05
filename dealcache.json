@@ -14266,5 +14266,47 @@
     ],
     "image_url": "https://images.tripper.nl/ticket-freizeit-land-geiselwind-korting/87fe7d.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": 2
+  },
+  "https://www.tripper.nl/deal/overnachten-ontbijt-dorhout-mees-korting": {
+    "lat": 52.40986204,
+    "lng": 5.67777277,
+    "address": "Dorhout Mees, Strandgaperweg 30, Biddinghuizen",
+    "locations": [
+      {
+        "lat": 52.40986204,
+        "lng": 5.67777277,
+        "address": "Dorhout Mees, Strandgaperweg 30, Biddinghuizen"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/overnachting-dorhout-mees-2-personen-korting/f46336.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/overnachten-ontbijt-de-hoeve-van-nunspeet-korting": {
+    "lat": 52.3675675,
+    "lng": 5.78250583,
+    "address": " De Hoeve van Nunspeet, Elspeterweg 14, Nunspeet",
+    "locations": [
+      {
+        "lat": 52.3675675,
+        "lng": 5.78250583,
+        "address": " De Hoeve van Nunspeet, Elspeterweg 14, Nunspeet"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/overnachten-ontbijt-de-hoeve-van-nunspeet-korting/8fbca5.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/overnachten-ontbijt-boshotel-overberg-2-personen-korting": {
+    "lat": 52.02911973,
+    "lng": 5.50031314,
+    "address": "Boshotel Overberg, Dwarsweg 63, Overberg",
+    "locations": [
+      {
+        "lat": 52.02911973,
+        "lng": 5.50031314,
+        "address": "Boshotel Overberg, Dwarsweg 63, Overberg"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/overnachting-boshotel-overberg-2-personen-tickets-sauna-korting/2b0ccd.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
   }
 }
