@@ -14509,5 +14509,33 @@
     ],
     "image_url": "https://images.tripper.nl/play-city-game-korting/39fb72.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": null
+  },
+  "https://www.tripper.nl/deal/ticket-hof-van-nederland-korting": {
+    "lat": 51.81563771,
+    "lng": 4.67011334,
+    "address": "Hof van Nederland, Hof 6, Dordrecht",
+    "locations": [
+      {
+        "lat": 51.81563771,
+        "lng": 4.67011334,
+        "address": "Hof van Nederland, Hof 6, Dordrecht"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/ticket-hof-van-nederland-korting/6f71b6.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/high-tea-lunchroom-ijtsma-korting": {
+    "lat": 53.17427299,
+    "lng": 6.18356312,
+    "address": "Lunchroom IJtsma, De Wending 2, Opende",
+    "locations": [
+      {
+        "lat": 53.17427299,
+        "lng": 6.18356312,
+        "address": "Lunchroom IJtsma, De Wending 2, Opende"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/high-tea-lunchroom-ijtsma-korting/76775e.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
   }
 }
