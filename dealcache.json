@@ -14884,5 +14884,33 @@
     ],
     "image_url": "https://images.tripper.nl/zonnebanksessie-suncare-korting/26ff19.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": 5
+  },
+  "https://www.tripper.nl/deal/koffie-gebak-the-miller-s-house-korting": {
+    "lat": 52.4718794,
+    "lng": 4.81185133,
+    "address": "The Miller’s House, Lagedijk 32, Zaandijk",
+    "locations": [
+      {
+        "lat": 52.4718794,
+        "lng": 4.81185133,
+        "address": "The Miller’s House, Lagedijk 32, Zaandijk"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/koffie-gebak-boutique-hotel-zaan-korting/0caccf.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/diner-the-miller-s-house-korting": {
+    "lat": 52.4718794,
+    "lng": 4.81185133,
+    "address": "The Miller’s House, Lagedijk 32, Zaandijk",
+    "locations": [
+      {
+        "lat": 52.4718794,
+        "lng": 4.81185133,
+        "address": "The Miller’s House, Lagedijk 32, Zaandijk"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/diner-the-miller-s-house-korting/35100b.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
   }
 }
