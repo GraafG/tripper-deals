@@ -14912,5 +14912,75 @@
     ],
     "image_url": "https://images.tripper.nl/diner-the-miller-s-house-korting/35100b.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": null
+  },
+  "https://www.tripper.nl/deal/entreetickets-euromast-rotterdam-korting": {
+    "lat": 51.905495,
+    "lng": 4.466589,
+    "address": "Euromast Rotterdam, Parkhaven 20, Rotterdam",
+    "locations": [
+      {
+        "lat": 51.905495,
+        "lng": 4.466589,
+        "address": "Euromast Rotterdam, Parkhaven 20, Rotterdam"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/tickets-entree-euromast-rotterdam-korting/c2979f.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": 24
+  },
+  "https://www.tripper.nl/deal/entree-euroscoop-euromast-rotterdam-korting": {
+    "lat": 51.905495,
+    "lng": 4.466589,
+    "address": "Euromast Rotterdam, Parkhaven 20, Rotterdam",
+    "locations": [
+      {
+        "lat": 51.905495,
+        "lng": 4.466589,
+        "address": "Euromast Rotterdam, Parkhaven 20, Rotterdam"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/tickets-entree-euroscoop-euromast-rotterdam-korting/cab56d.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": 24
+  },
+  "https://www.tripper.nl/deal/weekend-midweek-verblijven-camping-olympia-korting": {
+    "lat": 50.46499491701897,
+    "lng": 5.715302068781518,
+    "address": "Camping Olympia, Rue de Trois-Ponts 40, Aywaille",
+    "locations": [
+      {
+        "lat": 50.46499491701897,
+        "lng": 5.715302068781518,
+        "address": "Camping Olympia, Rue de Trois-Ponts 40, Aywaille"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/weekend-midweek-glamping-camping-olympia-korting/51f688.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/1-heat-karten-race-licentie-goodwill-karting-korting": {
+    "lat": 51.14939821684339,
+    "lng": 4.8921758558215815,
+    "address": "Goodwill Karting, Hoogbuul 47, Olen",
+    "locations": [
+      {
+        "lat": 51.14939821684339,
+        "lng": 4.8921758558215815,
+        "address": "Goodwill Karting, Hoogbuul 47, Olen"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/1-heat-karten-race-licentie-goodwill-karting-korting/a51951.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/avond-rondvaart-amsterdam-korting": {
+    "lat": 52.38398,
+    "lng": 4.90338,
+    "address": "Opstapplaats, Badhuiskade 1, Amsterdam",
+    "locations": [
+      {
+        "lat": 52.38398,
+        "lng": 4.90338,
+        "address": "Opstapplaats, Badhuiskade 1, Amsterdam"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/rondvaart-haven-amsterdam-korting-2/b61e89.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
   }
 }
