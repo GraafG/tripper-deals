@@ -15024,5 +15024,33 @@
     ],
     "image_url": "https://images.tripper.nl/tafelgrillen-bowlen-dock-fun-event-center-korting/c2e9d5.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": null
+  },
+  "https://www.tripper.nl/deal/pannenkoeken-dessert-the-miller-s-house-korting": {
+    "lat": 52.4718794,
+    "lng": 4.81185133,
+    "address": "The Miller’s House, Lagedijk 32, Zaandijk",
+    "locations": [
+      {
+        "lat": 52.4718794,
+        "lng": 4.81185133,
+        "address": "The Miller’s House, Lagedijk 32, Zaandijk"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/pannenkoeken-dessert-boutique-hotel-zaan-korting/b8ac39.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/rondvaart-grachten-utrecht-kinboat-korting": {
+    "lat": 52.092627,
+    "lng": 5.116649,
+    "address": "Opstapplaats, Oudegracht 97, Utrecht",
+    "locations": [
+      {
+        "lat": 52.092627,
+        "lng": 5.116649,
+        "address": "Opstapplaats, Oudegracht 97, Utrecht"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/rondvaart-grachten-utrecht-kinboat-korting/6d0d60.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
   }
 }
