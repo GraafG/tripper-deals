@@ -15142,5 +15142,19 @@
     ],
     "image_url": "https://images.tripper.nl/ticket-lasergamen-unit-13-korting/ac9288.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": 3
+  },
+  "https://www.tripper.nl/deal/squashen-fit-academie-bokkeduinen-korting": {
+    "lat": 52.15737785,
+    "lng": 5.34815056,
+    "address": "Fit Academie Bokkeduinen, Sportpark Bokkeduinen 11, Amersfoort",
+    "locations": [
+      {
+        "lat": 52.15737785,
+        "lng": 5.34815056,
+        "address": "Fit Academie Bokkeduinen, Sportpark Bokkeduinen 11, Amersfoort"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/squashen-fit-academie-bokkeduinen-korting/958e4f.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
   }
 }
