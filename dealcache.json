@@ -15443,5 +15443,131 @@
     ],
     "image_url": "https://images.tripper.nl/entreeticket-miniatuur-museum-amsterdam-korting/fc048f.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": null
+  },
+  "https://www.tripper.nl/deal/europarcs-de-kraaijenbergse-plassen-verblijf-korting": {
+    "lat": 51.74217368,
+    "lng": 5.83955276,
+    "address": "EuroParcs De Kraaijenbergse Plassen, Den Drul 19, Linden",
+    "locations": [
+      {
+        "lat": 51.74217368,
+        "lng": 5.83955276,
+        "address": "EuroParcs De Kraaijenbergse Plassen, Den Drul 19, Linden"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/europarcs-de-kraaijenbergse-plassen-verblijf-korting/f807a1.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/europarcs-limburg-verblijf-korting": {
+    "lat": 51.06964271,
+    "lng": 5.88663582,
+    "address": "EuroParcs Limburg, Hommelweg 2, Susteren",
+    "locations": [
+      {
+        "lat": 51.06964271,
+        "lng": 5.88663582,
+        "address": "EuroParcs Limburg, Hommelweg 2, Susteren"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/europarcs-limburg-verblijf-korting/b2a135.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/europarcs-hindeloopen-verblijf-korting": {
+    "lat": 52.92426019,
+    "lng": 5.40934783,
+    "address": "EuroParcs Hindeloopen, Schuilenburg 2, Hindeloopen",
+    "locations": [
+      {
+        "lat": 52.92426019,
+        "lng": 5.40934783,
+        "address": "EuroParcs Hindeloopen, Schuilenburg 2, Hindeloopen"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/europarcs-hindeloopen-verblijf-korting/f68f93.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/europarcs-brunssummerheide-verblijf-korting": {
+    "lat": 50.92897481,
+    "lng": 5.97876617,
+    "address": "EuroParcs Brunssummerheide, Akerstraat 153, Brunssum",
+    "locations": [
+      {
+        "lat": 50.92897481,
+        "lng": 5.97876617,
+        "address": "EuroParcs Brunssummerheide, Akerstraat 153, Brunssum"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/europarcs-brunssummerheide-verblijf-korting/82b65e.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/europarcs-maasduinen-verblijf-korting": {
+    "lat": 51.30663398,
+    "lng": 6.14650733,
+    "address": "EuroParcs Maasduinen, Maalbekerweg 25, Belfeld",
+    "locations": [
+      {
+        "lat": 51.30663398,
+        "lng": 6.14650733,
+        "address": "EuroParcs Maasduinen, Maalbekerweg 25, Belfeld"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/europarcs-maasduinen-verblijf-korting/fbbc5f.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/verblijf-week-weekend-rcn-de-potten-korting": {
+    "lat": 53.02663428,
+    "lng": 5.72238597,
+    "address": "RCN de Potten, De Potten 2-38, Offingawier",
+    "locations": [
+      {
+        "lat": 53.02663428,
+        "lng": 5.72238597,
+        "address": "RCN de Potten, De Potten 2-38, Offingawier"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/verblijf-week-weekend-rcn-de-potten-korting/42e40e.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/verblijf-week-weekend-rcn-de-jagerstee-korting": {
+    "lat": 52.36375901,
+    "lng": 5.95871053,
+    "address": "RCN de Jagerstee, Officiersweg 86, Epe",
+    "locations": [
+      {
+        "lat": 52.36375901,
+        "lng": 5.95871053,
+        "address": "RCN de Jagerstee, Officiersweg 86, Epe"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/verblijf-week-weekend-rcn-de-jagerstee-korting/0aba98.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/overnachten-recreatiepark-de-markplas-korting": {
+    "lat": 51.93915672,
+    "lng": 5.59643805,
+    "address": "Betuwe Uitje, Markstraat 1, Opheusden",
+    "locations": [
+      {
+        "lat": 51.93915672,
+        "lng": 5.59643805,
+        "address": "Betuwe Uitje, Markstraat 1, Opheusden"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/overnachten-recreatiepark-de-markplas-korting/3c4361.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/overnacht-lake-resort-beekse-bergen-korting": {
+    "lat": 51.5282682,
+    "lng": 5.12470029,
+    "address": "Lake Resort Beekse Bergen, Beekse Bergen 1, Hilvarenbeek",
+    "locations": [
+      {
+        "lat": 51.5282682,
+        "lng": 5.12470029,
+        "address": "Lake Resort Beekse Bergen, Beekse Bergen 1, Hilvarenbeek"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/overnacht-lake-resort-beekse-bergen-korting/f948f9.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": 5
   }
 }
