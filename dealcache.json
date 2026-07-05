@@ -15653,5 +15653,19 @@
     ],
     "image_url": "https://images.tripper.nl/lunch-midgetgolf-restaurant-nuver-vlagtwedde-korting/06a479.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": null
+  },
+  "https://www.tripper.nl/deal/ticket-suptropisch-zwembad-aquafun-korting": {
+    "lat": 51.7006,
+    "lng": 5.3278,
+    "address": "AquaFun, Victorialaan 10, 's-Hertogenbosch",
+    "locations": [
+      {
+        "lat": 51.7006,
+        "lng": 5.3278,
+        "address": "AquaFun, Victorialaan 10, 's-Hertogenbosch"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/entreeticket-suptropisch-zwembad-aquafun-korting/91d4a2.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": 33
   }
 }
