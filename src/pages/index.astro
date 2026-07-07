@@ -2,7 +2,6 @@
 import Base from '../layouts/Base.astro';
 import { SITE_URL, SOURCE_SITE_URL } from '../lib/config';
 import { getAllDealDetails } from '../lib/deals';
-import dealsAppUrl from '../scripts/deals-app.ts?url';
 
 const site = SITE_URL;
 const canonical = site + '/';
@@ -147,5 +146,7 @@ const homepageJsonLd = {
     </div>
   </section>
 
-  <script type="module" src={dealsAppUrl}></script>
+  <script>
+    import '../scripts/deals-app.ts';
+  </script>
 </Base>

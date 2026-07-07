@@ -49,8 +49,8 @@ def story_url(slug):
 
 def normalize_location(loc):
     coords = loc.get('coordinates') or {}
-    lat = coords.get('lat')
-    lng = coords.get('lng')
+    lat = parse_coordinate(coords.get('lat') or coords.get('latitude') or loc.get('lat') or loc.get('latitude'))
+    lng = parse_coordinate(coords.get('lng') or coords.get('lon') or coords.get('longitude') or loc.get('lng') or loc.get('lon') or loc.get('longitude'))
     address_parts = [
         loc.get('street'),
         loc.get('houseNumber'),
@@ -63,14 +63,25 @@ def normalize_location(loc):
         'city': sanitize_text(loc.get('city')),
         'province': sanitize_text(loc.get('province')),
         'address': address,
-        'lat': lat if isinstance(lat, (int, float)) else None,
-        'lng': lng if isinstance(lng, (int, float)) else None,
+        'lat': lat,
+        'lng': lng,
     }
     links = loc.get('websiteCtaLink') or []
     if links and isinstance(links, list):
         first = links[0] or {}
         result['website'] = first.get('link') or ''
     return result
+
+
+def parse_coordinate(value):
+    if isinstance(value, (int, float)):
+        return float(value)
+    if isinstance(value, str):
+        try:
+            return float(value.replace(',', '.').strip())
+        except ValueError:
+            return None
+    return None
 
 
 def normalize_hit(hit):

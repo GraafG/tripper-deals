@@ -277,6 +277,7 @@ a:hover { color: var(--primary-700); text-decoration: underline; }
   box-shadow: var(--shadow-sm);
 }
 body.view-split #map-container { display: block; }
+body.view-map #map-container { display: block; }
 body.view-split #table-container { display: block; }
 @media (min-width: 1024px) {
   body.view-split .split-wrap {

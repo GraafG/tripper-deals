@@ -162,7 +162,9 @@ const jsonLd = {
         script.integrity = 'sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=';
         script.crossOrigin = 'anonymous';
         script.onload = () => {
-          const points = locations.filter((l) => l.lat != null && l.lng != null);
+          const points = locations
+            .map((l) => ({ ...l, lat: Number(l.lat ?? l.latitude), lng: Number(l.lng ?? l.lon ?? l.longitude) }))
+            .filter((l) => Number.isFinite(l.lat) && Number.isFinite(l.lng));
           if (!points.length) return;
           const map = window.L.map('detail-map').setView([points[0].lat, points[0].lng], 10);
           window.L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; OpenStreetMap contributors' }).addTo(map);

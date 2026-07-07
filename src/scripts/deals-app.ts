@@ -251,8 +251,15 @@ function renderTable() {
 }
 
 function getLocations(d) {
-  if (Array.isArray(d.locations) && d.locations.length) return d.locations;
-  if (d.lat != null && d.lng != null) return [{ lat: d.lat, lng: d.lng, address: d.address || d.location || '' }];
+  const normalize = (loc) => {
+    const lat = Number(loc?.lat ?? loc?.latitude);
+    const lng = Number(loc?.lng ?? loc?.lon ?? loc?.longitude);
+    if (!Number.isFinite(lat) || !Number.isFinite(lng)) return null;
+    return { ...loc, lat, lng };
+  };
+  if (Array.isArray(d.locations) && d.locations.length) return d.locations.map(normalize).filter(Boolean);
+  const fallback = normalize({ lat: d.lat, lng: d.lng, address: d.address || d.location || '' });
+  if (fallback) return [fallback];
   return [];
 }
 
