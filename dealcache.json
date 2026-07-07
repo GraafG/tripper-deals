@@ -15667,5 +15667,33 @@
     ],
     "image_url": "https://images.tripper.nl/entreeticket-suptropisch-zwembad-aquafun-korting/91d4a2.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": 33
+  },
+  "https://www.tripper.nl/deal/ticket-museum-veere-korting": {
+    "lat": 51.54944635,
+    "lng": 3.66803205,
+    "address": "Museum Veere, Kaai 25, Veere",
+    "locations": [
+      {
+        "lat": 51.54944635,
+        "lng": 3.66803205,
+        "address": "Museum Veere, Kaai 25, Veere"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/ticket-museum-veere-korting/f9567f.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/retour-stadskanaal-stoomtrein-korting": {
+    "lat": 52.99639913,
+    "lng": 6.93559665,
+    "address": "Opstaplocatie, Stationsstraat 3, Stadskanaal",
+    "locations": [
+      {
+        "lat": 52.99639913,
+        "lng": 6.93559665,
+        "address": "Opstaplocatie, Stationsstraat 3, Stadskanaal"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/retour-stadskanaal-stoomtrein-korting/e0f993.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
   }
 }
