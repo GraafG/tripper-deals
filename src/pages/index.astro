@@ -55,11 +55,36 @@ const homepageJsonLd = {
         <select id="date-picker" title="Selecteer datum" aria-label="Selecteer datum"></select>
         <select id="location-filter" title="Filter op plaats" aria-label="Filter op plaats"><option value="">Alle plaatsen</option></select>
         <input type="text" id="search-box" placeholder="Zoek op naam, plaats, categorie..." aria-label="Zoek aanbiedingen" />
-        <select id="type-filter" title="Filter op type" aria-label="Filter op type">
-          <option value="">Alle types</option>
+        <select id="offer-filter" title="Filter op aanbodtype" aria-label="Filter op aanbodtype">
+          <option value="">Alle aanbodtypes</option>
           <option value="winactie">Winacties</option>
           <option value="gratis">Gratis</option>
           <option value="korting">Korting</option>
+          <option value="exclusief">Exclusief</option>
+          <option value="twee-gratis">2 personen gratis</option>
+          <option value="overig">Overig</option>
+        </select>
+        <select id="category-filter" title="Filter op categorie" aria-label="Filter op categorie"><option value="">Alle categorieen</option></select>
+        <select id="activity-filter" title="Filter op activiteitstype" aria-label="Filter op activiteitstype"><option value="">Alle activiteitstypes</option></select>
+        <select id="province-filter" title="Filter op provincie" aria-label="Filter op provincie"><option value="">Alle provincies</option></select>
+        <select id="geo-filter" title="Filter op kaartdata" aria-label="Filter op kaartdata">
+          <option value="">Alle kaartdata</option>
+          <option value="mapped">Met kaartlocatie</option>
+          <option value="multi">Meerdere locaties</option>
+          <option value="unmapped">Zonder kaartlocatie</option>
+        </select>
+        <select id="date-filter" title="Filter op einddatum" aria-label="Filter op einddatum">
+          <option value="">Alle einddatums</option>
+          <option value="ending-7">Loopt af binnen 7 dagen</option>
+          <option value="ending-30">Loopt af binnen 30 dagen</option>
+          <option value="later">Later</option>
+          <option value="no-end">Geen einddatum</option>
+        </select>
+        <select id="change-filter" title="Filter op wijzigingsstatus" aria-label="Filter op wijzigingsstatus">
+          <option value="">Alle wijzigingen</option>
+          <option value="new">Nieuw</option>
+          <option value="changed">Gewijzigd</option>
+          <option value="stable">Stabiel</option>
         </select>
         <select id="status-filter" title="Filter op status" aria-label="Filter op status">
           <option value="active">Actief</option>
@@ -106,6 +131,7 @@ const homepageJsonLd = {
       <button id="btn-table" class="active" data-view="table" role="tab" aria-selected="true">Tabel</button>
       <button id="btn-map" data-view="map" role="tab" aria-selected="false">Kaart</button>
       <button id="btn-split" data-view="split" role="tab" aria-selected="false">Kaart + Lijst</button>
+      <a class="view-toggle-link" href={`${baseUrl}wijzigingen/`}>Wijzigingen</a>
     </div>
 
     <div class="split-wrap">

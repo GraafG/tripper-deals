@@ -15,6 +15,7 @@ export const GET: APIRoute = () => {
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>${SITE_URL}/</loc><changefreq>daily</changefreq><priority>1.0</priority></url>
   <url><loc>${SITE_URL}/prijsdalingen/</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>${SITE_URL}/wijzigingen/</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
   <url><loc>${SITE_URL}/laagste-prijs/</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
   <url><loc>${SITE_URL}/hotels/</loc><changefreq>daily</changefreq><priority>0.7</priority></url>
   <url><loc>${SITE_URL}/dagjes-uit/</loc><changefreq>daily</changefreq><priority>0.7</priority></url>
