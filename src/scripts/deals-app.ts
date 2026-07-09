@@ -6,7 +6,13 @@ let allDeals = [];
 let historyData = {};
 let expiredDeals = [];
 let statusFilter = 'active';
-let typeFilter = '';
+let offerFilter = '';
+let categoryFilter = '';
+let activityFilter = '';
+let provinceFilter = '';
+let geoFilter = '';
+let dateFilter = '';
+let changeFilter = '';
 let sortCol = 'end_ts';
 let sortAsc = true;
 let map = null;
@@ -36,7 +42,13 @@ function readUrlState() {
     date: params.get('date') || '',
     location: params.get('location') || '',
     status: params.get('status') || 'active',
-    type: params.get('type') || '',
+    offer: params.get('offer') || params.get('type') || '',
+    category: params.get('category') || '',
+    activity: params.get('activity') || '',
+    province: params.get('province') || '',
+    geo: params.get('geo') || '',
+    dateStatus: params.get('dateStatus') || '',
+    change: params.get('change') || '',
     view: params.get('view') || 'table',
   };
 }
@@ -50,7 +62,13 @@ function updateUrlState() {
   if (picker.value && picker.selectedIndex > 0) params.set('date', picker.value);
   if (locationFilter.value) params.set('location', locationFilter.value);
   if (statusFilter !== 'active') params.set('status', statusFilter);
-  if (typeFilter) params.set('type', typeFilter);
+  if (offerFilter) params.set('offer', offerFilter);
+  if (categoryFilter) params.set('category', categoryFilter);
+  if (activityFilter) params.set('activity', activityFilter);
+  if (provinceFilter) params.set('province', provinceFilter);
+  if (geoFilter) params.set('geo', geoFilter);
+  if (dateFilter) params.set('dateStatus', dateFilter);
+  if (changeFilter) params.set('change', changeFilter);
   if (currentView !== 'table') params.set('view', currentView);
   const query = params.toString();
   window.history.replaceState(null, '', window.location.pathname + (query ? '?' + query : ''));
@@ -129,10 +147,19 @@ async function loadDate(dateStr, state = readUrlState()) {
 
     document.getElementById('search-box').value = state.q || '';
     statusFilter = ['active', 'all', 'expired'].includes(state.status) ? state.status : 'active';
-    typeFilter = state.type || '';
+    offerFilter = state.offer || '';
+    categoryFilter = state.category || '';
+    activityFilter = state.activity || '';
+    provinceFilter = state.province || '';
+    geoFilter = state.geo || '';
+    dateFilter = state.dateStatus || '';
+    changeFilter = state.change || '';
     document.getElementById('status-filter').value = statusFilter;
-    document.getElementById('type-filter').value = typeFilter;
-    populateLocationFilter(state.location || '');
+    document.getElementById('offer-filter').value = offerFilter;
+    document.getElementById('geo-filter').value = geoFilter;
+    document.getElementById('date-filter').value = dateFilter;
+    document.getElementById('change-filter').value = changeFilter;
+    populateFacetFilters(state);
     renderAll();
     showView(VALID_VIEWS.has(state.view) ? state.view : 'table');
   } catch (e) {
@@ -141,17 +168,27 @@ async function loadDate(dateStr, state = readUrlState()) {
   }
 }
 
-function populateLocationFilter(selected = '') {
-  const sel = document.getElementById('location-filter');
-  sel.innerHTML = '<option value="">Alle plaatsen</option>';
-  const locs = [...new Set(allDeals.map(d => d.location).filter(Boolean))].sort();
-  locs.forEach(l => {
+function populateSelect(id, defaultLabel, values, selected = '') {
+  const sel = document.getElementById(id);
+  sel.innerHTML = `<option value="">${esc(defaultLabel)}</option>`;
+  values.forEach(l => {
     const opt = document.createElement('option');
     opt.value = l;
     opt.textContent = l;
     sel.appendChild(opt);
   });
-  sel.value = locs.includes(selected) ? selected : '';
+  sel.value = values.includes(selected) ? selected : '';
+}
+
+function uniqueSorted(values) {
+  return [...new Set(values.filter(Boolean))].sort((a, b) => a.localeCompare(b, 'nl'));
+}
+
+function populateFacetFilters(state = {}) {
+  populateSelect('location-filter', 'Alle plaatsen', uniqueSorted(allDeals.map(d => d.location)), state.location || '');
+  populateSelect('category-filter', 'Alle categorieen', uniqueSorted(allDeals.flatMap(d => d.categories || [])), state.category || '');
+  populateSelect('activity-filter', 'Alle activiteitstypes', uniqueSorted(allDeals.flatMap(d => d.types || [])), state.activity || '');
+  populateSelect('province-filter', 'Alle provincies', uniqueSorted(allDeals.flatMap(d => getLocations(d).map(l => l.province))), state.province || '');
 }
 
 function getPool() {
@@ -163,9 +200,28 @@ function getPool() {
 function offerKind(d) {
   const hay = `${d.label || ''} ${(d.offers || []).join(' ')} ${(d.offer_enums || []).join(' ')}`.toLowerCase();
   if (d.is_winactie || hay.includes('chance') || hay.includes('kans op') || hay.includes('winactie')) return 'winactie';
+  if (hay.includes('free_for_two') || hay.includes('2 personen gratis')) return 'twee-gratis';
+  if (hay.includes('exclusive') || hay.includes('exclusief')) return 'exclusief';
   if (hay.includes('gratis') || hay.includes('free')) return 'gratis';
   if (hay.includes('korting') || hay.includes('discount')) return 'korting';
   return 'overig';
+}
+
+function hasProvince(d, province) {
+  return getLocations(d).some(loc => loc.province === province);
+}
+
+function dateStatus(d) {
+  if (!d.end_date && !d.end_ts) return 'no-end';
+  const value = d.end_ts ? new Date(d.end_ts * 1000) : new Date(String(d.end_date).replace(' ', 'T'));
+  if (Number.isNaN(value.getTime())) return 'unknown';
+  const now = new Date();
+  const inSevenDays = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
+  const inThirtyDays = new Date(now.getTime() + 30 * 24 * 60 * 60 * 1000);
+  if (value < now) return 'expired-date';
+  if (value <= inSevenDays) return 'ending-7';
+  if (value <= inThirtyDays) return 'ending-30';
+  return 'later';
 }
 
 function getFiltered(forMap = false) {
@@ -173,7 +229,17 @@ function getFiltered(forMap = false) {
   const loc = document.getElementById('location-filter').value;
   let deals = getPool().filter(d => {
     if (loc && d.location !== loc) return false;
-    if (typeFilter && offerKind(d) !== typeFilter) return false;
+    if (offerFilter && offerKind(d) !== offerFilter) return false;
+    if (categoryFilter && !(d.categories || []).includes(categoryFilter)) return false;
+    if (activityFilter && !(d.types || []).includes(activityFilter)) return false;
+    if (provinceFilter && !hasProvince(d, provinceFilter)) return false;
+    if (geoFilter === 'mapped' && getLocations(d).length === 0) return false;
+    if (geoFilter === 'unmapped' && getLocations(d).length > 0) return false;
+    if (geoFilter === 'multi' && getLocations(d).length <= 1) return false;
+    if (dateFilter && dateStatus(d) !== dateFilter) return false;
+    if (changeFilter === 'new' && d._trend !== 'new') return false;
+    if (changeFilter === 'changed' && d._trend !== 'changed') return false;
+    if (changeFilter === 'stable' && d._trend !== 'stable') return false;
     const hay = [d.name, d.location, d.provider, d.label, d.description, ...(d.categories || []), ...(d.types || [])].join(' ').toLowerCase();
     return !q || hay.includes(q);
   });
@@ -212,12 +278,14 @@ function renderStats() {
   const gratis = active.filter(d => offerKind(d) === 'gratis').length;
   const korting = active.filter(d => offerKind(d) === 'korting').length;
   const changed = active.filter(d => d._trend === 'changed').length;
+  const mapped = active.filter(d => getLocations(d).length > 0).length;
   document.getElementById('stats-bar').innerHTML = `
     <div class="stat"><span class="stat-label">Aanbiedingen</span><span class="stat-value accent">${active.length}</span></div>
     <div class="stat"><span class="stat-label">Winacties</span><span class="stat-value">${winacties}</span></div>
     <div class="stat"><span class="stat-label">Gratis</span><span class="stat-value">${gratis}</span></div>
     <div class="stat"><span class="stat-label">Korting</span><span class="stat-value">${korting}</span></div>
     <div class="stat"><span class="stat-label">Gewijzigd</span><span class="stat-value">${changed}</span></div>
+    <div class="stat"><span class="stat-label">Op kaart</span><span class="stat-value">${mapped}</span></div>
   `;
 }
 
@@ -356,7 +424,13 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('search-box').addEventListener('input', renderAll);
   document.getElementById('location-filter').addEventListener('change', renderAll);
   document.getElementById('status-filter').addEventListener('change', e => { statusFilter = e.target.value; renderAll(); });
-  document.getElementById('type-filter').addEventListener('change', e => { typeFilter = e.target.value; renderAll(); });
+  document.getElementById('offer-filter').addEventListener('change', e => { offerFilter = e.target.value; renderAll(); });
+  document.getElementById('category-filter').addEventListener('change', e => { categoryFilter = e.target.value; renderAll(); });
+  document.getElementById('activity-filter').addEventListener('change', e => { activityFilter = e.target.value; renderAll(); });
+  document.getElementById('province-filter').addEventListener('change', e => { provinceFilter = e.target.value; renderAll(); });
+  document.getElementById('geo-filter').addEventListener('change', e => { geoFilter = e.target.value; renderAll(); });
+  document.getElementById('date-filter').addEventListener('change', e => { dateFilter = e.target.value; renderAll(); });
+  document.getElementById('change-filter').addEventListener('change', e => { changeFilter = e.target.value; renderAll(); });
   document.querySelectorAll('#deals-table th[data-col]').forEach(th => th.addEventListener('click', () => {
     if (sortCol === th.dataset.col) sortAsc = !sortAsc;
     else { sortCol = th.dataset.col; sortAsc = th.dataset.col === 'end_ts'; }
