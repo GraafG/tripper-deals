@@ -15670,5 +15670,19 @@
     ],
     "image_url": "https://images.tripper.nl/ticket-lasergamen-unit-13-korting/ac9288.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": 3
+  },
+  "https://www.tripper.nl/deal/virtueel-trefbal-hado-eindhoven-korting": {
+    "lat": 51.44301354,
+    "lng": 5.47601668,
+    "address": "HADO, Lardinoisstraat 8, Eindhoven",
+    "locations": [
+      {
+        "lat": 51.44301354,
+        "lng": 5.47601668,
+        "address": "HADO, Lardinoisstraat 8, Eindhoven"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/hado-game-hado-arena-eindhoven-korting/bea60c.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
   }
 }
