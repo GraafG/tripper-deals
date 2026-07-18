@@ -15921,5 +15921,27 @@
     ],
     "image_url": "https://images.tripper.nl/tickets-dancing-with-horses-tongeren-korting/0bc6ff.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": 4
+  },
+  "https://www.tripper.nl/deal/midweek-weekend-verblijf-op-vakantiepark-dierenbos-korting": {
+    "lat": 51.70473964,
+    "lng": 5.42972246,
+    "address": "Vakantiepark Dierenbos, Vinkeloord 1, Vinkel",
+    "locations": [
+      {
+        "lat": 51.70473964,
+        "lng": 5.42972246,
+        "address": "Vakantiepark Dierenbos, Vinkeloord 1, Vinkel"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/midweek-weekend-vakantiepark-dierenbos-verblijf-korting/44f16d.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": 2
+  },
+  "https://www.tripper.nl/deal/3-maanden-super-duolingo-korting": {
+    "lat": null,
+    "lng": null,
+    "address": "",
+    "locations": [],
+    "image_url": "https://images.tripper.nl/3-maanden-super-duolingo-korting/ecbc07.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
   }
 }
