@@ -16062,5 +16062,24 @@
     ],
     "image_url": "https://images.tripper.nl/bioscoopticket-popcorn-service-bioscoop-smoky-korting/8dfcc1.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": null
+  },
+  "https://www.tripper.nl/deal/workshop-sieraad-maken-jewels-maison-korting": {
+    "lat": 52.08764851,
+    "lng": 4.3828423,
+    "address": "Westfield Mall of the Netherlands, Weigelia 40-42, Leidschendam",
+    "locations": [
+      {
+        "lat": 52.08764851,
+        "lng": 4.3828423,
+        "address": "Westfield Mall of the Netherlands, Weigelia 40-42, Leidschendam"
+      },
+      {
+        "lat": 52.11661678019286,
+        "lng": 4.283822855823975,
+        "address": "Beachclub Zeezicht Scheveningen, Strand Noord 48, Den Haag"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/workshop-sieraad-maken-jewels-maison-korting/c13e92.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
   }
 }
