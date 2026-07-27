@@ -16095,5 +16095,19 @@
     ],
     "image_url": "https://images.tripper.nl/ticket-terror-nights-entree-korting/446427.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": 2
+  },
+  "https://www.tripper.nl/deal/icket-evt-campingplek-electrisize-festival-korting": {
+    "lat": 51.06696526344055,
+    "lng": 6.279624677910947,
+    "address": "Electrisize, Haus Hohenbusch, Erkelenz",
+    "locations": [
+      {
+        "lat": 51.06696526344055,
+        "lng": 6.279624677910947,
+        "address": "Electrisize, Haus Hohenbusch, Erkelenz"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/icket-evt-campingplek-electrisize-festival-korting/25df66.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
   }
 }
