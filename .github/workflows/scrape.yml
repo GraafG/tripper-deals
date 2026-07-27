@@ -54,15 +54,15 @@ jobs:
 
       - name: Run Tripper scraper
         if: ${{ steps.provider.outputs.id == 'tripper' }}
-        run: python tripper_scraper.py
+        run: python providers/tripper/scraper.py
 
       - name: Backfill Tripper image + review meta
         if: ${{ steps.provider.outputs.id == 'tripper' && github.event.inputs.backfill_meta == 'true' }}
-        run: python tripper_scraper.py --backfill-meta
+        run: python providers/tripper/scraper.py --backfill-meta
 
       - name: Build Tripper price history
         if: ${{ steps.provider.outputs.id == 'tripper' }}
-        run: python build_history.py
+        run: python providers/tripper/build_history.py
 
       - name: Run VriendenLoterij scraper
         if: ${{ steps.provider.outputs.id == 'vriendenloterij' }}
@@ -80,7 +80,7 @@ jobs:
             git add providers/vriendenloterij/data/
             message="Update VriendenLoterij offers $(date -u +%Y-%m-%d)"
           else
-            git add data/ geocache.json dealcache.json
+            git add providers/tripper/data/ providers/tripper/geocache.json providers/tripper/dealcache.json
             message="Update Tripper deals $(date -u +%Y-%m-%d)"
           fi
           if git diff --cached --quiet; then
