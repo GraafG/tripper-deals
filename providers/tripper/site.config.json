@@ -5,8 +5,8 @@
   "siteUrl": "https://graafg.github.io/tripper-deals",
   "base": "/tripper-deals",
   "sourceUrl": "https://www.tripper.nl",
-  "dataDir": "data",
-  "dealCachePath": "dealcache.json",
+  "dataDir": "providers/tripper/data",
+  "dealCachePath": "providers/tripper/dealcache.json",
   "theme": {
     "primary": "#dc2626",
     "secondary": "#b91c1c",
