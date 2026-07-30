@@ -16123,5 +16123,19 @@
     ],
     "image_url": "https://images.tripper.nl/onbeperkt-spareribs-de-dregt-korting/97f9eb.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": null
+  },
+  "https://www.tripper.nl/deal/minicruise-4-personen-3-daags-newcastle-korting": {
+    "lat": 52.46317,
+    "lng": 4.58594,
+    "address": "Opstapplaats, Sluisplein  33, IJmuiden",
+    "locations": [
+      {
+        "lat": 52.46317,
+        "lng": 4.58594,
+        "address": "Opstapplaats, Sluisplein  33, IJmuiden"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/4-personen-minicruise-3-daags-newcastle-korting/cd6651.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": 2
   }
 }
