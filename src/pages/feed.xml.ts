@@ -1,6 +1,6 @@
 import rss from '@astrojs/rss';
 import type { APIContext } from 'astro';
-import { SITE_URL } from '../lib/config';
+import { SITE_CONFIG, SITE_URL } from '../lib/config';
 import { getAllDealDetails } from '../lib/deals';
 
 const FEED_SIZE = 50;
@@ -26,8 +26,8 @@ export async function GET(_context: APIContext) {
     });
 
   return rss({
-    title: 'Tripper Deals — Vakantieaanbiedingen',
-    description: 'Laatste vakantie- en reisdeals van Tripper.nl, gesorteerd op moment van toevoegen.',
+    title: SITE_CONFIG.copy.rssTitle,
+    description: SITE_CONFIG.copy.rssDescription,
     site: `${SITE_URL}/`,
     items,
     customData: '<language>nl-nl</language>',

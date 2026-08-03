@@ -2,7 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import { getAllDealDetails, getSlug } from '../../lib/deals';
 import type { DealDetail } from '../../lib/deals';
-import { SITE_URL, TRIPPER_REF } from '../../lib/config';
+import { SITE_CONFIG, SITE_URL, TRIPPER_REF } from '../../lib/config';
 
 export async function getStaticPaths() {
   const deals = getAllDealDetails();
@@ -17,10 +17,12 @@ const { deal } = Astro.props;
 const site = SITE_URL;
 const canonical = `${site}/deal/${deal.slug}/`;
 
-function tripperUrl(url: string) {
+function outboundUrl(url: string) {
   try {
     const u = new URL(url);
-    u.searchParams.set('ref', TRIPPER_REF);
+    if (SITE_CONFIG.features.referral && SITE_CONFIG.referral) {
+      u.searchParams.set(SITE_CONFIG.referral.param, TRIPPER_REF);
+    }
     return u.toString();
   } catch { return url; }
 }
@@ -30,7 +32,7 @@ const currentPrice = deal.discounted_price ?? h?.current_price;
 const originalPrice = deal.original_price ?? (h?.prices?.at(-1)?.original);
 
 const titlePrice = currentPrice != null ? ` - prijs vanaf €${currentPrice.toFixed(2)}` : '';
-const pageTitle = `${deal.name}${titlePrice} | Tripper Deals`;
+const pageTitle = `${deal.name}${titlePrice} | ${SITE_CONFIG.name}`;
 const metaDesc = [
   deal.discount_num ? `${deal.discount_num}% korting` : deal.discount ?? '',
   originalPrice != null && currentPrice != null ? `van €${originalPrice.toFixed(2)} voor €${currentPrice.toFixed(2)}` : '',
@@ -59,7 +61,7 @@ const jsonLd = [
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Tripper Deals', item: site + '/' },
+      { '@type': 'ListItem', position: 1, name: SITE_CONFIG.name, item: site + '/' },
       { '@type': 'ListItem', position: 2, name: deal.name, item: canonical },
     ],
   },
@@ -81,7 +83,7 @@ const jsonLd = [
       '@type': 'Offer',
       price: currentPrice.toFixed(2),
       priceCurrency: 'EUR',
-      url: tripperUrl(deal.url),
+      url: outboundUrl(deal.url),
       availability: deal.isActive
         ? 'https://schema.org/InStock'
         : 'https://schema.org/Discontinued',
@@ -112,7 +114,7 @@ function fmtDate(d: string) {
 <div class="deal-hero">
   <div class="container">
     <nav class="breadcrumb" aria-label="Broodkruimelpad">
-      <a href={import.meta.env.BASE_URL}>Tripper Deals</a>
+      <a href={import.meta.env.BASE_URL}>{SITE_CONFIG.name}</a>
       <span aria-hidden="true">›</span>
       <span>{deal.name}</span>
     </nav>
@@ -158,12 +160,12 @@ function fmtDate(d: string) {
         )}
         {deal.isActive && (
           <a
-            href={tripperUrl(deal.url)}
+            href={outboundUrl(deal.url)}
             target="_blank"
             rel="noopener noreferrer"
             class="cta-btn"
           >
-            Bekijk op Tripper ↗
+            Bekijk bij bron ↗
           </a>
         )}
       </div>

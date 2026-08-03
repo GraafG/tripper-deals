@@ -1,18 +1,22 @@
 import { cpSync, mkdirSync, readdirSync, statSync, readFileSync, writeFileSync } from 'fs';
 import { join, dirname, relative } from 'path';
 import { fileURLToPath } from 'url';
+import { loadProviderConfig } from './provider-config.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = join(__dirname, '..');
-const src = join(root, 'data');
+const provider = loadProviderConfig();
+const src = join(root, provider.dataDir);
 const dst = join(root, 'dist', 'data');
 
 // Load dealcache once — maps URL → {lat, lng, address, locations, image_url, review_count}
 let dealCache = {};
-try {
-  dealCache = JSON.parse(readFileSync(join(root, 'dealcache.json'), 'utf-8'));
-} catch {
-  console.warn('⚠️  dealcache.json not found — snapshots deployed without geo enrichment');
+if (provider.dealCachePath) {
+  try {
+    dealCache = JSON.parse(readFileSync(join(root, provider.dealCachePath), 'utf-8'));
+  } catch {
+    console.warn('dealcache.json not found - snapshots deployed without geo enrichment');
+  }
 }
 
 const GEO_FIELDS = ['lat', 'lng', 'address', 'locations', 'image_url', 'review_count'];
@@ -60,5 +64,4 @@ function copyAndEnrich(srcDir, dstDir) {
 }
 
 copyAndEnrich(src, dst);
-console.log('✅ data/ copied to dist/data/ (snapshots enriched with dealcache geo fields)');
-
+console.log(`data copied from ${provider.dataDir} to dist/data/`);

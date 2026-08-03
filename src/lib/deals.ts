@@ -1,5 +1,6 @@
 import { readFileSync } from 'fs';
 import { resolve } from 'path';
+import { DATA_DIR, DEAL_CACHE_PATH } from './config';
 
 export interface PricePoint {
   date: string;
@@ -93,6 +94,10 @@ function loadJson<T>(path: string): T {
   return JSON.parse(readFileSync(resolve(process.cwd(), path), 'utf-8')) as T;
 }
 
+function dataPath(path: string): string {
+  return `${DATA_DIR}/${path}`.replace(/\\/g, '/');
+}
+
 interface DealCacheEntry {
   lat?: number | null;
   lng?: number | null;
@@ -103,20 +108,21 @@ interface DealCacheEntry {
 }
 
 function loadDealCache(): Record<string, DealCacheEntry | null> {
+  if (!DEAL_CACHE_PATH) return {};
   try {
-    return loadJson<Record<string, DealCacheEntry | null>>('dealcache.json');
+    return loadJson<Record<string, DealCacheEntry | null>>(DEAL_CACHE_PATH);
   } catch {
     return {};
   }
 }
 
 export function getLatestDate(): string {
-  return (loadJson<string[]>('data/index.json'))[0];
+  return (loadJson<string[]>(dataPath('index.json')))[0];
 }
 
 export function getSnapshotPath(date: string): string {
   const [year, month, day] = date.split('-');
-  return `data/${year}/${month}/${day}.json`;
+  return dataPath(`${year}/${month}/${day}.json`);
 }
 
 export function getLatestDeals(): SnapshotDeal[] {
@@ -124,7 +130,7 @@ export function getLatestDeals(): SnapshotDeal[] {
 }
 
 export function getAllHistory(): Record<string, DealHistory> {
-  return loadJson<Record<string, DealHistory>>('data/history.json');
+  return loadJson<Record<string, DealHistory>>(dataPath('history.json'));
 }
 
 function esc(s: string): string {
