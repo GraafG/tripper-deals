@@ -16193,5 +16193,97 @@
     ],
     "image_url": "https://images.tripper.nl/4-personen-minicruise-3-daags-newcastle-korting/cd6651.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": 2
+  },
+  "https://www.tripper.nl/deal/jeans-centre-cadeaukaart-korting": {
+    "lat": null,
+    "lng": null,
+    "address": "",
+    "locations": [],
+    "image_url": "https://images.tripper.nl/jeans-centre-cadeaukaart-korting/ebd001.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/ticket-zoomeravonden-artis-park-korting": {
+    "lat": 52.366959,
+    "lng": 4.91258,
+    "address": "ARTIS, Plantage Kerklaan 38-40, Amsterdam",
+    "locations": [
+      {
+        "lat": 52.366959,
+        "lng": 4.91258,
+        "address": "ARTIS, Plantage Kerklaan 38-40, Amsterdam"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/ticket-zoomeravonden-artis-park-korting/d57ba6.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/ticket-glowgolf-schiedam-korting": {
+    "lat": 51.92323338,
+    "lng": 4.40654185,
+    "address": "GlowGolf® Schiedam, Noorderweg 24, Schiedam",
+    "locations": [
+      {
+        "lat": 51.92323338,
+        "lng": 4.40654185,
+        "address": "GlowGolf® Schiedam, Noorderweg 24, Schiedam"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/ticket-glowgolf-schiedam-korting/cf0507.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/ticket-glowgolf-rotterdam-korting": {
+    "lat": 51.91646807,
+    "lng": 4.48152714,
+    "address": "GlowGolf® Rotterdam, Schiedamsedijk 51, Rotterdam",
+    "locations": [
+      {
+        "lat": 51.91646807,
+        "lng": 4.48152714,
+        "address": "GlowGolf® Rotterdam, Schiedamsedijk 51, Rotterdam"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/ticket-glowgolf-rotterdam-korting/2d1cc3.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/ticket-kasteel-ammersoyen-korting": {
+    "lat": 51.75158036,
+    "lng": 5.2294317,
+    "address": "Kasteel Ammersoyen, Kasteellaan 1, Ammerzoden",
+    "locations": [
+      {
+        "lat": 51.75158036,
+        "lng": 5.2294317,
+        "address": "Kasteel Ammersoyen, Kasteellaan 1, Ammerzoden"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/ticket-kasteel-ammersoyen-korting/935660.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/entree-ticket-beurs-eigen-huis-jaarbeurs-utrecht-najaar-korting": {
+    "lat": 52.088243,
+    "lng": 5.107633,
+    "address": "Jaarbeurs, Jaarbeursplein Hal 3 & 4, Utrecht",
+    "locations": [
+      {
+        "lat": 52.088243,
+        "lng": 5.107633,
+        "address": "Jaarbeurs, Jaarbeursplein Hal 3 & 4, Utrecht"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/entree-ticket-beurs-eigen-huis-jaarbeurs-utrecht-najaar-korting/b55234.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": 2
+  },
+  "https://www.tripper.nl/deal/zonnebanksessie-bij-sundays-zwolle-korting": {
+    "lat": 52.51322442,
+    "lng": 6.09093478,
+    "address": "Sunday’s Zwolle, Melkmarkt 36, Zwolle",
+    "locations": [
+      {
+        "lat": 52.51322442,
+        "lng": 6.09093478,
+        "address": "Sunday’s Zwolle, Melkmarkt 36, Zwolle"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/zonnebanksessie-bij-sundays-zwolle-korting/b1a4e7.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
   }
 }
