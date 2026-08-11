@@ -16318,5 +16318,75 @@
     ],
     "image_url": "https://images.tripper.nl/ticket-friet-ijsje-speeldorp-pee-wee-korting/c9b6b6.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": null
+  },
+  "https://www.tripper.nl/deal/verblijf-europarcs-bad-hulckesteijn-korting": {
+    "lat": 52.25697322,
+    "lng": 5.46686289,
+    "address": "EuroParcs Bad Hulckesteijn, Hulckesteijn 3, Nijkerk",
+    "locations": [
+      {
+        "lat": 52.25697322,
+        "lng": 5.46686289,
+        "address": "EuroParcs Bad Hulckesteijn, Hulckesteijn 3, Nijkerk"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/verblijf-europarcs-bad-hulckesteijn-korting/477b1c.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/verblijven-europarcs-ruinen-korting": {
+    "lat": 52.77490538,
+    "lng": 6.36958319,
+    "address": "EuroParcs Ruinen, Oude Benderseweg 11, Ruinen",
+    "locations": [
+      {
+        "lat": 52.77490538,
+        "lng": 6.36958319,
+        "address": "EuroParcs Ruinen, Oude Benderseweg 11, Ruinen"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/verblijven-europarcs-ruinen-korting/b83860.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/europarcs-bad-hoophuizen-verblijf-korting": {
+    "lat": 52.38260139,
+    "lng": 5.70806912,
+    "address": "EuroParcs Bad Hoophuizen, Varelseweg 211, Hulshorst",
+    "locations": [
+      {
+        "lat": 52.38260139,
+        "lng": 5.70806912,
+        "address": "EuroParcs Bad Hoophuizen, Varelseweg 211, Hulshorst"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/europarcs-bad-hoophuizen-verblijf-korting/b473b3.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/verblijf-europarcs-beekbergen-korting": {
+    "lat": 52.13704103,
+    "lng": 6.00242747,
+    "address": "EuroParcs Beekbergen, Hoge Bergweg 16, Beekbergen",
+    "locations": [
+      {
+        "lat": 52.13704103,
+        "lng": 6.00242747,
+        "address": "EuroParcs Beekbergen, Hoge Bergweg 16, Beekbergen"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/verblijf-europarcs-beekbergen-korting/8679d1.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/prive-rondvaart-antwerpen-drankjes-hapjes-korting": {
+    "lat": 51.22912551051083,
+    "lng": 4.404273337434025,
+    "address": "Rondvaarten Eilandje, Hanzestedenplaats 1, Antwerpen",
+    "locations": [
+      {
+        "lat": 51.22912551051083,
+        "lng": 4.404273337434025,
+        "address": "Rondvaarten Eilandje, Hanzestedenplaats 1, Antwerpen"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/prive-rondvaart-antwerpen-drankjes-hapjes-korting/fcb980.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
   }
 }
