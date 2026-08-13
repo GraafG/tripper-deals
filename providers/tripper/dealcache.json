@@ -16525,5 +16525,75 @@
     ],
     "image_url": "https://images.tripper.nl/potje-minigolfen-leeuwenkuil-korting/84093e.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": null
+  },
+  "https://www.tripper.nl/deal/entreeticket-musea-sculpta-brugge": {
+    "lat": 51.205773,
+    "lng": 3.222845,
+    "address": "Musea Sculpta Brugge, Mariastraat 10, Brugge",
+    "locations": [
+      {
+        "lat": 51.205773,
+        "lng": 3.222845,
+        "address": "Musea Sculpta Brugge, Mariastraat 10, Brugge"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/entreeticket-musea-sculpta-brugge/5d6d68.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/sunset-sushi-cruise-varen-met-geluk-korting": {
+    "lat": 53.14613529,
+    "lng": 6.69156995,
+    "address": "Parkeren - Bodega Beach, Strandweg 4, Kropswolde",
+    "locations": [
+      {
+        "lat": 53.14613529,
+        "lng": 6.69156995,
+        "address": "Parkeren - Bodega Beach, Strandweg 4, Kropswolde"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/sunset-sushi-cruise-varen-met-geluk-korting/4cf58d.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/rondvaart-zuidlaardermeer-varen-met-geluk-korting": {
+    "lat": 53.14613529,
+    "lng": 6.69156995,
+    "address": "Parkeren - Bodega Beach, Strandweg 4, Kropswolde",
+    "locations": [
+      {
+        "lat": 53.14613529,
+        "lng": 6.69156995,
+        "address": "Parkeren - Bodega Beach, Strandweg 4, Kropswolde"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/rondvaart-zuidlaardermeer-varen-met-geluk-korting/161ce6.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/drouwen-live-drouwenerzand-attractiepark-ticket-korting": {
+    "lat": 52.95710902,
+    "lng": 6.78805412,
+    "address": "Drouwenerzand Attractiepark, Gasselterstraat 7, Drouwen",
+    "locations": [
+      {
+        "lat": 52.95710902,
+        "lng": 6.78805412,
+        "address": "Drouwenerzand Attractiepark, Gasselterstraat 7, Drouwen"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/drouwenerzand-attractiepark-ticket-korting-2/d66976.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": 44
+  },
+  "https://www.tripper.nl/deal/keuze-lunch-de-beren-hoorn-korting": {
+    "lat": 52.6803366,
+    "lng": 5.08503541,
+    "address": "De Beren Hoorn, Jan Tinbergenweg 13, Zwaag",
+    "locations": [
+      {
+        "lat": 52.6803366,
+        "lng": 5.08503541,
+        "address": "De Beren Hoorn, Jan Tinbergenweg 13, Zwaag"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/2-gangen-lunch-de-beren-hoorn-korting/6b1cb3.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": 40
   }
 }
