@@ -16609,5 +16609,19 @@
     ],
     "image_url": "https://images.tripper.nl/entreeticket-openlucht-filmfestival-korting/f67086.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": null
+  },
+  "https://www.tripper.nl/deal/ticket-harry-potter-en-het-vervloekte-kind-korting": {
+    "lat": 52.11126,
+    "lng": 4.28289,
+    "address": "AFAS Circustheater Scheveningen, Circusplein 50, Scheveningen",
+    "locations": [
+      {
+        "lat": 52.11126,
+        "lng": 4.28289,
+        "address": "AFAS Circustheater Scheveningen, Circusplein 50, Scheveningen"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/1e-of-2e-rang-ticket-harry-potter-en-het-vervloekte-kind/700526.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
   }
 }
