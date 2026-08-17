@@ -9,6 +9,10 @@ updates:
       timezone: Europe/Amsterdam
     open-pull-requests-limit: 3
     groups:
+      npm-security:
+        applies-to: security-updates
+        patterns:
+          - "*"
       npm-minor-patch:
         applies-to: version-updates
         patterns:
@@ -29,6 +33,10 @@ updates:
       timezone: Europe/Amsterdam
     open-pull-requests-limit: 3
     groups:
+      pip-security:
+        applies-to: security-updates
+        patterns:
+          - "*"
       pip-minor-patch:
         applies-to: version-updates
         patterns:
@@ -49,6 +57,10 @@ updates:
       timezone: Europe/Amsterdam
     open-pull-requests-limit: 3
     groups:
+      actions-security:
+        applies-to: security-updates
+        patterns:
+          - "*"
       actions-minor-patch:
         applies-to: version-updates
         patterns:
