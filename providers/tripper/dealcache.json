@@ -16623,5 +16623,103 @@
     ],
     "image_url": "https://images.tripper.nl/1e-of-2e-rang-ticket-harry-potter-en-het-vervloekte-kind/700526.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": null
+  },
+  "https://www.tripper.nl/deal/keuzelunch-solbeach-scheveningen-korting": {
+    "lat": 52.111344,
+    "lng": 4.276879,
+    "address": "Solbeach, Strandweg 20-22, Scheveningen",
+    "locations": [
+      {
+        "lat": 52.111344,
+        "lng": 4.276879,
+        "address": "Solbeach, Strandweg 20-22, Scheveningen"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/keuzelunch-solbeach-scheveningen-korting/5f27a7.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": 5
+  },
+  "https://www.tripper.nl/deal/hoofdgerecht-solbeach-scheveningen-korting": {
+    "lat": 52.111344,
+    "lng": 4.276879,
+    "address": "Solbeach, Strandweg 20-22, Scheveningen",
+    "locations": [
+      {
+        "lat": 52.111344,
+        "lng": 4.276879,
+        "address": "Solbeach, Strandweg 20-22, Scheveningen"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/hoofdgerecht-solbeach-scheveningen-korting/d32ef5.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": 5
+  },
+  "https://www.tripper.nl/deal/borrelplank-solbeach-scheveningen-korting": {
+    "lat": 52.111344,
+    "lng": 4.276879,
+    "address": "Solbeach, Strandweg 20-22, Scheveningen",
+    "locations": [
+      {
+        "lat": 52.111344,
+        "lng": 4.276879,
+        "address": "Solbeach, Strandweg 20-22, Scheveningen"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/borrelplank-solbeach-scheveningen-korting/e0e2b6.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": 5
+  },
+  "https://www.tripper.nl/deal/ontbijt-keuze-solbeach-scheveningen-korting": {
+    "lat": 52.111344,
+    "lng": 4.276879,
+    "address": "Solbeach, Strandweg 20-22, Scheveningen",
+    "locations": [
+      {
+        "lat": 52.111344,
+        "lng": 4.276879,
+        "address": "Solbeach, Strandweg 20-22, Scheveningen"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/borrelplank-solbeach-scheveningen-korting-2/44f45d.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": 5
+  },
+  "https://www.tripper.nl/deal/tickets-entree-british-weekend-korting": {
+    "lat": 52.101421,
+    "lng": 6.32243,
+    "address": "Kasteel Vorden, De Horsterkamp 8, Vorden",
+    "locations": [
+      {
+        "lat": 52.101421,
+        "lng": 6.32243,
+        "address": "Kasteel Vorden, De Horsterkamp 8, Vorden"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/ticket-entree-british-weekend-korting/de6c43.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/entree-kasteeltuinen-arcen-korting": {
+    "lat": 51.4719475,
+    "lng": 6.18417703,
+    "address": "Kasteeltuinen Arcen, Lingsforterweg 26, Arcen",
+    "locations": [
+      {
+        "lat": 51.4719475,
+        "lng": 6.18417703,
+        "address": "Kasteeltuinen Arcen, Lingsforterweg 26, Arcen"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/entree-kasteeltuinen-arcen-korting/2811b5.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": 47
+  },
+  "https://www.tripper.nl/deal/barbeque-beachclub-solbeach-scheveningen-korting": {
+    "lat": 52.111344,
+    "lng": 4.276879,
+    "address": "Solbeach, Strandweg 20-22, Scheveningen",
+    "locations": [
+      {
+        "lat": 52.111344,
+        "lng": 4.276879,
+        "address": "Solbeach, Strandweg 20-22, Scheveningen"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/barbeque-beachclub-solbeach-scheveningen-korting/aa1524.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": 5
   }
 }
