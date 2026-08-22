@@ -16721,5 +16721,47 @@
     ],
     "image_url": "https://images.tripper.nl/barbeque-beachclub-solbeach-scheveningen-korting/aa1524.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": 5
+  },
+  "https://www.tripper.nl/deal/entreeticket-james-ensor-korting": {
+    "lat": 51.229999035011645,
+    "lng": 2.918031286311201,
+    "address": "Dominicanenkerk, Christinastraat 95, Oostende",
+    "locations": [
+      {
+        "lat": 51.229999035011645,
+        "lng": 2.918031286311201,
+        "address": "Dominicanenkerk, Christinastraat 95, Oostende"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/entreeticket-james-ensor-korting/547977.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/footgolf-bittergarnituur-play-stay-ruinerwold-korting": {
+    "lat": 52.71548789,
+    "lng": 6.30654662,
+    "address": "Play & Stay, Weerwille 16A, Ruinerwold",
+    "locations": [
+      {
+        "lat": 52.71548789,
+        "lng": 6.30654662,
+        "address": "Play & Stay, Weerwille 16A, Ruinerwold"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/footgolf-bittergarnituur-play-stay-ruinerwold-korting/394d8b.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/pitch-putt-9-holes-bittergarnituur-play-stay-ruinerwold-korting": {
+    "lat": 52.71548789,
+    "lng": 6.30654662,
+    "address": "Play & Stay, Weerwille 16A, Ruinerwold",
+    "locations": [
+      {
+        "lat": 52.71548789,
+        "lng": 6.30654662,
+        "address": "Play & Stay, Weerwille 16A, Ruinerwold"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/pitch-putt-9-holes-bittergarnituur-play-stay-ruinerwold-korting/72e8b7.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
   }
 }
