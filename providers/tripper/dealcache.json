@@ -16813,5 +16813,19 @@
     ],
     "image_url": "https://images.tripper.nl/westerfun-speelpas-korting/fcaf8a.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": null
+  },
+  "https://www.tripper.nl/deal/entreeticket-oktoberfest-rotterdam-korting": {
+    "lat": 51.92339634070808,
+    "lng": 4.433288862427847,
+    "address": "Van Nelle Fabriek3044BC, Van Nelleweg, Rotterdam",
+    "locations": [
+      {
+        "lat": 51.92339634070808,
+        "lng": 4.433288862427847,
+        "address": "Van Nelle Fabriek3044BC, Van Nelleweg, Rotterdam"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/entreeticket-oktoberfest-rotterdam-korting/f17265.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
   }
 }
