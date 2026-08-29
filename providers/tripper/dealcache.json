@@ -16869,5 +16869,19 @@
     ],
     "image_url": "https://images.tripper.nl/entreeticket-brabantse-vrienden-korting/911cde.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": null
+  },
+  "https://www.tripper.nl/deal/wandelarrangement-restaurant-vijlerhof-korting": {
+    "lat": 50.791342,
+    "lng": 5.9621066,
+    "address": "Restaurant Vijlerhof, Hilleshagerweg 2, Vijlen",
+    "locations": [
+      {
+        "lat": 50.791342,
+        "lng": 5.9621066,
+        "address": "Restaurant Vijlerhof, Hilleshagerweg 2, Vijlen"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/wandelarrangement-restaurant-vijlerhof-korting/649e33.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
   }
 }
