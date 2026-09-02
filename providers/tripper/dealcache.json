@@ -17009,5 +17009,33 @@
     ],
     "image_url": "https://images.tripper.nl/ticket-landgoed-fraeylemaborg-korting/f8fa54.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": null
+  },
+  "https://www.tripper.nl/deal/entreeticket-koomans-poppentheater-korting": {
+    "lat": 52.09724129160429,
+    "lng": 4.275154113275051,
+    "address": "Kooman's Poppentheater, Frankenstraat 66, Den Haag",
+    "locations": [
+      {
+        "lat": 52.09724129160429,
+        "lng": 4.275154113275051,
+        "address": "Kooman's Poppentheater, Frankenstraat 66, Den Haag"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/entreeticket-koomans-poppentheater-korting/2f5ac8.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/all-in-arrangement-halloween-duinoord-korting": {
+    "lat": 51.6578422,
+    "lng": 5.20871277,
+    "address": "Duinoord, Duinoordseweg 8, Helvoirt",
+    "locations": [
+      {
+        "lat": 51.6578422,
+        "lng": 5.20871277,
+        "address": "Duinoord, Duinoordseweg 8, Helvoirt"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/all-in-arrangement-halloween-duinoord-korting/2d5f39.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
   }
 }
