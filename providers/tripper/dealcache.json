@@ -17079,5 +17079,47 @@
     ],
     "image_url": "https://images.tripper.nl/2-sessies-autoracesimulator-exype-korting/cf85a5.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": null
+  },
+  "https://www.tripper.nl/deal/verblijf-vakantiepark-dierenbos-korting": {
+    "lat": 51.70473964,
+    "lng": 5.42972246,
+    "address": "Vakantiepark Dierenbos, Vinkeloord 1, Vinkel",
+    "locations": [
+      {
+        "lat": 51.70473964,
+        "lng": 5.42972246,
+        "address": "Vakantiepark Dierenbos, Vinkeloord 1, Vinkel"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/verblijf-vakantiepark-dierenbos-korting/6ab33a.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": 2
+  },
+  "https://www.tripper.nl/deal/ticket-kampeer-caravan-jaarbeurs-2026-korting": {
+    "lat": 52.08778,
+    "lng": 5.10684,
+    "address": "Jaarbeurs, Jaarbeursplein 6, Utrecht",
+    "locations": [
+      {
+        "lat": 52.08778,
+        "lng": 5.10684,
+        "address": "Jaarbeurs, Jaarbeursplein 6, Utrecht"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/ticket-kampeer-caravan-jaarbeurs-2026-korting/8ff35d.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": 5
+  },
+  "https://www.tripper.nl/deal/4-gangendiner-de-beren-amsterdam-noord-korting": {
+    "lat": 52.4006274,
+    "lng": 4.93463807,
+    "address": "Restaurant De Beren Amsterdam - Noord, Buikslotermeerplein 2001, Amsterdam",
+    "locations": [
+      {
+        "lat": 52.4006274,
+        "lng": 4.93463807,
+        "address": "Restaurant De Beren Amsterdam - Noord, Buikslotermeerplein 2001, Amsterdam"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/dineren-de-beren-amsterdam-noord-korting/4a5b12.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": 4
   }
 }
