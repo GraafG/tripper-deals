@@ -17121,5 +17121,33 @@
     ],
     "image_url": "https://images.tripper.nl/dineren-de-beren-amsterdam-noord-korting/4a5b12.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": 4
+  },
+  "https://www.tripper.nl/deal/ticket-halloween-nocturne-walibi-belgium-korting": {
+    "lat": 50.699205,
+    "lng": 4.590499,
+    "address": "Walibi Belgium, Boulevard de l'Europe 100, Wavre",
+    "locations": [
+      {
+        "lat": 50.699205,
+        "lng": 4.590499,
+        "address": "Walibi Belgium, Boulevard de l'Europe 100, Wavre"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/ticket-halloween-nocturne-walibi-belgium-korting/2ff94a.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": 9
+  },
+  "https://www.tripper.nl/deal/ticketwaterskicentrum-de-vossemeren-waterskien-korting": {
+    "lat": 51.2586,
+    "lng": 5.32046,
+    "address": "Waterskicentrum de Vossemeren, Elzen 145, Lommel",
+    "locations": [
+      {
+        "lat": 51.2586,
+        "lng": 5.32046,
+        "address": "Waterskicentrum de Vossemeren, Elzen 145, Lommel"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/waterskien-waterskicentrum-de-vossemeren-korting/458813.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
   }
 }
