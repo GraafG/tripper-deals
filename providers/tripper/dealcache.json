@@ -17185,5 +17185,61 @@
     ],
     "image_url": "https://images.tripper.nl/ticket-entree-circus-chapito-korting/9b8dbb.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": 11
+  },
+  "https://www.tripper.nl/deal/entreeticket-mystic-garden-festival-ade-korting": {
+    "lat": 52.39490124594536,
+    "lng": 4.775320641669029,
+    "address": "Mystic Garden Festival ADE, Wethouder van Essenweg, Amsterdam",
+    "locations": [
+      {
+        "lat": 52.39490124594536,
+        "lng": 4.775320641669029,
+        "address": "Mystic Garden Festival ADE, Wethouder van Essenweg, Amsterdam"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/entreeticket-mystic-garden-festival-ade-korting/ee03c7.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/ticket-tomofair-utrecht-korting": {
+    "lat": 52.10316357,
+    "lng": 5.08305405,
+    "address": "Gietijzer Utrecht, Gietijzerstraat 3, Utrecht",
+    "locations": [
+      {
+        "lat": 52.10316357,
+        "lng": 5.08305405,
+        "address": "Gietijzer Utrecht, Gietijzerstraat 3, Utrecht"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/ticket-tomofair-utrecht-korting/803433.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": 34
+  },
+  "https://www.tripper.nl/deal/bier-speurtocht-amsterdamse-wallen-korting": {
+    "lat": 52.37628526,
+    "lng": 4.89966396,
+    "address": "Startpunt, Nieuwebrugsteeg 13, Amsterdam",
+    "locations": [
+      {
+        "lat": 52.37628526,
+        "lng": 4.89966396,
+        "address": "Startpunt, Nieuwebrugsteeg 13, Amsterdam"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/bier-speurtocht-amsterdamse-wallen-korting/5de071.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": 5
+  },
+  "https://www.tripper.nl/deal/adult-speurtocht-wallen-2-uur-korting": {
+    "lat": 52.37628526,
+    "lng": 4.89966396,
+    "address": "Startpunt, Nieuwebrugsteeg 13, Amsterdam",
+    "locations": [
+      {
+        "lat": 52.37628526,
+        "lng": 4.89966396,
+        "address": "Startpunt, Nieuwebrugsteeg 13, Amsterdam"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/adult-speurtocht-wallen-3-uur-korting/eb716a.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": 5
   }
 }
