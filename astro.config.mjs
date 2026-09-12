@@ -8,7 +8,15 @@ export default defineConfig({
   base: provider.base,
   output: 'static',
   trailingSlash: 'always',
+  // Preserve Astro 6's spacing between inline elements.
+  compressHTML: true,
   build: {
     assets: '_assets',
+  },
+  vite: {
+    build: {
+      // Keep the previous CSS output and media-query browser compatibility.
+      cssMinify: 'esbuild',
+    },
   },
 });
