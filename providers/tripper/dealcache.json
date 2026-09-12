@@ -17255,5 +17255,33 @@
     ],
     "image_url": "https://images.tripper.nl/entreeticket-pakjespaleis-van-sinterklaas-korting/23de1a.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": null
+  },
+  "https://www.tripper.nl/deal/ticket-entree-bellewaerde-park-halloween-korting": {
+    "lat": 50.84504,
+    "lng": 2.95632,
+    "address": "Bellewaerde Park, Meenseweg 497, Ieper",
+    "locations": [
+      {
+        "lat": 50.84504,
+        "lng": 2.95632,
+        "address": "Bellewaerde Park, Meenseweg 497, Ieper"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/ticket-entree-bellewaerde-park-halloween-korting/d4a430.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/ticket-blue-boat-amsterdam-light-festival-rondvaart-korting": {
+    "lat": 52.35823,
+    "lng": 4.89164,
+    "address": "Opstapplaats, Stadhouderskade  550, Amsterdam",
+    "locations": [
+      {
+        "lat": 52.35823,
+        "lng": 4.89164,
+        "address": "Opstapplaats, Stadhouderskade  550, Amsterdam"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/ticket-blue-boat-amsterdam-light-festival-rondvaart-korting/ef03aa.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
   }
 }
