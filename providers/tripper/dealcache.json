@@ -17283,5 +17283,33 @@
     ],
     "image_url": "https://images.tripper.nl/ticket-blue-boat-amsterdam-light-festival-rondvaart-korting/ef03aa.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": null
+  },
+  "https://www.tripper.nl/deal/entreeticket-frans-bauer-live-in-ahoy-korting": {
+    "lat": 51.88356817701976,
+    "lng": 4.48787933998206,
+    "address": "Rotterdam Ahoy, Ahoyweg 10, Rotterdam",
+    "locations": [
+      {
+        "lat": 51.88356817701976,
+        "lng": 4.48787933998206,
+        "address": "Rotterdam Ahoy, Ahoyweg 10, Rotterdam"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/entreeticket-frans-bauer-live-in-ahoy-korting/4e9896.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/ticket-entree-der-gruner-zoo-wuppertal-korting": {
+    "lat": 51.24115,
+    "lng": 7.10962,
+    "address": "Der Grüne Zoo Wuppertal, Hubertusallee 30, Wuppertal",
+    "locations": [
+      {
+        "lat": 51.24115,
+        "lng": 7.10962,
+        "address": "Der Grüne Zoo Wuppertal, Hubertusallee 30, Wuppertal"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/ticket-der-gruner-zoo-wuppertal-korting/1d8aae.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": 21
   }
 }
