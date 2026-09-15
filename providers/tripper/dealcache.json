@@ -17311,5 +17311,19 @@
     ],
     "image_url": "https://images.tripper.nl/ticket-der-gruner-zoo-wuppertal-korting/1d8aae.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": 21
+  },
+  "https://www.tripper.nl/deal/ticket-entree-spookeiland-schateiland-zeumeren-korting": {
+    "lat": 52.17608,
+    "lng": 5.62248,
+    "address": "Schateiland Zeumeren, Stroetweg 7, Voorthuizen",
+    "locations": [
+      {
+        "lat": 52.17608,
+        "lng": 5.62248,
+        "address": "Schateiland Zeumeren, Stroetweg 7, Voorthuizen"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/ticket-entree-spookeiland-schateiland-zeumeren-korting/7dce53.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
   }
 }
