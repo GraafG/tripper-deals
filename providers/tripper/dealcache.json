@@ -17617,5 +17617,19 @@
     ],
     "image_url": "https://images.tripper.nl/entreetickets-dippieboe-halloween-korting-2/4110c6.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": 6
+  },
+  "https://www.tripper.nl/deal/entree-ticket-halloween-the-villains-korting": {
+    "lat": 50.885945,
+    "lng": 6.029037,
+    "address": "Mondo Verde, Groene Wereld 10, Landgraaf",
+    "locations": [
+      {
+        "lat": 50.885945,
+        "lng": 6.029037,
+        "address": "Mondo Verde, Groene Wereld 10, Landgraaf"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/entree-halloween-the-villains-x-korting-2/182648.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
   }
 }
