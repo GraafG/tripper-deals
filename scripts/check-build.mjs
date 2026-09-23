@@ -3,6 +3,7 @@ import { readFileSync, readdirSync } from 'node:fs';
 import { join, relative } from 'node:path';
 import { Script } from 'node:vm';
 import sharp from 'sharp';
+import { ELEMENT_NODE, TEXT_NODE, parse, walkSync } from 'ultrahtml';
 import { loadProviderConfig } from './provider-config.mjs';
 
 const provider = loadProviderConfig(process.argv[2]);
@@ -15,9 +16,12 @@ assert.ok(home.includes(`href="${provider.siteUrl}/"`), 'Canonical URL must matc
 assert.match(privacy, /<strong>Niets\.<\/strong> Tripper Deals/, 'Inline HTML spacing must be preserved');
 assert.match(home, /window\.showView\s*=\s*showView/);
 assert.match(home, /window\.toggleSparkline\s*=\s*toggleSparkline/);
-for (const match of home.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)) {
-  if (!/\b(?:type|src)=/i.test(match[1])) new Script(match[2]);
-}
+walkSync(parse(home), node => {
+  if (node.type !== ELEMENT_NODE || node.name.toLowerCase() !== 'script') return;
+  const attributes = Object.keys(node.attributes).map(name => name.toLowerCase());
+  if (attributes.includes('type') || attributes.includes('src')) return;
+  new Script(node.children.filter(child => child.type === TEXT_NODE).map(child => child.value).join(''));
+});
 
 const cssFiles = readdirSync('dist/_assets').filter(path => path.endsWith('.css'));
 assert.ok(cssFiles.length, 'Build must emit styles');
