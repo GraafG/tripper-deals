@@ -13,4 +13,10 @@ export default defineConfig({
   build: {
     assets: '_assets',
   },
+  vite: {
+    build: {
+      // Preserve Astro 6's CSS output and media-query browser compatibility.
+      cssMinify: 'esbuild',
+    },
+  },
 });
