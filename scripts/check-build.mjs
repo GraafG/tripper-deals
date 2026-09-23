@@ -15,8 +15,8 @@ assert.ok(home.includes(`href="${provider.siteUrl}/"`), 'Canonical URL must matc
 assert.match(privacy, /<strong>Niets\.<\/strong> Tripper Deals/, 'Inline HTML spacing must be preserved');
 assert.match(home, /window\.showView\s*=\s*showView/);
 assert.match(home, /window\.toggleSparkline\s*=\s*toggleSparkline/);
-for (const match of home.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/g)) {
-  if (!/\b(?:type|src)=/.test(match[1])) new Script(match[2]);
+for (const match of home.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)) {
+  if (!/\b(?:type|src)=/i.test(match[1])) new Script(match[2]);
 }
 
 const cssFiles = readdirSync('dist/_assets').filter(path => path.endsWith('.css'));
