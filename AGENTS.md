@@ -17,6 +17,12 @@ This repo is part of the shared deals tracker setup. Treat it as a provider-conf
 - Build VriendenLoterij from this repo copy: `npm run build:vriendenloterij`
 - Generic build: `node scripts/build-provider.mjs <provider>`
 - Preview after build: `npm run preview`
+- Check dependency floors and synthetic images: `node scripts/check-dependencies.mjs` and `node scripts/check-images.mjs`
+- Check the last provider build: `node scripts/check-build.mjs <provider>` (run immediately after that provider's build)
+
+Use Node.js 22.12 or newer for Astro 7. The PR-only provider build workflow
+checks both providers without scraping or deploying. Keep `compressHTML: true`
+and the esbuild CSS minifier to preserve the Astro 6 spacing and media queries.
 
 ## Rules for agents
 - Never delete or rewrite price/history data unless the user explicitly asks. Preserve all historical snapshots.
