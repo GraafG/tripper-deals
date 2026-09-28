@@ -20,8 +20,10 @@ This repo is part of the shared deals tracker setup. Treat it as a provider-conf
 - Check dependency floors and synthetic images: `node scripts/check-dependencies.mjs` and `node scripts/check-images.mjs`
 - Check the last provider build: `node scripts/check-build.mjs <provider>` (run immediately after that provider's build)
 
-Use Node.js 22.19 or newer for the locked Astro 7 dependency tree (`undici`
-requires 22.19, above Astro's own 22.12 minimum). The PR-only provider build workflow
+Use Node.js 22.19.0+ on the 22.x line, or Node.js 24+, matching `package.json`
+and the locked Astro 7 dependency tree. `undici` requires 22.19.0, above Astro's
+own 22.12 minimum; early Node 23 is unsupported by the optional WASM runtime.
+The PR-only provider build workflow
 checks both providers without scraping or deploying. Keep `compressHTML: true`
 and the esbuild CSS minifier to preserve the Astro 6 spacing and media queries.
 
