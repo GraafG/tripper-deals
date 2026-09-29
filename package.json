@@ -2,6 +2,9 @@
   "name": "tripper-deals",
   "type": "module",
   "version": "1.0.0",
+  "engines": {
+    "node": "^22.19.0 || >=24.0.0"
+  },
   "scripts": {
     "dev": "astro dev",
     "build": "node scripts/build-provider.mjs",
@@ -11,7 +14,7 @@
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.19",
-    "astro": "^6.4.8"
+    "astro": "^7.2.8"
   },
   "devDependencies": {
     "sharp": "^0.35.4"

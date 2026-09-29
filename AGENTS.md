@@ -12,6 +12,7 @@ This repo is part of the shared deals tracker setup. Treat it as a provider-conf
 - The browser reads generated files from `public/data/` after `scripts/build-provider.mjs` copies the selected provider data.
 
 ## Commands
+- Runtime: Node.js 22.19.0+ on the 22.x line, or Node.js 24+. The locked dependency graph requires a newer Node 22 floor than Astro alone.
 - Install: `npm install`
 - Build Tripper: `npm run build:tripper`
 - Build VriendenLoterij from this repo copy: `npm run build:vriendenloterij`

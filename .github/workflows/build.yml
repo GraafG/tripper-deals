@@ -1,0 +1,40 @@
+name: Provider builds
+
+on:
+  pull_request:
+    branches: ["main"]
+
+permissions:
+  contents: read
+
+env:
+  ASTRO_TELEMETRY_DISABLED: '1'
+
+jobs:
+  build:
+    name: Build (${{ matrix.provider }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        provider: [tripper, vriendenloterij]
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install locked dependencies
+        run: npx --yes npm@11.19.1 ci --no-audit --no-fund
+
+      - name: Check patched image processing
+        run: node scripts/check-images.mjs
+
+      - name: Build provider from existing data
+        run: npm run build:${{ matrix.provider }}
+
+      - name: Ensure provider data is unchanged
+        run: git diff --exit-code -- providers/
