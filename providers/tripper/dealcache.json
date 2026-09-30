@@ -17751,5 +17751,19 @@
     ],
     "image_url": "https://images.tripper.nl/ticket-ero-expo-antwerpen-korting/5f3432.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": null
+  },
+  "https://www.tripper.nl/deal/ticket-maniax-minigolf-enschede": {
+    "lat": 52.239541,
+    "lng": 6.8336207,
+    "address": "Maniax Minigolf Enschede, Colosseum 72, Enschede",
+    "locations": [
+      {
+        "lat": 52.239541,
+        "lng": 6.8336207,
+        "address": "Maniax Minigolf Enschede, Colosseum 72, Enschede"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/ticket-maniax-minigolf-enschede/20bd43.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
   }
 }
