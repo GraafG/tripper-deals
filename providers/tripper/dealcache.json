@@ -17765,5 +17765,13 @@
     ],
     "image_url": "https://images.tripper.nl/ticket-maniax-minigolf-enschede/20bd43.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": null
+  },
+  "https://www.tripper.nl/deal/entreetickets-winter-heerlijckheid-warmelo-korting": {
+    "lat": null,
+    "lng": null,
+    "address": "",
+    "locations": [],
+    "image_url": "https://images.tripper.nl/entreetickets-winter-heerlijckheid-warmelo-korting/29ba96.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": 5
   }
 }
