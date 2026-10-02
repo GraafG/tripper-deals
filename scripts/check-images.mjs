@@ -32,12 +32,14 @@ const svg = Buffer.from('<svg xmlns="http://www.w3.org/2000/svg" width="64" heig
 const png = await sharp(svg).png().toBuffer();
 const avif = await sharp(png).avif({ lossless: true }).toBuffer();
 const config = { service: { config: {} } };
+const logger = { warn(message) { assert.fail(`Unexpected image fallback: ${message}`); } };
 
 for (const format of ['png', 'webp', 'avif']) {
   const result = await sharpService.transform(
     avif,
     { src: '/fixture.avif', width: 32, height: 16, format },
     config,
+    logger,
   );
   const metadata = await sharp(result.data).metadata();
   assert.equal(metadata.width, 32, `AVIF to ${format} must resize, not silently pass through`);
@@ -47,14 +49,14 @@ for (const format of ['png', 'webp', 'avif']) {
   await sharp(result.data).raw().toBuffer();
 }
 
-const passthrough = await sharpService.transform(svg, { src: '/fixture.svg', format: 'svg' }, config);
+const passthrough = await sharpService.transform(svg, { src: '/fixture.svg', format: 'svg' }, config, logger);
 assert.deepEqual(passthrough.data, svg);
 await assert.rejects(
-  sharpService.transform(svg, { src: '/fixture.svg', format: 'png' }, config),
+  sharpService.transform(svg, { src: '/fixture.svg', format: 'png' }, config, logger),
   /SVG image processing is disabled/,
 );
 await assert.rejects(
-  sharpService.transform(Buffer.from('invalid image'), { src: '/invalid.avif', format: 'png' }, config),
+  sharpService.transform(Buffer.from('invalid image'), { src: '/invalid.avif', format: 'png' }, config, logger),
   /metadata/i,
 );
 

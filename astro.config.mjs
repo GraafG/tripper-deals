@@ -7,15 +7,15 @@ export default defineConfig({
   site: 'https://graafg.github.io',
   base: provider.base,
   output: 'static',
-  trailingSlash: 'always',
-  // Preserve Astro 6's spacing between inline elements.
+  // Preserve HTML-aware inline spacing instead of Astro 7's JSX whitespace rules.
   compressHTML: true,
+  trailingSlash: 'always',
   build: {
     assets: '_assets',
   },
   vite: {
     build: {
-      // Keep the previous CSS output and media-query browser compatibility.
+      // Preserve Astro 6's CSS output and media-query browser compatibility.
       cssMinify: 'esbuild',
     },
   },

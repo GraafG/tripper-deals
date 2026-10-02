@@ -30,11 +30,16 @@ jobs:
       - name: Install locked dependencies
         run: npx --yes npm@11.19.1 ci --no-audit --no-fund
 
-      - name: Check patched image processing
-        run: node scripts/check-images.mjs
+      - name: Check patched dependencies and image processing
+        run: |
+          node scripts/check-dependencies.mjs
+          node scripts/check-images.mjs
 
       - name: Build provider from existing data
         run: npm run build:${{ matrix.provider }}
+
+      - name: Check generated site
+        run: node scripts/check-build.mjs ${{ matrix.provider }}
 
       - name: Ensure provider data is unchanged
         run: git diff --exit-code -- providers/
