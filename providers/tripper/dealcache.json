@@ -17947,5 +17947,61 @@
     ],
     "image_url": "https://images.tripper.nl/wasbeurt-bubbles-carwash-nederweert-korting/c2d2c1.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": null
+  },
+  "https://www.tripper.nl/deal/overnachting-walibi-village-tickets-walibi-spooky-days-nederland-korting": {
+    "lat": 52.439152,
+    "lng": 5.76025,
+    "address": "Walibi Holland, Spijkweg 30, Biddinghuizen",
+    "locations": [
+      {
+        "lat": 52.439152,
+        "lng": 5.76025,
+        "address": "Walibi Holland, Spijkweg 30, Biddinghuizen"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/overnachting-walibi-village-ticket-walibi-spooky-days-nederland-korting/c6e1af.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/entreeticket-kroeg-van-rotterdam-korting": {
+    "lat": 51.89779130326657,
+    "lng": 4.493797996654071,
+    "address": "Kroeg van Rotterdam, Maashaven Zuidzijde 1-2, Rotterdam",
+    "locations": [
+      {
+        "lat": 51.89779130326657,
+        "lng": 4.493797996654071,
+        "address": "Kroeg van Rotterdam, Maashaven Zuidzijde 1-2, Rotterdam"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/entreeticket-kroeg-van-rotterdam-korting/a7bd3d.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/speelmunten-lets-play-it-korting": {
+    "lat": 51.56719,
+    "lng": 4.63531,
+    "address": "Let's Play-it, Bisschopsmolenstraat 46, Etten-Leur",
+    "locations": [
+      {
+        "lat": 51.56719,
+        "lng": 4.63531,
+        "address": "Let's Play-it, Bisschopsmolenstraat 46, Etten-Leur"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/20-speeltegoed-bij-lets-play-it-korting/bef43d.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/ticket-mega-kerstcircus-haarlem-korting": {
+    "lat": 52.37251225,
+    "lng": 4.65762903,
+    "address": "Mega Kerstcircus Haarlem, Reinaldapad 1, Haarlem",
+    "locations": [
+      {
+        "lat": 52.37251225,
+        "lng": 4.65762903,
+        "address": "Mega Kerstcircus Haarlem, Reinaldapad 1, Haarlem"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/ticket-mega-kerstcircus-haarlem-korting/e1f1e8.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
   }
 }
