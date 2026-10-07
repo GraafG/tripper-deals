@@ -18073,5 +18073,75 @@
     ],
     "image_url": "https://images.tripper.nl/ticket-bounce-valley-sokken-slush-korting/5f009b.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": 8
+  },
+  "https://www.tripper.nl/deal/luxe-lodgetent-vakantiepark-duinrell-korting": {
+    "lat": 52.146628,
+    "lng": 4.384499,
+    "address": "Duinrell, Duinrell  1, Wassenaar",
+    "locations": [
+      {
+        "lat": 52.146628,
+        "lng": 4.384499,
+        "address": "Duinrell, Duinrell  1, Wassenaar"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/weekend-overnachten-accommodatie-duinrell-korting/324531.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": 124
+  },
+  "https://www.tripper.nl/deal/europarcs-kaatsheuvel-verblijf-korting": {
+    "lat": 51.66123433,
+    "lng": 5.06170684,
+    "address": "EuroParcs Kaatsheuvel, van Haestrechtstraat 24, Kaatsheuvel",
+    "locations": [
+      {
+        "lat": 51.66123433,
+        "lng": 5.06170684,
+        "address": "EuroParcs Kaatsheuvel, van Haestrechtstraat 24, Kaatsheuvel"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/europarcs-kaatsheuvel-verblijf-korting/20a7de.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/europarcs-veluwemeer-verblijf-korting": {
+    "lat": 52.39182375,
+    "lng": 5.7350214,
+    "address": "EuroParcs Veluwemeer, Randmeerweg 8, Nunspeet",
+    "locations": [
+      {
+        "lat": 52.39182375,
+        "lng": 5.7350214,
+        "address": "EuroParcs Veluwemeer, Randmeerweg 8, Nunspeet"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/europarcs-veluwemeer-verblijf-korting/5b0ce5.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/tribune-ticket-groot-kerstcircus-den-haag-korting": {
+    "lat": 52.08571762083516,
+    "lng": 4.3196545134916855,
+    "address": "Malieveld, Koningskade 64, Den Haag",
+    "locations": [
+      {
+        "lat": 52.08571762083516,
+        "lng": 4.3196545134916855,
+        "address": "Malieveld, Koningskade 64, Den Haag"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/tribune-ticket-groot-kerstcircus-den-haag-korting/4f0756.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": 17
+  },
+  "https://www.tripper.nl/deal/ticket-staanplaats-world-cup-korting": {
+    "lat": 52.93879747,
+    "lng": 5.94317482,
+    "address": "Thialf, Pim Mulierlaan 1, Heerenveen",
+    "locations": [
+      {
+        "lat": 52.93879747,
+        "lng": 5.94317482,
+        "address": "Thialf, Pim Mulierlaan 1, Heerenveen"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/ticket-staanplaats-world-cup-korting/d36172.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
   }
 }
