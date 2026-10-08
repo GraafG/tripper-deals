@@ -18143,5 +18143,75 @@
     ],
     "image_url": "https://images.tripper.nl/ticket-staanplaats-world-cup-korting/d36172.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": null
+  },
+  "https://www.tripper.nl/deal/europarcs-poort-van-amsterdam-8-personen-korting": {
+    "lat": 52.42832495,
+    "lng": 5.07382385,
+    "address": "EuroParcs Poort van Amsterdam, Zeedijk 2, Uitdam",
+    "locations": [
+      {
+        "lat": 52.42832495,
+        "lng": 5.07382385,
+        "address": "EuroParcs Poort van Amsterdam, Zeedijk 2, Uitdam"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/europarcs-veluwemeer-6-personen-korting/30d4db.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/hotel-de-hoeve-nunspeet": {
+    "lat": 52.3676423,
+    "lng": 5.783535,
+    "address": "Hotel De Hoeve van Nunspeet, Elspeterweg,14, Nunspeet",
+    "locations": [
+      {
+        "lat": 52.3676423,
+        "lng": 5.783535,
+        "address": "Hotel De Hoeve van Nunspeet, Elspeterweg,14, Nunspeet"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/s/de229f.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/parkhotel-bad-arcen": {
+    "lat": 51.4970973,
+    "lng": 6.1855267,
+    "address": "Parkhotel Bad Arcen, Klein Vink,11, Arcen",
+    "locations": [
+      {
+        "lat": 51.4970973,
+        "lng": 6.1855267,
+        "address": "Parkhotel Bad Arcen, Klein Vink,11, Arcen"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/parkhotel-bad-arcen/9f5e9e.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/ticket-entree-happy-halloween-de-waarbeek-korting": {
+    "lat": 52.24448,
+    "lng": 6.807741,
+    "address": "De Waarbeek, Twekkelerweg  327, Hengelo",
+    "locations": [
+      {
+        "lat": 52.24448,
+        "lng": 6.807741,
+        "address": "De Waarbeek, Twekkelerweg  327, Hengelo"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/ticket-entree-happy-halloween-de-waarbeek-korting/3289e1.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/golden-tulip-zoetermeer-den-haag": {
+    "lat": 52.049006,
+    "lng": 4.4783347,
+    "address": "Golden Tulip Zoetermeer - Den Haag, Kinderen van Versteegplein,18, Zoetermeer",
+    "locations": [
+      {
+        "lat": 52.049006,
+        "lng": 4.4783347,
+        "address": "Golden Tulip Zoetermeer - Den Haag, Kinderen van Versteegplein,18, Zoetermeer"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/golden-tulip-zoetermeer-den-haag/ab469b.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
   }
 }
