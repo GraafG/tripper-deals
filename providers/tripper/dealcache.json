@@ -18213,5 +18213,75 @@
     ],
     "image_url": "https://images.tripper.nl/golden-tulip-zoetermeer-den-haag/ab469b.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": null
+  },
+  "https://www.tripper.nl/deal/europarcs-gulperberg-verblijf-korting": {
+    "lat": 50.80677871,
+    "lng": 5.89424435,
+    "address": "EuroParcs Gulperberg, Berghem 1, Gulpen",
+    "locations": [
+      {
+        "lat": 50.80677871,
+        "lng": 5.89424435,
+        "address": "EuroParcs Gulperberg, Berghem 1, Gulpen"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/ticket-europarcs-gulperberg-korting/4c2224.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/europarcs-hoge-kempen-verblijf-korting": {
+    "lat": 50.92623,
+    "lng": 5.55174,
+    "address": "EuroParcs Hoge Kempen, Molenblookstraat  64, Zutendaal",
+    "locations": [
+      {
+        "lat": 50.92623,
+        "lng": 5.55174,
+        "address": "EuroParcs Hoge Kempen, Molenblookstraat  64, Zutendaal"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/europarcs-hoge-kempen-verblijf-korting/9c1fb5.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/ticket-entree-light-safari-beekse-bergen-korting": {
+    "lat": 51.5282682,
+    "lng": 5.12470029,
+    "address": "Safaripark Beekse Bergen, Beekse Bergen 1, Hilvarenbeek",
+    "locations": [
+      {
+        "lat": 51.5282682,
+        "lng": 5.12470029,
+        "address": "Safaripark Beekse Bergen, Beekse Bergen 1, Hilvarenbeek"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/ticket-entree-light-safari-beekse-bergen-korting/8a3899.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": 12
+  },
+  "https://www.tripper.nl/deal/winterarrangement-grand-cafe-henri-willig-giethoorn-korting": {
+    "lat": 52.72274045073378,
+    "lng": 6.088578783029789,
+    "address": "Grand Café Henri Willig, Dominee T.O. Hylkemaweg 39, Giethoorn",
+    "locations": [
+      {
+        "lat": 52.72274045073378,
+        "lng": 6.088578783029789,
+        "address": "Grand Café Henri Willig, Dominee T.O. Hylkemaweg 39, Giethoorn"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/winterarrangement-grand-cafe-henri-willig-giethoorn-korting/87dd72.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/volle-maan-halloween-filmbeleving-oostende-korting": {
+    "lat": 51.231571,
+    "lng": 2.913297,
+    "address": "Startpunt, Monacoplein 2, Oostende",
+    "locations": [
+      {
+        "lat": 51.231571,
+        "lng": 2.913297,
+        "address": "Startpunt, Monacoplein 2, Oostende"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/volle-maan-halloween-filmbeleving-oostende-korting/ea22a5.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
   }
 }
