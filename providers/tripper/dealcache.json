@@ -18283,5 +18283,55 @@
     ],
     "image_url": "https://images.tripper.nl/volle-maan-halloween-filmbeleving-oostende-korting/ea22a5.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": null
+  },
+  "https://www.tripper.nl/deal/tickets-madurodam-entree-korting": {
+    "lat": 52.0991,
+    "lng": 4.29904,
+    "address": "Madurodam, George Maduroplein 1, Den Haag",
+    "locations": [
+      {
+        "lat": 52.0991,
+        "lng": 4.29904,
+        "address": "Madurodam, George Maduroplein 1, Den Haag"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/ticket-madurodam-entree-korting/0073cb.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": 52
+  },
+  "https://www.tripper.nl/deal/ticket-entree-a-seal-stellendam-korting": {
+    "lat": 51.82644,
+    "lng": 4.04417,
+    "address": "A Seal Stellendam, Haringvlietplein 3A, Stellendam",
+    "locations": [
+      {
+        "lat": 51.82644,
+        "lng": 4.04417,
+        "address": "A Seal Stellendam, Haringvlietplein 3A, Stellendam"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/ticket-entree-a-seal-stellendam-korting/514bbe.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": 10
+  },
+  "https://www.tripper.nl/deal/entreeticket-mystery-gardens-bloemenpark-appeltern-korting": {
+    "lat": 51.83518,
+    "lng": 5.601866,
+    "address": "Bloemenpark Appeltern, Walstraat  2A, Appeltern",
+    "locations": [
+      {
+        "lat": 51.83518,
+        "lng": 5.601866,
+        "address": "Bloemenpark Appeltern, Walstraat  2A, Appeltern"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/entreeticket-mystery-gardens-bloemenpark-appeltern-korting/0a90de.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/entreeticket-hortus-botanicus-leiden-korting": {
+    "lat": null,
+    "lng": null,
+    "address": "",
+    "locations": [],
+    "image_url": "https://images.tripper.nl/entreeticket-hortus-botanicus-leiden-korting/134950.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
   }
 }
