@@ -18333,5 +18333,13 @@
     "locations": [],
     "image_url": "https://images.tripper.nl/entreeticket-hortus-botanicus-leiden-korting/134950.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": null
+  },
+  "https://www.tripper.nl/deal/kerstshoppen-via-slangen-reizen-met-korting": {
+    "lat": null,
+    "lng": null,
+    "address": "",
+    "locations": [],
+    "image_url": "https://images.tripper.nl/kerstshoppen-slangen-reizen-korting/e070c9.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
   }
 }
