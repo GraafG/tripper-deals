@@ -18341,5 +18341,19 @@
     "locations": [],
     "image_url": "https://images.tripper.nl/kerstshoppen-slangen-reizen-korting/e070c9.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": null
+  },
+  "https://www.tripper.nl/deal/entreeticket-mercator-orteliushuis-antwerpen-korting": {
+    "lat": 51.21678451664777,
+    "lng": 4.3959628553039485,
+    "address": "Mercator-Orteliushuis, Kloosterstraat 15, Antwerpen",
+    "locations": [
+      {
+        "lat": 51.21678451664777,
+        "lng": 4.3959628553039485,
+        "address": "Mercator-Orteliushuis, Kloosterstraat 15, Antwerpen"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/entreeticket-mercator-orteliushuis-antwerpen-korting/7933d0.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
   }
 }
