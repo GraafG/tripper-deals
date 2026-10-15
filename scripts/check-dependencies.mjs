@@ -12,12 +12,15 @@ const minimums = {
   nanoid: '3.3.18',
   // GHSA-9rgm-9g3h-6x36's description and first_patched_version specify 5.9.2.
   devalue: '5.9.2',
+};
+// No longer installed by Astro, but enforce the patched floor if reintroduced.
+const optionalMinimums = {
   'js-yaml': '4.3.2',
 };
 const { packages } = JSON.parse(readFileSync(new URL('../package-lock.json', import.meta.url), 'utf8'));
-for (const [name, minimum] of Object.entries(minimums)) {
+for (const [name, minimum] of Object.entries({ ...minimums, ...optionalMinimums })) {
   const instances = Object.entries(packages).filter(([path]) => path.endsWith(`node_modules/${name}`));
-  assert.ok(instances.length, `Missing dependency: ${name}`);
+  if (Object.hasOwn(minimums, name)) assert.ok(instances.length, `Missing dependency: ${name}`);
   for (const [path, { version }] of instances) {
     assert.ok(semver.gte(version, minimum), `${path}: ${version} is below ${minimum}`);
     console.log(`${path}: ${version}`);
