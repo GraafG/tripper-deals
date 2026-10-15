@@ -26,6 +26,8 @@ own 22.12 minimum; early Node 23 is unsupported by the optional WASM runtime.
 The PR-only provider build workflow
 checks both providers without scraping or deploying. Keep `compressHTML: true`
 and the esbuild CSS minifier to preserve the Astro 6 spacing and media queries.
+Keep `esbuild` as a direct development dependency: Vite 8 no longer installs it
+transitively, but `astro.config.mjs` explicitly selects it for CSS minification.
 
 ## Rules for agents
 - Never delete or rewrite price/history data unless the user explicitly asks. Preserve all historical snapshots.
