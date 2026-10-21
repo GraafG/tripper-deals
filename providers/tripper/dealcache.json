@@ -18531,5 +18531,19 @@
     ],
     "image_url": "https://images.tripper.nl/commons-utrecht-lunch-korting/eb6d8f.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": null
+  },
+  "https://www.tripper.nl/deal/entree-ticket-hof-van-eckberge-korting": {
+    "lat": 52.09718,
+    "lng": 6.62508,
+    "address": "Hof van Eckberge, Lintveldseweg   1a, Eibergen",
+    "locations": [
+      {
+        "lat": 52.09718,
+        "lng": 6.62508,
+        "address": "Hof van Eckberge, Lintveldseweg   1a, Eibergen"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/entree-ticket-hof-van-eckberge-korting/672e81.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": 46
   }
 }
