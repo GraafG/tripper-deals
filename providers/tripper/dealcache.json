@@ -18545,5 +18545,19 @@
     ],
     "image_url": "https://images.tripper.nl/entree-ticket-hof-van-eckberge-korting/672e81.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": 46
+  },
+  "https://www.tripper.nl/deal/entree-ticket-aqua-mundo-center-parcs-heijderbos-korting": {
+    "lat": 51.67348818,
+    "lng": 6.00030796,
+    "address": "Aqua Mundo, Hommersumseweg 43, Heijen",
+    "locations": [
+      {
+        "lat": 51.67348818,
+        "lng": 6.00030796,
+        "address": "Aqua Mundo, Hommersumseweg 43, Heijen"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/dagentree-ticket-aqua-mundo-center-parcs-heijderbos-korting/cfda52.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": 5
   }
 }
