@@ -18559,5 +18559,33 @@
     ],
     "image_url": "https://images.tripper.nl/dagentree-ticket-aqua-mundo-center-parcs-heijderbos-korting/cfda52.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": 5
+  },
+  "https://www.tripper.nl/deal/ticket-winterheul-korting": {
+    "lat": 52.21559,
+    "lng": 5.91848,
+    "address": "Apenheul, J.C. Wilslaan 21, Apeldoorn",
+    "locations": [
+      {
+        "lat": 52.21559,
+        "lng": 5.91848,
+        "address": "Apenheul, J.C. Wilslaan 21, Apeldoorn"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/ticket-winterheul-korting/e292fe.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/tickets-kerstcircus-zoetermeer-bolalou-korting": {
+    "lat": 52.05318065591625,
+    "lng": 4.480636606445133,
+    "address": "Kerstcircus Zoetermeer, Boerhaavelaan, Zoetermeer",
+    "locations": [
+      {
+        "lat": 52.05318065591625,
+        "lng": 4.480636606445133,
+        "address": "Kerstcircus Zoetermeer, Boerhaavelaan, Zoetermeer"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/tickets-kerstcircus-zoetermeer-bolalou-korting/8ab51b.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": 6
   }
 }
