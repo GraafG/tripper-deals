@@ -18587,5 +18587,19 @@
     ],
     "image_url": "https://images.tripper.nl/tickets-kerstcircus-zoetermeer-bolalou-korting/8ab51b.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": 6
+  },
+  "https://www.tripper.nl/deal/overnachting-radisson-brussels-korting": {
+    "lat": 50.843091,
+    "lng": 4.511831,
+    "address": "Radisson Collection The National Hotel Brussels, Du Roy de Blicquylaan 7c, Sterrebeek",
+    "locations": [
+      {
+        "lat": 50.843091,
+        "lng": 4.511831,
+        "address": "Radisson Collection The National Hotel Brussels, Du Roy de Blicquylaan 7c, Sterrebeek"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/overnachting-radisson-brussels-korting/5e80dd.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
   }
 }
