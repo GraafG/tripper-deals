@@ -18601,5 +18601,47 @@
     ],
     "image_url": "https://images.tripper.nl/overnachting-radisson-brussels-korting/5e80dd.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": null
+  },
+  "https://www.tripper.nl/deal/wasbeurt-het-beste-bij-carwash-a2-korting": {
+    "lat": 51.79911121043593,
+    "lng": 5.259956669665864,
+    "address": "Carwash A2, Van Voordenpark 22, 5301 KP Zaltbommel, Zaltbommel",
+    "locations": [
+      {
+        "lat": 51.79911121043593,
+        "lng": 5.259956669665864,
+        "address": "Carwash A2, Van Voordenpark 22, 5301 KP Zaltbommel, Zaltbommel"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/wasbeurt-het-beste-bij-carwash-a2-korting/df5fe9.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/wasbeurt-het-beste-bij-carwash-a27-korting": {
+    "lat": 52.01977053768946,
+    "lng": 5.115151085366565,
+    "address": "Carwash A27, Vestingdok 1, Nieuwegein",
+    "locations": [
+      {
+        "lat": 52.01977053768946,
+        "lng": 5.115151085366565,
+        "address": "Carwash A27, Vestingdok 1, Nieuwegein"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/wasbeurt-het-beste-bij-carwash-a27-korting/f0289a.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/ticket-amikejo-spektaklo-drielandenpunt-korting": {
+    "lat": 50.755085380382326,
+    "lng": 6.019591464292006,
+    "address": "Amikejo Spektaklo, Viergrenzenweg 97, Vaals",
+    "locations": [
+      {
+        "lat": 50.755085380382326,
+        "lng": 6.019591464292006,
+        "address": "Amikejo Spektaklo, Viergrenzenweg 97, Vaals"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/ticket-amikejo-spektaklo-drielandenpunt-korting/daeeed.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
   }
 }
