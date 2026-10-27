@@ -18643,5 +18643,19 @@
     ],
     "image_url": "https://images.tripper.nl/ticket-amikejo-spektaklo-drielandenpunt-korting/daeeed.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": null
+  },
+  "https://www.tripper.nl/deal/entreeticket-bakkerijmuseum-veurne-korting": {
+    "lat": 51.058273313397194,
+    "lng": 2.666716640498606,
+    "address": "Bakkerijmuseum Veurne, Ieperse Steenweg 137, Veurne",
+    "locations": [
+      {
+        "lat": 51.058273313397194,
+        "lng": 2.666716640498606,
+        "address": "Bakkerijmuseum Veurne, Ieperse Steenweg 137, Veurne"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/entreeticket-bakkerijmuseum-veurne-korting/ce8ab7.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
   }
 }
