@@ -18657,5 +18657,19 @@
     ],
     "image_url": "https://images.tripper.nl/entreeticket-bakkerijmuseum-veurne-korting/ce8ab7.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": null
+  },
+  "https://www.tripper.nl/deal/weekendticket-brasadag-korting": {
+    "lat": 51.8980302800059,
+    "lng": 4.494888493421085,
+    "address": "Maassilo Rotterdam, Maashaven Z.z. 1-2, Rotterdam",
+    "locations": [
+      {
+        "lat": 51.8980302800059,
+        "lng": 4.494888493421085,
+        "address": "Maassilo Rotterdam, Maashaven Z.z. 1-2, Rotterdam"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/weekendticket-brasadag-korting/2d320b.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
   }
 }
