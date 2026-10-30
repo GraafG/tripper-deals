@@ -18671,5 +18671,19 @@
     ],
     "image_url": "https://images.tripper.nl/weekendticket-brasadag-korting/2d320b.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": null
+  },
+  "https://www.tripper.nl/deal/entree-adventure-park-de-rollygolf-drankje-korting": {
+    "lat": 52.244532,
+    "lng": 4.441816,
+    "address": "De Rollygolf, Duinweg 6, Noordwijk",
+    "locations": [
+      {
+        "lat": 52.244532,
+        "lng": 4.441816,
+        "address": "De Rollygolf, Duinweg 6, Noordwijk"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/entree-adventure-park-de-rollygolf-drankje-korting/457df0.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": 31
   }
 }
