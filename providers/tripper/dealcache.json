@@ -18741,5 +18741,19 @@
     ],
     "image_url": "https://images.tripper.nl/ticket-maaseyck-on-ice-schaatsverhuur-korting/c120de.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": null
+  },
+  "https://www.tripper.nl/deal/ticket-schaatsbaan-rotterdam-korting": {
+    "lat": 51.91187049,
+    "lng": 4.53024712,
+    "address": "Schaatsbaan Rotterdam, Toepad 95, Rotterdam",
+    "locations": [
+      {
+        "lat": 51.91187049,
+        "lng": 4.53024712,
+        "address": "Schaatsbaan Rotterdam, Toepad 95, Rotterdam"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/ticket-schaatsbaan-rotterdam-korting/cdd30b.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
   }
 }
