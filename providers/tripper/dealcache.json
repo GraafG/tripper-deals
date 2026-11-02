@@ -18755,5 +18755,19 @@
     ],
     "image_url": "https://images.tripper.nl/ticket-schaatsbaan-rotterdam-korting/cdd30b.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": null
+  },
+  "https://www.tripper.nl/deal/entree-kolner-zoo-dino-world-korting": {
+    "lat": 50.95923,
+    "lng": 6.97354,
+    "address": "Kölner Zoo, Riehler Straße 173, Keulen",
+    "locations": [
+      {
+        "lat": 50.95923,
+        "lng": 6.97354,
+        "address": "Kölner Zoo, Riehler Straße 173, Keulen"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/kolner-zoo-dino-world-ticket-korting/b5a0fc.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": 48
   }
 }
