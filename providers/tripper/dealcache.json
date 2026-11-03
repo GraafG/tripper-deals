@@ -18769,5 +18769,33 @@
     ],
     "image_url": "https://images.tripper.nl/kolner-zoo-dino-world-ticket-korting/b5a0fc.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": 48
+  },
+  "https://www.tripper.nl/deal/ticket-het-grote-boerderij-lichtjesfestival-avonturenboerderij-molenwaard-korting": {
+    "lat": 51.93128,
+    "lng": 4.8473,
+    "address": "Avonturenboerderij Molenwaard, Wilgenweg  3, Groot-Ammers ",
+    "locations": [
+      {
+        "lat": 51.93128,
+        "lng": 4.8473,
+        "address": "Avonturenboerderij Molenwaard, Wilgenweg  3, Groot-Ammers "
+      }
+    ],
+    "image_url": "https://images.tripper.nl/het-grote-boerderij-lichtjesfestival-avonturenboerderij-molenwaard-korting/b8b45a.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/entreeticket-christmas-fair-kasteeltuin-arcen-korting": {
+    "lat": 51.4719475,
+    "lng": 6.18417703,
+    "address": "Kasteeltuinen Arcen, Lingsforterweg 26, Arcen",
+    "locations": [
+      {
+        "lat": 51.4719475,
+        "lng": 6.18417703,
+        "address": "Kasteeltuinen Arcen, Lingsforterweg 26, Arcen"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/entreeticket-christmas-fair-kasteeltuin-arcen-korting/f0cb0a.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": 48
   }
 }
