@@ -18797,5 +18797,33 @@
     ],
     "image_url": "https://images.tripper.nl/entreeticket-christmas-fair-kasteeltuin-arcen-korting/f0cb0a.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": 48
+  },
+  "https://www.tripper.nl/deal/ero-expo-in-hasselt-korting": {
+    "lat": 50.933109,
+    "lng": 5.36207,
+    "address": "Trixxo Arena, Gouverneur Verwilghensingel 70, Hasselt",
+    "locations": [
+      {
+        "lat": 50.933109,
+        "lng": 5.36207,
+        "address": "Trixxo Arena, Gouverneur Verwilghensingel 70, Hasselt"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/ticket-ero-expo-antwerpen-korting/5f3432.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/entreeticket-het-vakantie-festival-2027-korting": {
+    "lat": 51.70139206,
+    "lng": 5.28995694,
+    "address": "Het Vakantie Festival, Diezekade 2, 's-Hertogenbosch",
+    "locations": [
+      {
+        "lat": 51.70139206,
+        "lng": 5.28995694,
+        "address": "Het Vakantie Festival, Diezekade 2, 's-Hertogenbosch"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/entreeticket-het-vakantie-festival-2027-korting/59a22d.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
   }
 }
