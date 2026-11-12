@@ -18825,5 +18825,19 @@
     ],
     "image_url": "https://images.tripper.nl/entreeticket-het-vakantie-festival-2027-korting/59a22d.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": null
+  },
+  "https://www.tripper.nl/deal/entree-winter-ticket-walibi-belgium-korting": {
+    "lat": 50.699205,
+    "lng": 4.590499,
+    "address": "Walibi Belgium, Boulevard de l'Europe 100, Wavre",
+    "locations": [
+      {
+        "lat": 50.699205,
+        "lng": 4.590499,
+        "address": "Walibi Belgium, Boulevard de l'Europe 100, Wavre"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/entree-winter-ticket-walibi-belgium-korting/191f95.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": 192
   }
 }
