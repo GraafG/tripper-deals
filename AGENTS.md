@@ -19,6 +19,8 @@ This repo is part of the shared deals tracker setup. Treat it as a provider-conf
 - Preview after build: `npm run preview`
 - Check dependency floors and synthetic images: `node scripts/check-dependencies.mjs` and `node scripts/check-images.mjs`
 - Check the last provider build: `node scripts/check-build.mjs <provider>` (run immediately after that provider's build)
+- Check Tripper scraper pagination offline: `python -B -m unittest discover -s providers/tripper -p test_scraper.py` (no HTTP requests or data writes)
+- Parse a local Tripper HTML file without network enrichment: `python providers/tripper/scraper.py --file <path-to-html> --no-geocode` (still writes the dated snapshot under `providers/tripper/data/`)
 
 Use Node.js 22.19.0+ on the 22.x line, or Node.js 24+, matching `package.json`
 and the locked Astro 7 dependency tree. `undici` requires 22.19.0, above Astro's
@@ -43,3 +45,4 @@ transitively, but `astro.config.mjs` explicitly selects it for CSS minification.
 - `src/pages/index.astro` renders inline event handlers, so any function used from `onclick` must be assigned to `window`.
 - Some providers have no geo data. Gate map UI through `SITE_CONFIG.features.map`.
 - Some history entries may lack a `prices` array; UI code must guard with `Array.isArray(...)`.
+- Tripper live scraping follows listing and fragment pagination before saving. The final fragment has a `data-all-deals-next` marker with empty `data-href` and `data-fragment-url`. `--file` selects a local, single-page input; pass `--no-geocode` as well to avoid network enrichment. A successful run still writes the dated snapshot.
