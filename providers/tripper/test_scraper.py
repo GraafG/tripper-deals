@@ -128,11 +128,18 @@ class PaginationTests(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError, 'No deal cards'):
                     scraper.fetch_all_deals(fetch_page=fetch)
 
-    def test_main_does_not_save_after_pagination_failure(self):
+    def test_batch_without_successor_fails_before_save(self):
+        pages = {
+            BASE: card('1') + '''
+              <a href="/alle-deals?page=2" data-all-deals-more
+                 data-fragment-url="/alle-deals/batch?page=2">More</a>''',
+            BASE + '/batch?page=2': card('2'),
+        }
         with patch('sys.argv', ['scraper.py', '--no-geocode']), \
-                patch.object(scraper, 'fetch_all_deals', side_effect=ValueError('incomplete')), \
+                patch.object(scraper, 'fetch_live', side_effect=lambda url: BeautifulSoup(
+                    pages[url], 'html.parser')), \
                 patch.object(scraper, 'save_daily_json') as save:
-            with self.assertRaises(ValueError):
+            with self.assertRaisesRegex(ValueError, 'no successor or final marker'):
                 scraper.main()
             save.assert_not_called()
 

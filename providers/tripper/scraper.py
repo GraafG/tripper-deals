@@ -187,6 +187,9 @@ def _next_listing_url(soup, current_url):
         if page != current_page + 1:
             raise ValueError(f"Listing pagination skipped a page: {candidate}")
         return candidate
+    if urlparse(current_url).path.rstrip('/') == '/alle-deals/batch':
+        raise ValueError(
+            f"Batch listing page {current_page} has no successor or final marker: {current_url}")
     return None
 
 
