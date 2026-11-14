@@ -8,7 +8,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from html import unescape as html_unescape
-from urllib.parse import urlparse
+from urllib.parse import parse_qs, urljoin, urlparse
 
 BASE_DIR = Path(__file__).parent
 DATA_DIR = BASE_DIR / 'data'
@@ -138,6 +138,100 @@ def fetch_live(url="https://www.tripper.nl/alle-deals"):
     response.raise_for_status()
     print(f"Received {len(response.content):,} bytes")
     return BeautifulSoup(response.content, 'html.parser')
+
+
+def _listing_page(url):
+    parsed = urlparse(url)
+    if (not sanitize_url(url)
+            or parsed.path.rstrip('/') not in {'/alle-deals', '/alle-deals/batch'}):
+        return None
+    pages = parse_qs(parsed.query, keep_blank_values=True).get('page', ['1'])
+    if len(pages) != 1 or not pages[0].isdigit() or int(pages[0]) < 1:
+        raise ValueError(f"Invalid listing page URL: {url}")
+    return int(pages[0])
+
+
+def _next_listing_url(soup, current_url):
+    current_page = _listing_page(current_url)
+    # Full pages advertise a fragment on the load-more link; fragments carry
+    # their successor in a hidden data-all-deals-next element.
+    next_link = soup.select_one(
+        '[data-all-deals-more], [data-all-deals-next], '
+        'a[rel~="next"][href], link[rel~="next"][href]')
+    if next_link is not None:
+        if (next_link.has_attr('data-all-deals-next')
+                and next_link.get('data-fragment-url') == ''
+                and next_link.get('data-href') == ''):
+            return None
+        href = (next_link.get('data-fragment-url')
+                or next_link.get('data-href') or next_link.get('href'))
+        if not href:
+            raise ValueError(f"Missing next listing URL on {current_url}")
+        candidate = urljoin(current_url, href)
+        page = _listing_page(candidate)
+        if page is None:
+            raise ValueError(f"Unexpected next listing URL: {candidate}")
+        if page != current_page + 1:
+            raise ValueError(f"Listing pagination skipped or repeated a page: {candidate}")
+        return candidate
+
+    # Support ordinary numbered pagination without following previous pages.
+    candidates = []
+    for link in soup.select('a[href]'):
+        candidate = urljoin(current_url, link['href'])
+        page = _listing_page(candidate)
+        if page is not None and page > current_page:
+            candidates.append((page, candidate))
+    if candidates:
+        page, candidate = min(candidates, key=lambda item: item[0])
+        if page != current_page + 1:
+            raise ValueError(f"Listing pagination skipped a page: {candidate}")
+        return candidate
+    return None
+
+
+def fetch_all_deals(url="https://www.tripper.nl/alle-deals", fetch_page=None):
+    """Collect all listing pages before enrichment or any snapshot is written."""
+    fetch_page = fetch_page or fetch_live
+    if _listing_page(url) is None:
+        raise ValueError(f"Unexpected listing URL: {url}")
+    deals = []
+    seen_ids = set()
+    seen_urls = set()
+    seen_pages = set()
+
+    for _ in range(1000):
+        page = _listing_page(url)
+        if page in seen_pages:
+            raise ValueError(f"Listing pagination repeated page {page}: {url}")
+        seen_pages.add(page)
+        soup = fetch_page(url)
+        cards = soup.select('div.deal[data-id]')
+        if not cards:
+            raise ValueError(f"No deal cards found on listing page {page}: {url}")
+
+        ids = [card['data-id'] for card in cards]
+        page_deals = parse_deals(soup)
+        added = 0
+        for deal_id, deal in zip(ids, page_deals):
+            deal_url = deal['url']
+            duplicate = deal_id in seen_ids or (deal_url and deal_url in seen_urls)
+            seen_ids.add(deal_id)
+            if deal_url:
+                seen_urls.add(deal_url)
+            if not duplicate:
+                deals.append(deal)
+                added += 1
+        print(f"Listing page {page}: {len(cards)} cards, {added} new deals.")
+        if not added:
+            raise ValueError(f"Listing page {page} contained only repeated deals: {url}")
+
+        next_url = _next_listing_url(soup, url)
+        if next_url is None:
+            return deals
+        url = next_url
+
+    raise ValueError("Listing pagination exceeded 1000 pages; refusing a partial scrape")
 
 
 def load_local(path):
@@ -541,16 +635,15 @@ def main():
         _backfill_meta()
         return
 
-    # Load page
+    # Local files remain an offline, single-page input.
     if args.file:
         soup = load_local(args.file)
+        deals = parse_deals(soup)
         source = args.file
     else:
-        soup = fetch_live()
+        deals = fetch_all_deals()
         source = "tripper.nl (live)"
 
-    # Parse
-    deals = parse_deals(soup)
     print(f"Extracted {len(deals)} deals from {source}")
 
     if not deals:
