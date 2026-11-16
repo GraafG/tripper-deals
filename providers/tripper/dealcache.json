@@ -19087,5 +19087,19 @@
     ],
     "image_url": "https://images.tripper.nl/ticket-entree-kerstcircus-aalst-korting/c28e2d.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": null
+  },
+  "https://www.tripper.nl/deal/entreeticket-oostende-lichtgolf-korting": {
+    "lat": 51.231571,
+    "lng": 2.913297,
+    "address": "Startpunt, Monacoplein 2, Oostende",
+    "locations": [
+      {
+        "lat": 51.231571,
+        "lng": 2.913297,
+        "address": "Startpunt, Monacoplein 2, Oostende"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/entreeticket-oostende-lichtgolf-korting/4af63f.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
   }
 }
