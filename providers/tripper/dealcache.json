@@ -19171,5 +19171,47 @@
     ],
     "image_url": "https://images.tripper.nl/ticket-the-inner-key-rasti-rostelli-korting/cfd92a.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": null
+  },
+  "https://www.tripper.nl/deal/verblijf-duingalow-duinrell-overnachten-korting": {
+    "lat": 52.146628,
+    "lng": 4.384499,
+    "address": "Duinrell, Duinrell  1, Wassenaar",
+    "locations": [
+      {
+        "lat": 52.146628,
+        "lng": 4.384499,
+        "address": "Duinrell, Duinrell  1, Wassenaar"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/verblijf-duingalow-duinrell-overnachten-korting/acf666.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": 124
+  },
+  "https://www.tripper.nl/deal/intercity-hotel-breda-korting": {
+    "lat": 51.5962245,
+    "lng": 4.7767571,
+    "address": "IntercityHotel Breda, Stationslaan ,416, Breda",
+    "locations": [
+      {
+        "lat": 51.5962245,
+        "lng": 4.7767571,
+        "address": "IntercityHotel Breda, Stationslaan ,416, Breda"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/intercity-hotel-breda-korting/782e26.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/tribune-ticket-wintercircus-haarlemmermeer": {
+    "lat": 52.34195809,
+    "lng": 4.67827561,
+    "address": "Wintercircus Haarlemmermeer, Stelling 1, Vijfhuizen",
+    "locations": [
+      {
+        "lat": 52.34195809,
+        "lng": 4.67827561,
+        "address": "Wintercircus Haarlemmermeer, Stelling 1, Vijfhuizen"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/tribune-ticket-wintercircus-haarlemmermeer/baad45.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
   }
 }
