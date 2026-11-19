@@ -19213,5 +19213,29 @@
     ],
     "image_url": "https://images.tripper.nl/tribune-ticket-wintercircus-haarlemmermeer/baad45.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": null
+  },
+  "https://www.tripper.nl/deal/chill-adventures-natuur-korting": {
+    "lat": 52.12091449936745,
+    "lng": 5.1235022354543664,
+    "address": "Gagelbos in Noorderpark Ruigenhoek Utrecht, St.-Anthoniedijk 107, Utrecht",
+    "locations": [
+      {
+        "lat": 52.12091449936745,
+        "lng": 5.1235022354543664,
+        "address": "Gagelbos in Noorderpark Ruigenhoek Utrecht, St.-Anthoniedijk 107, Utrecht"
+      },
+      {
+        "lat": 52.3274552037336,
+        "lng": 4.854906345448472,
+        "address": "Amsterdamse Bos, Bosbaanweg 5, Amstelveen"
+      },
+      {
+        "lat": 51.967823138486146,
+        "lng": 4.476112248840292,
+        "address": "Rotterdam, Hazelaarweg 39, Rotterdam"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/chill-adventures-natuur-korting/ce7c02.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
   }
 }
