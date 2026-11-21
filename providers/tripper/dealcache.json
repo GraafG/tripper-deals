@@ -19307,5 +19307,33 @@
     ],
     "image_url": "https://images.tripper.nl/food-speurtocht-amsterdam-jordaan-korting/9e1f9c.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": 5
+  },
+  "https://www.tripper.nl/deal/verblijven-camping-olympia-korting": {
+    "lat": 50.46499491701897,
+    "lng": 5.715302068781518,
+    "address": "Camping Olympia, Rue de Trois-Ponts 40, Aywaille",
+    "locations": [
+      {
+        "lat": 50.46499491701897,
+        "lng": 5.715302068781518,
+        "address": "Camping Olympia, Rue de Trois-Ponts 40, Aywaille"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/weekend-midweek-glamping-camping-olympia-korting/51f688.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/entreeticket-nacht-van-de-nederpop-xxl-korting": {
+    "lat": 52.31240488926565,
+    "lng": 4.944966851578838,
+    "address": "AFAS Live, Johan Cruijf Boulevard 590, Amsterdam",
+    "locations": [
+      {
+        "lat": 52.31240488926565,
+        "lng": 4.944966851578838,
+        "address": "AFAS Live, Johan Cruijf Boulevard 590, Amsterdam"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/entreeticket-nacht-van-de-nederpop-xxl-korting/bccd4e.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
   }
 }
