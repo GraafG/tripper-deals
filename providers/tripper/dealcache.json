@@ -19335,5 +19335,33 @@
     ],
     "image_url": "https://images.tripper.nl/entreeticket-nacht-van-de-nederpop-xxl-korting/bccd4e.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
     "review_count": null
+  },
+  "https://www.tripper.nl/deal/hotel-reehorst-veluwe": {
+    "lat": 52.024601961408,
+    "lng": 5.671140915279,
+    "address": "Hotel ReeHorst, Bennekomseweg,24, Ede",
+    "locations": [
+      {
+        "lat": 52.024601961408,
+        "lng": 5.671140915279,
+        "address": "Hotel ReeHorst, Bennekomseweg,24, Ede"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/hotel-reehorst-veluwe/461388.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": null
+  },
+  "https://www.tripper.nl/deal/all-you-can-eat-restaurant-tafelen-rijsbergen-korting": {
+    "lat": 51.49755,
+    "lng": 4.68396,
+    "address": "Restaurant Tafelen Rijsbergen,  Antwerpseweg 36, Rijsbergen",
+    "locations": [
+      {
+        "lat": 51.49755,
+        "lng": 4.68396,
+        "address": "Restaurant Tafelen Rijsbergen,  Antwerpseweg 36, Rijsbergen"
+      }
+    ],
+    "image_url": "https://images.tripper.nl/all-you-can-eat-restaurant-tafelen-roosendaal-korting/449b21.jpg?auto=format&auto=enhance&fit=crop&w=600&h=315",
+    "review_count": 125
   }
 }
